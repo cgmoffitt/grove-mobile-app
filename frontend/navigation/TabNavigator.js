@@ -17,10 +17,35 @@ const BottomTabNavigator = () => {
                 headerShown: false
             }}
         >
-            <Tab.Screen name="Home" component={HomeStackNavigator} />
-            <Tab.Screen name="Hangouts" component={HangoutsStackNavigator} />
-            <Tab.Screen name="Friends" component={FriendsStackNavigator} />
-            <Tab.Screen name="Me This Week" component={MeThisWeekStackNavigator} />
+            <Tab.Screen 
+                name="TabHome" 
+                component={HomeStackNavigator} 
+                options={{
+                    title:"Home"
+                }}
+            />
+            <Tab.Screen 
+                name="TabHangouts" 
+                component={HangoutsStackNavigator} 
+                options={{
+                    title:"Hangouts"
+                }}
+            />
+            <Tab.Screen 
+                name="TabFriends" 
+                component={FriendsStackNavigator} 
+                options={{
+                    title:"Friends"
+                }}
+            />
+            <Tab.Screen 
+                name="TabMeThisWeek" 
+                component={MeThisWeekStackNavigator} 
+                options={{
+                    title:"Me This Week"
+                }}
+            />
+                
         </Tab.Navigator>
     );
 };

@@ -6,6 +6,8 @@ import PlantActivity from "../screens/PlantActivity";
 import Friends from "../screens/Friends";
 import MeThisWeek from "../screens/MeThisWeek"
 import Hangouts from "../screens/Hangouts";
+import Reflect from "../screens/Reflect";
+import SingleFriend from "../screens/SingleFriend";
 
 const Stack = createStackNavigator();
 
@@ -22,6 +24,7 @@ const FriendsStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Friends" component={Friends} />
+      <Stack.Screen name="SingleFriend" component={SingleFriend} />
     </Stack.Navigator>
   );
 }
@@ -29,7 +32,9 @@ const FriendsStackNavigator = () => {
 const HangoutsStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Friends" component={Hangouts} />
+      <Stack.Screen name="Hangouts" component={Hangouts} />
+      <Stack.Screen name="Reflect" component={Reflect} />
+      <Stack.Screen name="PlantActivity" component={PlantActivity} />
     </Stack.Navigator>
   );
 }
@@ -37,7 +42,7 @@ const HangoutsStackNavigator = () => {
 const MeThisWeekStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Friends" component={MeThisWeek} />
+      <Stack.Screen name="Me This Week" component={MeThisWeek} />
     </Stack.Navigator>
   );
 }
