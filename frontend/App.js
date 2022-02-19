@@ -2,13 +2,24 @@ import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
-import DrawerNavigator from './navigation/DrawerNavigation';
 import BottomTabNavigator from './navigation/TabNavigator';
 
+import { useFonts } from 'expo-font';
+
 export default function App() {
+  const [loaded] = useFonts({
+    OpenSans: require('./assets/fonts/opensans/OpenSans-Regular.ttf'),
+    Poppins: require('./assets/fonts/poppins/Poppins-Regular.ttf'),
+    PoppinsBold: require('./assets/fonts/poppins/Poppins-Bold.ttf')
+  });
+  
+  if (!loaded) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
-      <DrawerNavigator />
+      <BottomTabNavigator />
     </NavigationContainer>
   );
 }
