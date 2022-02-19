@@ -134,7 +134,7 @@ const MeThisWeekDrawer = () => {
       <Drawer.Screen
         name="me this week"
         component={MeThisWeek}
-        options={configHeaderOptions("my this week")}
+        options={configHeaderOptions("me this week")}
       />
     </Drawer.Navigator>
   );
