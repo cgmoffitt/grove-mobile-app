@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
+import { CREME_WHITE } from "../constants/themes";
 
 
 const styles = StyleSheet.create({
@@ -9,6 +10,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
         textAlign: "center",
     },
+    backgroundCreme: {
+        backgroundColor: CREME_WHITE 
+    }
 });
 
 export default styles
