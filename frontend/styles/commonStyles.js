@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
-import { DARK_GREEN } from "../constants/themes";
 
 
 const styles = StyleSheet.create({
