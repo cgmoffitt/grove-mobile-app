@@ -1,5 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Home from "../screens/Home";
 import PlantActivity from "../screens/PlantActivity";
@@ -8,48 +9,140 @@ import MeThisWeek from "../screens/MeThisWeek"
 import Hangouts from "../screens/Hangouts";
 import Reflect from "../screens/Reflect";
 import SingleFriend from "../screens/SingleFriend";
+import UploadMemory from "../screens/UploadMemory";
+import WriteCaption from "../screens/WriteCaption";
+import { DARK_GREEN, CREME_WHITE } from "../constants/themes";
 
 const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const configHeaderOptions = (title) => {
+  return ({
+    title:title,
+    headerTitleStyle: {
+      fontFamily: "Poppins",
+      color: DARK_GREEN,
+    },
+    headerTintColor: DARK_GREEN,
+    headerStyle: {
+      backgroundColor: CREME_WHITE
+    }})
+}
+
+const HomeDrawer = () => {
+  return (
+    <Drawer.Navigator
+    >
+      <Drawer.Screen
+        name="grove"
+        component={Home}
+        options={configHeaderOptions("grove")}
+      />
+    </Drawer.Navigator>
+  );
+}
 
 const HomeStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="PlantActivity" component={PlantActivity} />
+      <Stack.Screen name="HomeStack" component={HomeDrawer} options={{ headerShown: false, title: "home" }} />
+      <Stack.Screen name="PlantActivity" component={PlantActivity} options={configHeaderOptions("Plant Activity")} />
     </Stack.Navigator>
+  );
+}
+
+const FriendDrawer = () => {
+  return (
+    <Drawer.Navigator
+    >
+      <Drawer.Screen
+        name="my grove"
+        component={Friends}
+        options={configHeaderOptions("my grove")}
+      />
+    </Drawer.Navigator>
   );
 }
 
 const FriendsStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Friends" component={Friends} />
-      <Stack.Screen name="SingleFriend" component={SingleFriend} />
+      <Stack.Screen
+        name="FriendsStack"
+        component={FriendDrawer}
+        options={{ headerShown: false, title: "my grove" }}
+
+      />
+      <Stack.Screen
+        name="SingleFriend"
+        component={SingleFriend}
+        options={configHeaderOptions("grove")}
+      />
     </Stack.Navigator>
+  );
+}
+
+const HangoutsDrawer = () => {
+  return (
+    <Drawer.Navigator
+    >
+      <Drawer.Screen
+        name="my hangouts"
+        component={Hangouts}
+        options={configHeaderOptions("my hangouts")}
+      />
+    </Drawer.Navigator>
   );
 }
 
 const HangoutsStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Hangouts" component={Hangouts} />
-      <Stack.Screen name="Reflect" component={Reflect} />
-      <Stack.Screen name="PlantActivity" component={PlantActivity} />
+      <Stack.Screen
+        name="Hangouts"
+        component={HangoutsDrawer}
+        options={{ headerShown: false, title: "" }}
+      />
+      <Stack.Screen
+        name="Reflect"
+        component={Reflect}
+        options={configHeaderOptions("hangout with <name>")}
+      />
+      <Stack.Screen
+        name="UploadMemory"
+        component={UploadMemory}
+        options={configHeaderOptions("Upload a Memory")}
+      />
+      <Stack.Screen
+        name="WriteCaption"
+        component={WriteCaption}
+        options={configHeaderOptions("Write a Caption")}
+      />
+      <Stack.Screen 
+        name="PlantActivity" 
+        component={PlantActivity} 
+        options={configHeaderOptions("Plant an Activity")}
+      />
     </Stack.Navigator>
   );
 }
 
-const MeThisWeekStackNavigator = () => {
+const MeThisWeekDrawer = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Me This Week" component={MeThisWeek} />
-    </Stack.Navigator>
+    <Drawer.Navigator
+    >
+      <Drawer.Screen
+        name="me this week"
+        component={MeThisWeek}
+        options={configHeaderOptions("me this week")}
+      />
+    </Drawer.Navigator>
   );
 }
 
-export { 
-  HomeStackNavigator, 
+export {
+  HomeStackNavigator,
   FriendsStackNavigator,
   HangoutsStackNavigator,
-  MeThisWeekStackNavigator
+  MeThisWeekDrawer
 };

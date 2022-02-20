@@ -5,7 +5,7 @@ import {
     HomeStackNavigator, 
     FriendsStackNavigator,
     HangoutsStackNavigator,
-    MeThisWeekStackNavigator
+    MeThisWeekDrawer
 } from "./StackNavigators";
 
 const Tab = createBottomTabNavigator();
@@ -40,7 +40,7 @@ const BottomTabNavigator = () => {
             />
             <Tab.Screen 
                 name="TabMeThisWeek" 
-                component={MeThisWeekStackNavigator} 
+                component={MeThisWeekDrawer} 
                 options={{
                     title:"Me This Week"
                 }}
