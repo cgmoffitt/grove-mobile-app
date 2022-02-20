@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
+import { CREME_WHITE } from "../constants/themes";
 
 
 const styles = StyleSheet.create({
@@ -15,6 +16,9 @@ const styles = StyleSheet.create({
     flexCenter: {
         justifyContent: "center",
         alignItems: "center"
+    },
+    backgroundCreme: {
+        backgroundColor: CREME_WHITE 
     }
 });
 

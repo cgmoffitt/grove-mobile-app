@@ -2,12 +2,13 @@ import React from "react";
 import { View, StyleSheet, Image, Dimensions } from "react-native";
 import ActionButton from "../components/shared-components/ActionButton";
 import commonStyles from "../styles/commonStyles"
+import { CREME_WHITE } from "../constants/themes";
 
 const Home = ({
   navigation
 }) => {
   return (
-    <View style={commonStyles.center}>
+    <View style={[commonStyles.center, commonStyles.backgroundCreme]}>
       <Image style={styles.plantLogo} source={require("../assets/images/plants/plant2.png")}></Image>
       <View style={styles.floatBottom}>
         <ActionButton main="🌿  Plant an Activity  ☀️" onPressMethod={() => navigation.navigate("PlantActivity")}
