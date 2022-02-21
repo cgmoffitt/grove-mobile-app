@@ -1,148 +1,89 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text, Button, TouchableWithoutFeedback, TouchableOpacity } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet } from "react-native";
 import commonStyles from "../styles/commonStyles"
-import { CREME_WHITE, DARK_GREEN } from "../constants/themes";
-
-const ToggleTabs = ({ }) => {
-    const [aToggled, setAToggled] = useState(true)
-
-    const toggle = () => setAToggled(!aToggled)
-
-
-    return (
-        <View
-            style={[{ width: "100%", height: 100 }, commonStyles.flexCenter]}
-        >
-            <TouchableWithoutFeedback
-
-                onPress={toggle}
-            >
-                <View style={[
-                    commonStyles.row,
-                    commonStyles.flexCenter,
-                    { width: "50%", height: 30 },
-                    { borderColor: DARK_GREEN, borderWidth: 4, borderRadius: 5 },
-                ]}>
-                    <View
-                        style={[
-                            commonStyles.center,
-                            aToggled ? { backgroundColor: DARK_GREEN } : {},
-                        ]}
-                    >
-                        <Text
-                            style={[
-                                styles.openSansNormal,
-                                aToggled ? { color: "white" } : {},
-                                aToggled ? styles.openSansBold : {}
-                            ]}
-                        >
-                            List
-                        </Text>
-                    </View>
-                    <View
-                        style={[
-                            commonStyles.center,
-                            aToggled ? {} : { backgroundColor: DARK_GREEN }
-                        ]}
-                    >
-                        <Text
-                            style={[
-                                styles.openSansNormal,
-                                aToggled ? {} : { color: "white" },
-                                aToggled ? {} : styles.openSansBold
-                            ]}
-                        >
-                            Calendar
-                        </Text>
-                    </View>
-                </View>
-            </TouchableWithoutFeedback>
-        </View>
-    )
-}
-
-const HeaderTabs = () => {
-
-    const headers = [
-        "Upcoming",
-        "Pending",
-        "Planted",
-        "Past"
-    ]
-
-    const [selected, setSelected] = useState(headers[0])
-
-    return (
-        <View
-            style={[
-                { width: "100%" },
-                commonStyles.row,
-                { justifyContent: "space-around" },
-                { marginBottom: 6 }
-            ]}
-        >
-            {headers.map(header =>
-                <TouchableWithoutFeedback
-                    key={header}
-                    onPress={() => setSelected(header)}
-                >
-                    <View
-                        style={[
-                            commonStyles.flexCenter,
-                            { flex: 1, paddingVertical: 3, textAlign: "center" },
-                            header == selected ? { borderBottomWidth: 2, borderBottomColor: DARK_GREEN } : {}
-                        ]}
-                    >
-                        <Text
-                            style={[
-                                styles.openSansNormal,
-                            ]}
-                        >
-                            {header}
-                        </Text>
-                    </View>
-
-                </TouchableWithoutFeedback>
-
-            )}
-        </View>
-    )
-}
+import { DARK_GREEN } from "../constants/themes";
+import PlantActivityButton from "../components/shared-components/PlantActivityButton";
+import ListCalendarToggle from "../components/hangouts/ListCalendarToggle";
+import ActivityHeaders from "../components/hangouts/ActivityHeaders"
+import ActivitiesCard from "../components/hangouts/ActivitiesCard";
+import {
+    UPCOMING_ACTIVITIES,
+    PENDING_ACTIVITIES,
+    PLANTED_ACTIVITIES,
+    PAST_ACTIVITIES
+} from "../constants/defaultData"
 
 const Hangouts = ({
     navigation
 }) => {
+    const [listToggled, setListToggled] = useState(true)
+    const toggleView = () => setListToggled(!listToggled)
+
+    const UPCOMING = "Upcoming"
+    const PENDING = "Pending"
+    const PLANTED = "Planted"
+    const PAST = "Past"
+
+    const HEADERS = [
+        UPCOMING,
+        PENDING,
+        PLANTED,
+        PAST
+    ]
+    const [selected, setSelected] = useState(HEADERS[0])
+    const [selectedActivities, setSelectedActivities] = useState(PLANTED_ACTIVITIES)
+
+    useEffect(() => {
+        let mounted = true
+        if (mounted) {
+            switch (selected) {
+                case UPCOMING:
+                    setSelectedActivities(UPCOMING_ACTIVITIES)
+                    break;
+                case PENDING:
+                    setSelectedActivities(PENDING_ACTIVITIES)
+                    break;
+                case PLANTED:
+                    setSelectedActivities(PLANTED_ACTIVITIES)
+                    break;
+                case PAST:
+                    setSelectedActivities(PAST_ACTIVITIES)
+                    break;
+            }
+        }
+
+        return () => mounted = false
+
+    }, [selected])
+
     return (
-        <View style={{ flex: 1, backgroundColor: CREME_WHITE }}>
-            <ToggleTabs />
-            <HeaderTabs />
+        <View style={[commonStyles.full, commonStyles.backgroundCreme]}>
+            <ListCalendarToggle
+                listToggled={listToggled}
+                toggleView={toggleView}
+            />
+            <ActivityHeaders
+                headers={HEADERS}
+                selected={selected}
+                setSelected={setSelected}
+            />
             <View
-                style={[
-                    {flex: 1, backgroundColor: DARK_GREEN}
-                ]}
+                style={styles.content}
             >
-                <Text>This is the Hangouts screen</Text>
-                <Button
-                    title="Go to Reflect Screen"
-                    onPress={() => navigation.navigate("Reflect")}
-                />
-                <Button
-                    title="Go to PlantActivity Screen"
-                    onPress={() => navigation.navigate("PlantActivity")}
-                />
+                <ActivitiesCard activities={selectedActivities} />
+                {selected === PLANTED && <PlantActivityButton navigation={navigation} />}
             </View>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
-    openSansNormal: {
-        fontFamily: "OpenSans",
-        fontSize: 16,
-    },
-    openSansBold: {
-        fontFamily: "OpenSansBold",
-        fontSize: 16,
+    content: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "space-between",
+        backgroundColor: DARK_GREEN,
+        paddingVertical: 30
     }
 });
 

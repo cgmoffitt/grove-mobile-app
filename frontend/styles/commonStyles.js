@@ -1,9 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
-import { CREME_WHITE } from "../constants/themes";
+import { CREME_WHITE, DARK_GREEN } from "../constants/themes";
 
 
 const styles = StyleSheet.create({
+    full: {
+        flex: 1
+    },
     center: {
         flex: 1,
         justifyContent: "center",
@@ -19,6 +22,9 @@ const styles = StyleSheet.create({
     },
     backgroundCreme: {
         backgroundColor: CREME_WHITE 
+    },
+    backgroundDarkGreen: {
+        backgroundColor: DARK_GREEN
     }
 });
 
