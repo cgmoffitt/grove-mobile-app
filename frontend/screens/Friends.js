@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Button, ImageBackground, FlatList} from "react-native";
+import { View, StyleSheet, ImageBackground, FlatList} from "react-native";
 import { SearchBar } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
 import FriendCard from "../components/shared-components/FriendCard"
-import { patchWebProps } from "react-native-elements/dist/helpers";
 import { friends } from "../constants/defaultData";
-import { DARK_GREEN, CREME_WHITE, shadows} from "../constants/themes";
+import { CREME_WHITE } from "../constants/themes";
 
 const Friends = ({
     navigation
