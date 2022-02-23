@@ -4,11 +4,11 @@ const PLANTED_ACTIVITIES = [
         date: "Monday"
     },
     {
-        title: "Hiking",
+        title: "Bar Hopping",
         date: "Sunday"
     },
     {
-        title: "Volleyball",
+        title: "Coffee",
         date: "Saturday"
     }
 ]

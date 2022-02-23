@@ -1,19 +1,26 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 
 const ActivityItem = ({
     activity
 }) => {
+
+    const ACTIVITY_IMG_SOURCES = {
+        tennis: require("../../assets/images/activity-icons/tennis.png"),
+        coffee: require("../../assets/images/activity-icons/coffee.png"),
+        hiking: require("../../assets/images/activity-icons/hiking.png"),
+        ["bar hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
+    }
+
     return (
         <View
             style={styles.activityItem}
         >
-            <Text
-                style={commonStyles.center}
-            >
-                🎾
-            </Text>
+            <View style={styles.img}>
+                <Image style={{ width: 25 }} resizeMode={"contain"} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
+            </View>
+
             <View
                 style={{ flex: 2, flexDirection: "column", justifyContent: "center" }}
             >
@@ -23,7 +30,7 @@ const ActivityItem = ({
                             {activity.friend} •{" "}
                         </Text>
                     }
-                    {activity.title}
+                    {activity.title} 
                 </Text>
                 <Text style={styles.dateText}>
                     {activity.date}
@@ -46,7 +53,7 @@ const NoActivities = ({
             <Text
                 style={styles.noActivities}
             >
-                No {selected.toLowerCase()} hangouts. Check back later! 
+                No {selected.toLowerCase()} hangouts. Check back later!
             </Text>
         </View>
     )
@@ -66,7 +73,7 @@ export default ActivitiesCard = ({
         >
             {activities.length == 0
                 &&
-                <NoActivities selected={selected}/>
+                <NoActivities selected={selected} />
             }
             {activities.map((activity, i) => <ActivityItem key={i} activity={activity} />)}
         </View>
@@ -100,5 +107,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontFamily: "OpenSansItalic",
         fontSize: 16
+    },
+    img: {
+        flex: 1,
+        alignItems: "center",
     }
 });
