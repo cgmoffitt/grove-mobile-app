@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ImageBackground } from "react-native";
 import commonStyles from "../styles/commonStyles"
 import { DARK_GREEN } from "../constants/themes";
 import PlantActivityButton from "../components/shared-components/PlantActivityButton";
@@ -67,12 +67,11 @@ const Hangouts = ({
                 selected={selected}
                 setSelected={setSelected}
             />
-            <View
-                style={styles.content}
-            >
-                <ActivitiesCard activities={selectedActivities} />
+            <ImageBackground source={require("../assets/images/backgrounds/Me-This-Week.png")} resizeMode="cover" style={styles.content}>
+                <ActivitiesCard activities={selectedActivities} selected={selected} />
                 {selected === PLANTED && <PlantActivityButton navigation={navigation} />}
-            </View>
+            </ImageBackground>
+
         </View>
     );
 };

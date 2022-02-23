@@ -38,8 +38,23 @@ const ActivityItem = ({
     )
 }
 
+const NoActivities = ({
+    selected
+}) => {
+    return (
+        <View style={styles.activityItem}>
+            <Text
+                style={styles.noActivities}
+            >
+                No {selected.toLowerCase()} hangouts. Check back later! 
+            </Text>
+        </View>
+    )
+}
+
 export default ActivitiesCard = ({
-    activities
+    activities,
+    selected
 }) => {
 
     return (
@@ -49,6 +64,10 @@ export default ActivitiesCard = ({
                 commonStyles.backgroundCreme,
             ]}
         >
+            {activities.length == 0
+                &&
+                <NoActivities selected={selected}/>
+            }
             {activities.map((activity, i) => <ActivityItem key={i} activity={activity} />)}
         </View>
     )
@@ -64,6 +83,7 @@ const styles = StyleSheet.create({
         height: 50,
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "center",
         marginVertical: 5
     },
     titleText: {
@@ -75,5 +95,10 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontFamily: "OpenSans",
         fontSize: 14
+    },
+    noActivities: {
+        textAlign: "center",
+        fontFamily: "OpenSansItalic",
+        fontSize: 16
     }
 });
