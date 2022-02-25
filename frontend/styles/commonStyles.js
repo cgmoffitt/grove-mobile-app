@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     cremeCard: {
         borderRadius: 15,
         backgroundColor: CREME_WHITE,
-        padding: 3,
+        padding: "3%",
         justifyContent: "center",
         alignItems: "center"
     }
