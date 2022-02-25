@@ -78,6 +78,11 @@ const FriendsStackNavigator = () => {
         component={SingleFriend}
         options={configHeaderOptions("grove")}
       />
+      <Stack.Screen
+        name="Reflect"
+        component={Reflect}
+        options={configHeaderOptions("hangout with <name>")}
+      />
     </Stack.Navigator>
   );
 }
