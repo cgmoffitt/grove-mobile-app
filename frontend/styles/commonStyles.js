@@ -25,11 +25,6 @@ const styles = StyleSheet.create({
     },
     backgroundDarkGreen: {
         backgroundColor: DARK_GREEN
-    },
-    search: {
-        backgroundColor: "#FFFFFF",
-        color: DARK_GREEN,
-        paddingHorizontal: 10
     }
 });
 
