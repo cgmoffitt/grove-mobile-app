@@ -1,11 +1,12 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, ImageBackground } from "react-native";
+import commonStyles from "../styles/commonStyles"
 
 const MeThisWeek = () => {
   return (
-    <View style={styles.center}>
-      <Text>This is the Me This Week screen</Text>
-    </View>
+    <ImageBackground source={require("../assets/images/backgrounds/Me-This-Week.png")} resizeMode="cover" style={commonStyles.full}>
+
+    </ImageBackground>
   );
 };
 

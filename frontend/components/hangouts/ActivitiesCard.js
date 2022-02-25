@@ -67,8 +67,8 @@ export default ActivitiesCard = ({
     return (
         <View
             style={[
-                styles.card,
-                commonStyles.backgroundCreme,
+                commonStyles.cremeCard,
+                styles.card
             ]}
         >
             {activities.length == 0
@@ -83,7 +83,6 @@ export default ActivitiesCard = ({
 const styles = StyleSheet.create({
     card: {
         width: "80%",
-        borderRadius: 10
     },
     activityItem: {
         width: "100%",

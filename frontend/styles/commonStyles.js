@@ -25,6 +25,10 @@ const styles = StyleSheet.create({
     },
     backgroundDarkGreen: {
         backgroundColor: DARK_GREEN
+    },
+    cremeCard: {
+        borderRadius: 10,
+        backgroundColor: CREME_WHITE
     }
 });
 
