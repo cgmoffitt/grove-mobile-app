@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     search: {
         backgroundColor: "#FFFFFF",
         color: DARK_GREEN,
+        paddingHorizontal: 10
     }
 });
 

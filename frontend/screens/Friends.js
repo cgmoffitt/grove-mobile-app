@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ImageBackground, FlatList} from "react-native";
+import { View, StyleSheet, ImageBackground, FlatList, Text} from "react-native";
 import { SearchBar } from "react-native-elements";
 import commonStyles from "../styles/commonStyles";
 import FriendCard from "../components/shared-components/FriendCard"
 import { friends } from "../constants/defaultData";
-import { CREME_WHITE } from "../constants/themes";
+import { CREME_WHITE, DARK_GREEN } from "../constants/themes";
 
 const Friends = ({
     navigation
@@ -26,10 +26,10 @@ const Friends = ({
                     placeholder="Type Here..."
                     onChangeText={updateSearch}
                     value={search}
-                    style={commonStyles.search}
+                    style={styles.search}
                     lightTheme={true}
                     containerStyle={{backgroundColor: CREME_WHITE}}
-                    inputStyle={{backgroundColor: 'red'}}
+                    inputContainerStyle={{backgroundColor: CREME_WHITE}}
                 />
             </View>
             
@@ -37,7 +37,7 @@ const Friends = ({
                 <FlatList
                     data={friends}
                     renderItem={({item, index}) => renderItem(item, index)}
-                    numColumns={4}
+                    numColumns={3}
                     keyExtractor={(item, index) => index.toString()}
                     
                 />
@@ -58,10 +58,16 @@ const styles = StyleSheet.create({
     },
     searchView: {
         margin: 10,
-        width: '90%'
+        width: '90%',
     },
     topBar:{
         backgroundColor: CREME_WHITE
+    },
+    search: {
+        backgroundColor: "#FFFFFF",
+        color: DARK_GREEN,
+        paddingHorizontal: 10,
+        borderRadius: 20
     }
 });
 
