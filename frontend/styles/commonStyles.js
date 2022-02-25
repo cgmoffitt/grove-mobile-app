@@ -27,8 +27,11 @@ const styles = StyleSheet.create({
         backgroundColor: DARK_GREEN
     },
     cremeCard: {
-        borderRadius: 10,
-        backgroundColor: CREME_WHITE
+        borderRadius: 15,
+        backgroundColor: CREME_WHITE,
+        padding: 3,
+        justifyContent: "center",
+        alignItems: "center"
     }
 });
 
