@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Image, Dimensions } from "react-native";
+import { View, StyleSheet, Image, Dimensions, Pressable, Text } from "react-native";
 import PlantActivityButton from "../components/shared-components/PlantActivityButton";
 import commonStyles from "../styles/commonStyles"
 import { CREME_WHITE } from "../constants/themes";
@@ -13,6 +13,7 @@ const Home = ({
       <View style={styles.floatBottom}>
         <PlantActivityButton navigation={navigation} />
       </View>
+
     </View>
   );
 };

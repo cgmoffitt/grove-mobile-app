@@ -83,6 +83,11 @@ const FriendsStackNavigator = () => {
         component={Reflect}
         options={configHeaderOptions("hangout with <name>")}
       />
+      <Stack.Screen
+        name="UploadMemory"
+        component={UploadMemory}
+        options={configHeaderOptions("Upload a Memory")}
+      />
     </Stack.Navigator>
   );
 }
