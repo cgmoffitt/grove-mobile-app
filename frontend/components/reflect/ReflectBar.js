@@ -49,9 +49,11 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     reflectChild:{
-        width: 50,
-        height: 50,
-        margin: 10,
+        width: 40,
+        height: 40,
+        marginLeft: 15,
+        marginRight: 15,
+        marginVertical: 8,
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
