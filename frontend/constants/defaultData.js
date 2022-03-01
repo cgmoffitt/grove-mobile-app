@@ -35,17 +35,20 @@ const PAST_ACTIVITIES = [
     {
         title: "Tennis",
         friend: "Mihir",
-        date: "Monday"
+        date: "Monday",
+        reflected: false
     },
     {
         title: "Coffee",
         friend: "Jasmine",
-        date: "Sunday"
+        date: "Sunday",
+        reflected: true
     },
     {
         title: "Hiking",
         friend: "Coleman",
-        date: "Saturday"
+        date: "Saturday",
+        reflected: true
     }
 ]
 

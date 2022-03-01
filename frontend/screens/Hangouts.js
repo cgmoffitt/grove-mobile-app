@@ -68,7 +68,11 @@ const Hangouts = ({
                 setSelected={setSelected}
             />
             <ImageBackground source={require("../assets/images/backgrounds/Me-This-Week.png")} resizeMode="cover" style={styles.content}>
-                <ActivitiesCard activities={selectedActivities} selected={selected} />
+                <ActivitiesCard 
+                    activities={selectedActivities} 
+                    selected={selected} 
+                    navigation={navigation}
+                />
                 {selected === PLANTED && <PlantActivityButton navigation={navigation} />}
             </ImageBackground>
 

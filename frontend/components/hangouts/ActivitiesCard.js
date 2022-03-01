@@ -1,9 +1,28 @@
 import React from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
+import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import commonStyles from "../../styles/commonStyles"
+import { LIGHT_GREEN, shadows } from "../../constants/themes"
+
+const ReflectButton = ({
+    navigation
+}) => {
+    return (
+        <TouchableOpacity
+            onPress={() => navigation.navigate("Reflect")}
+        >
+            <View
+                style={styles.reflectButton}
+            >
+                <Text style={styles.reflectText}>Reflect</Text>
+            </View>
+        </TouchableOpacity>
+    )
+}
 
 const ActivityItem = ({
-    activity
+    navigation,
+    activity,
+    selected
 }) => {
 
     const ACTIVITY_IMG_SOURCES = {
@@ -30,17 +49,22 @@ const ActivityItem = ({
                             {activity.friend} •{" "}
                         </Text>
                     }
-                    {activity.title} 
+                    {activity.title}
                 </Text>
                 <Text style={styles.dateText}>
                     {activity.date}
                 </Text>
             </View>
-            <Text
-                style={commonStyles.center}
-            >
-                ℹ️
-            </Text>
+            {(selected === "Past" && !activity.reflected)
+                ?
+                <ReflectButton navigation={navigation} />
+                :
+                <Text
+                    style={commonStyles.center}
+                >
+                    ℹ️
+                </Text>
+            }
         </View>
     )
 }
@@ -60,6 +84,7 @@ const NoActivities = ({
 }
 
 export default ActivitiesCard = ({
+    navigation,
     activities,
     selected
 }) => {
@@ -75,7 +100,14 @@ export default ActivitiesCard = ({
                 &&
                 <NoActivities selected={selected} />
             }
-            {activities.map((activity, i) => <ActivityItem key={i} activity={activity} />)}
+            {activities.map((activity, i) =>
+                <ActivityItem
+                    key={i}
+                    activity={activity}
+                    selected={selected}
+                    navigation={navigation}
+                />
+            )}
         </View>
     )
 }
@@ -110,5 +142,19 @@ const styles = StyleSheet.create({
     img: {
         flex: 1,
         alignItems: "center",
+    },
+    reflectButton: {
+        backgroundColor: LIGHT_GREEN,
+        borderRadius: 5,
+        paddingHorizontal: 10,
+        shadowColor: shadows.shadowColor,
+        shadowRadius: shadows.shadowRadius,
+        shadowOpacity: shadows.shadowOpacity,
+        shadowRadius: shadows.shadowRadius,
+        shadowOffset: shadows.shadowOffset,
+    },
+    reflectText: {
+        fontFamily: "OpenSans",
+        color: "white"
     }
 });
