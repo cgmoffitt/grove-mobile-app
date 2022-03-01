@@ -1,14 +1,16 @@
 import React from "react";
-import { Pressable, Text, StyleSheet } from "react-native";
+import { Pressable, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { DARK_GREEN, CREME_WHITE, shadows} from "../../constants/themes";
 
-const ActionButton = (props, {
-     navigation
+const ActionButton = ({
+    main,
+    onPressMethod,
+    style
 }) => {
     return(
-      <Pressable style={styles.activeButton} onPress={props.onPressMethod}>
-        <Text style={styles.buttonText}>{props.main}</Text>
-      </Pressable>
+      <TouchableOpacity style={[styles.activeButton, style]} onPress={onPressMethod}>
+        <Text style={styles.buttonText}>{main}</Text>
+      </TouchableOpacity>
     );
 };
 const styles = StyleSheet.create({
