@@ -160,46 +160,10 @@ const styles = StyleSheet.create({
   background: {
     alignItems: "center",
   },
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-  },
-  bold: {
-    fontFamily: "OpenSansBold",
-  },
-  headerText: {
-    fontFamily: "OpenSans",
-    color: DARK_GREEN,
-    fontSize: 18
-  },
   accordionHeaderText: {
     fontFamily: "OpenSans",
     color: "black",
     fontSize: 18
-  },
-  thinLine: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#E6E6E6",
-    width: "100%"
-  },
-  plusMinus: {
-    fontFamily: "OpenSans",
-    color: DARK_GREEN,
-    fontSize: 22
-  },
-  plusMinusContainer: {
-    backgroundColor: "white",
-    borderWidth: 1,
-    borderColor: DARK_GREEN,
-    borderRadius: 10,
-    width: 30,
-    height: 35,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    marginRight: 5
   },
   accordionSection: {
     width: "100%",
