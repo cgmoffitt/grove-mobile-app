@@ -11,7 +11,12 @@ const Friends = ({
 }) => {
     
     const renderItem = (item, index) => (
-        <FriendCard name={item.name} plantLevel={item.plant} onPressMethod={() => navigation.navigate("SingleFriend")}/>
+        <FriendCard 
+            name={item.name} 
+            plantLevel={item.plant} 
+            onPressMethod={() => navigation.navigate("SingleFriend")}
+            size={"LARGE"}
+        />
     )
     const [search, setSearch] = useState("");
 
