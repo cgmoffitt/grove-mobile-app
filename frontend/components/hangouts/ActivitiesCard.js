@@ -52,7 +52,7 @@ const ActivityItem = ({
                     {activity.title}
                 </Text>
                 <Text style={styles.dateText}>
-                    {activity.date}
+                    {activity.date.toDateString()}
                 </Text>
             </View>
             {(selected === "Past" && !activity.reflected)

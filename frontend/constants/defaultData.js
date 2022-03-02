@@ -1,53 +1,103 @@
-const PLANTED_ACTIVITIES = [
-    {
-        title: "Tennis",
-        date: "Monday"
-    },
-    {
-        title: "Bar Hopping",
-        date: "Sunday"
-    },
-    {
-        title: "Coffee",
-        date: "Saturday"
-    }
-]
-const UPCOMING_ACTIVITIES = [
-    {
-        title: "Tennis",
-        friend: "Mihir",
-        date: "Monday"
-    },
-    {
-        title: "Coffee",
-        friend: "Jasmine",
-        date: "Sunday"
-    },
-    {
-        title: "Hiking",
-        friend: "Coleman",
-        date: "Saturday"
-    }
-]
-const PENDING_ACTIVITIES = []
+const SOMEONE_ELSE_ID = "SOMEONE_ELSE"
+const MY_ID = "ME"
+const AUTOMATIC_ID = "AUTOMATIC"
 
-const PAST_ACTIVITIES = [
+const defaultActivity = {
+    HIKING: "Hiking",
+    TENNIS: "Tennis",
+    COFFEE: "Coffee",
+    BAR_HOPPING: "Bar Hopping"
+}
+
+const DEFAULT_ACTIVITIES = [
+    { name: defaultActivity.HIKING },
+    { name: defaultActivity.TENNIS },
+    { name: defaultActivity.COFFEE },
+    { name: defaultActivity.BAR_HOPPING }
+]
+
+const ALL_ACTIVITIES = [
+    //UPCOMING ACTIVITIES: date IN FUTURE AND confirmed IS TRUE
     {
-        title: "Tennis",
+        id: 1,
+        title: defaultActivity.TENNIS,
         friend: "Mihir",
-        date: "Monday",
+        date: new Date('March 8, 2022 18:00:00'),
+        confirmed: true,
+        plantedId: AUTOMATIC_ID,
+        reflected: false,
+    },
+    {
+        id: 2,
+        title: defaultActivity.COFFEE,
+        friend: "Jasmine",
+        date: new Date('March 9, 2022 18:00:00'),
+        confirmed: true,
+        plantedId: SOMEONE_ELSE_ID,
+        reflected: false,
+    },
+    {
+        id: 3,
+        title: defaultActivity.HIKING,
+        friend: "Coleman",
+        date: new Date('March 10, 2022 18:00:00'),
+        confirmed: true,
+        plantedId: MY_ID,
+        reflected: false,
+    },
+    //PLANTED ACTIVITIES: date IN FUTURE, confirmed IS FALSE, plantedId is "ME"
+    {
+        id: 4,
+        title: defaultActivity.TENNIS,
+        friend: undefined,
+        date: new Date('March 11, 2022 18:00:00'),
+        confirmed: false,
+        plantedId: MY_ID,
+        reflected: false,
+    },
+    {
+        id: 5,
+        title: defaultActivity.BAR_HOPPING,
+        friend: undefined,
+        date: new Date('March 12, 2022 18:00:00'),
+        confirmed: false,
+        plantedId: MY_ID,
+        reflected: false,
+    },
+    {
+        id: 6,
+        title: defaultActivity.COFFEE,
+        friend: undefined,
+        date: new Date('March 13, 2022 18:00:00'),
+        confirmed: false,
+        plantedId: MY_ID,
+        reflected: false,
+    },
+    //PENDING ACTIVITIES: date IN FUTURE, confirmed is FALSE, plantedId is "SOMEONE_ELSE" OR "AUTOMATIC"
+    /*NO PENDING ACTIVITIES AT START*/
+    //Past Activities: date IN PAST, confirmed is TRUE
+    {
+        title: defaultActivity.TENNIS,
+        friend: "Mihir",
+        date: new Date('March 1, 2022 18:00:00'),
+        confirmed: true,
+        plantedId: AUTOMATIC_ID,
         reflected: false
     },
     {
-        title: "Coffee",
+        title: defaultActivity.COFFEE,
         friend: "Jasmine",
-        date: "Sunday",
+        date: new Date('March 1, 2022 18:00:00'),
+        confirmed: true,
+        plantedId: AUTOMATIC_ID,
         reflected: true
     },
     {
-        title: "Hiking",
+        title: defaultActivity.HIKING,
         friend: "Coleman",
-        date: "Saturday",
+        date: new Date('March 1, 2022 18:00:00'),
+        confirmed: true,
+        plantedId: AUTOMATIC_ID,
         reflected: true
     }
 ]
@@ -74,13 +124,6 @@ const DEFAULT_FOCUS_FRIENDS = [
     { name: "Mihir", plant: 1 }
 ]
 
-const DEFAULT_ACTIVITIES = [
-    { name: "Hiking" }, 
-    { name: "Tennis" }, 
-    { name: "Coffee" },
-    { name: "Bar Hopping" }
-]
-
 const activityHeader = {
     UPCOMING: "Upcoming",
     PENDING: "Pending",
@@ -98,13 +141,13 @@ const ACTIVITY_HEADERS = [
 
 
 export {
-    UPCOMING_ACTIVITIES,
-    PENDING_ACTIVITIES,
-    PLANTED_ACTIVITIES,
-    PAST_ACTIVITIES,
+    ALL_ACTIVITIES,
     friends,
     DEFAULT_FOCUS_FRIENDS,
     DEFAULT_ACTIVITIES,
     ACTIVITY_HEADERS,
-    activityHeader
+    activityHeader,
+    MY_ID,
+    SOMEONE_ELSE_ID,
+    AUTOMATIC_ID
 }

@@ -8,13 +8,34 @@ import ListCalendarToggle from "../components/hangouts/ListCalendarToggle";
 import ActivityHeaders from "../components/hangouts/ActivityHeaders"
 import ActivitiesCard from "../components/hangouts/ActivitiesCard";
 import {
-    UPCOMING_ACTIVITIES,
-    PENDING_ACTIVITIES,
-    PLANTED_ACTIVITIES,
-    PAST_ACTIVITIES,
+    MY_ID,
+    ALL_ACTIVITIES,
     ACTIVITY_HEADERS,
     activityHeader
 } from "../constants/defaultData"
+
+//UPCOMING ACTIVITIES: date IN FUTURE AND confirmed IS TRUE
+const filterUpcoming = (activity) => {
+    curDate = new Date()
+    return activity.date > curDate && activity.confirmed
+}
+//PLANTED ACTIVITIES: date IN FUTURE, confirmed IS FALSE, plantedId is "ME"
+const filterPlanted = (activity) => {
+    curDate = new Date()
+    return activity.date > curDate && !activity.confirmed && activity.plantedId == MY_ID
+}
+
+//PENDING ACTIVITIES: date IN FUTURE, confirmed is FALSE, plantedId is "SOMEONE_ELSE" OR "AUTOMATIC"
+const filterPending = (activity) => {
+    curDate = new Date()
+    return activity.date > curDate && !activity.confirmed && activity.plantedId != MY_ID
+}
+
+//Past Activities: date IN PAST, confirmed is TRUE
+const filterPast = (activity) => {
+    curDate = new Date()
+    return activity.date < curDate && activity.confirmed
+}
 
 const Hangouts = ({
     selectedActivityType,
@@ -23,23 +44,27 @@ const Hangouts = ({
     const [listToggled, setListToggled] = useState(true)
     const toggleView = () => setListToggled(!listToggled)
 
-    const [selectedActivities, setSelectedActivities] = useState(PLANTED_ACTIVITIES)
+    const activities = ALL_ACTIVITIES
+
+    const [selectedActivities, setSelectedActivities] = useState(activities.filter(activity => filterUpcoming(activity)))
+
+    
 
     useEffect(() => {
         let mounted = true
         if (mounted) {
             switch (selectedActivityType) {
                 case activityHeader.UPCOMING:
-                    setSelectedActivities(UPCOMING_ACTIVITIES)
+                    setSelectedActivities(activities.filter(activity => filterUpcoming(activity)))
                     break;
                 case activityHeader.PENDING:
-                    setSelectedActivities(PENDING_ACTIVITIES)
+                    setSelectedActivities(activities.filter(activity => filterPending(activity)))
                     break;
                 case activityHeader.PLANTED:
-                    setSelectedActivities(PLANTED_ACTIVITIES)
+                    setSelectedActivities(activities.filter(activity => filterPlanted(activity)))
                     break;
                 case activityHeader.PAST:
-                    setSelectedActivities(PAST_ACTIVITIES)
+                    setSelectedActivities(activities.filter(activity => filterPast(activity)))
                     break;
             }
         }
