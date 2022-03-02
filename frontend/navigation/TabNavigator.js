@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import routes from "../constants/routes";
 import { 
     HomeStackNavigator, 
     FriendsStackNavigator,
@@ -18,28 +18,28 @@ const BottomTabNavigator = () => {
             }}
         >
             <Tab.Screen 
-                name="TabHome" 
+                name={routes.HOME_TAB} 
                 component={HomeStackNavigator} 
                 options={{
                     title:"Home"
                 }}
             />
             <Tab.Screen 
-                name="TabHangouts" 
+                name={routes.HANGOUTS_TAB}
                 component={HangoutsStackNavigator} 
                 options={{
                     title:"Hangouts"
                 }}
             />
             <Tab.Screen 
-                name="TabFriends" 
+                name={routes.FRIENDS_TAB} 
                 component={FriendsStackNavigator} 
                 options={{
                     title:"Friends"
                 }}
             />
             <Tab.Screen 
-                name="TabMeThisWeek" 
+                name={routes.MY_WEEK_TAB} 
                 component={MeThisWeekDrawer} 
                 options={{
                     title:"Me This Week"

@@ -11,6 +11,7 @@ import FocusFriendships from "../components/my-week/FocusFriendships";
 import NumHangouts from "../components/my-week/NumHangouts";
 import Availability from "../components/my-week/Availability";
 import ActionButton from "../components/utils/ActionButton";
+import { schedulePushNotification } from "../notifications";
 
 import {
   DEFAULT_FOCUS_FRIENDS,
@@ -147,6 +148,7 @@ const MeThisWeek = () => {
         <ActionButton 
             main="Update Preferrences"
             style={{marginBottom: 30}}
+            onPressMethod={() => schedulePushNotification()}
         />
         {/* <Accordions /> */}
 

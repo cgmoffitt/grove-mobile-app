@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import { DARK_GREEN } from "../../constants/themes";
+import {
+    setActivityType
+} from "../../redux/utils"
+import { useDispatch } from "react-redux";
 
 export default HeaderTabs = ({
     headers,
-    selected,
-    setSelected
+    selected
 }) => {
+    const dispatch = useDispatch()
 
     return (
         <View
@@ -16,7 +20,7 @@ export default HeaderTabs = ({
             {headers.map(header =>
                 <TouchableWithoutFeedback
                     key={header}
-                    onPress={() => setSelected(header)}
+                    onPress={() => setActivityType(header, dispatch)}
                 >
                     <View
                         style={[

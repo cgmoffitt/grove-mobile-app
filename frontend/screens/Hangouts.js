@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { connect } from 'react-redux'
 import { View, StyleSheet, ImageBackground } from "react-native";
 import commonStyles from "../styles/commonStyles"
 import { DARK_GREEN } from "../constants/themes";
@@ -10,43 +11,34 @@ import {
     UPCOMING_ACTIVITIES,
     PENDING_ACTIVITIES,
     PLANTED_ACTIVITIES,
-    PAST_ACTIVITIES
+    PAST_ACTIVITIES,
+    ACTIVITY_HEADERS,
+    activityHeader
 } from "../constants/defaultData"
 
 const Hangouts = ({
+    selectedActivityType,
     navigation
 }) => {
     const [listToggled, setListToggled] = useState(true)
     const toggleView = () => setListToggled(!listToggled)
 
-    const UPCOMING = "Upcoming"
-    const PENDING = "Pending"
-    const PLANTED = "Planted"
-    const PAST = "Past"
-
-    const HEADERS = [
-        UPCOMING,
-        PENDING,
-        PLANTED,
-        PAST
-    ]
-    const [selected, setSelected] = useState(HEADERS[0])
     const [selectedActivities, setSelectedActivities] = useState(PLANTED_ACTIVITIES)
 
     useEffect(() => {
         let mounted = true
         if (mounted) {
-            switch (selected) {
-                case UPCOMING:
+            switch (selectedActivityType) {
+                case activityHeader.UPCOMING:
                     setSelectedActivities(UPCOMING_ACTIVITIES)
                     break;
-                case PENDING:
+                case activityHeader.PENDING:
                     setSelectedActivities(PENDING_ACTIVITIES)
                     break;
-                case PLANTED:
+                case activityHeader.PLANTED:
                     setSelectedActivities(PLANTED_ACTIVITIES)
                     break;
-                case PAST:
+                case activityHeader.PAST:
                     setSelectedActivities(PAST_ACTIVITIES)
                     break;
             }
@@ -54,7 +46,7 @@ const Hangouts = ({
 
         return () => mounted = false
 
-    }, [selected])
+    }, [selectedActivityType])
 
     return (
         <View style={[commonStyles.full, commonStyles.backgroundCreme]}>
@@ -63,17 +55,16 @@ const Hangouts = ({
                 toggleView={toggleView}
             />
             <ActivityHeaders
-                headers={HEADERS}
-                selected={selected}
-                setSelected={setSelected}
+                headers={ACTIVITY_HEADERS}
+                selected={selectedActivityType}
             />
             <ImageBackground source={require("../assets/images/backgrounds/Me-This-Week.png")} resizeMode="cover" style={styles.content}>
                 <ActivitiesCard 
                     activities={selectedActivities} 
-                    selected={selected} 
+                    selected={selectedActivityType} 
                     navigation={navigation}
                 />
-                {selected === PLANTED && <PlantActivityButton navigation={navigation} />}
+                {selectedActivityType === activityHeader.PLANTED && <PlantActivityButton navigation={navigation} />}
             </ImageBackground>
 
         </View>
@@ -90,4 +81,8 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Hangouts;
+const mapStateToProps = state => ({
+    selectedActivityType: state.selectedActivityType
+})
+
+export default connect(mapStateToProps)(Hangouts)

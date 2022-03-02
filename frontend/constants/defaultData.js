@@ -81,6 +81,20 @@ const DEFAULT_ACTIVITIES = [
     { name: "Bar Hopping" }
 ]
 
+const activityHeader = {
+    UPCOMING: "Upcoming",
+    PENDING: "Pending",
+    PLANTED: "Planted",
+    PAST: "Past"
+}
+
+const ACTIVITY_HEADERS = [
+    activityHeader.UPCOMING,
+    activityHeader.PENDING,
+    activityHeader.PLANTED,
+    activityHeader.PAST
+]
+
 
 
 export {
@@ -90,5 +104,7 @@ export {
     PAST_ACTIVITIES,
     friends,
     DEFAULT_FOCUS_FRIENDS,
-    DEFAULT_ACTIVITIES
+    DEFAULT_ACTIVITIES,
+    ACTIVITY_HEADERS,
+    activityHeader
 }
