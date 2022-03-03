@@ -17,6 +17,18 @@
                  ...state,
                  selectedActivityType: action.activityType
              }
+        case 'SET_ACTIVITIES':
+            return {
+                ...state,
+                activities: action.activities
+            }
+        case 'ADD_ACTIVITY':
+            const activities = state.activities
+            activities.push(action.activity)
+            return {
+                ...state,
+                activities: activities
+            }
         default:
             return {
                 ...state
