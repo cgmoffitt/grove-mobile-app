@@ -77,6 +77,7 @@ const ALL_ACTIVITIES = [
     /*NO PENDING ACTIVITIES AT START*/
     //Past Activities: date IN PAST, confirmed is TRUE
     {
+        id: 7,
         title: defaultActivity.TENNIS,
         friend: "Mihir",
         date: new Date('March 1, 2022 18:00:00'),
@@ -85,6 +86,7 @@ const ALL_ACTIVITIES = [
         reflected: false
     },
     {
+        id: 8,
         title: defaultActivity.COFFEE,
         friend: "Jasmine",
         date: new Date('March 1, 2022 18:00:00'),
@@ -93,6 +95,7 @@ const ALL_ACTIVITIES = [
         reflected: true
     },
     {
+        id: 9,
         title: defaultActivity.HIKING,
         friend: "Coleman",
         date: new Date('March 1, 2022 18:00:00'),
@@ -145,6 +148,7 @@ export {
     friends,
     DEFAULT_FOCUS_FRIENDS,
     DEFAULT_ACTIVITIES,
+    defaultActivity,
     ACTIVITY_HEADERS,
     activityHeader,
     MY_ID,

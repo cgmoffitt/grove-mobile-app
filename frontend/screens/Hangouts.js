@@ -9,42 +9,45 @@ import ActivityHeaders from "../components/hangouts/ActivityHeaders"
 import ActivitiesCard from "../components/hangouts/ActivitiesCard";
 import {
     MY_ID,
-    ALL_ACTIVITIES,
     ACTIVITY_HEADERS,
     activityHeader
 } from "../constants/defaultData"
+import {
+    setActivities
+} from "../redux/utils"
 
 //UPCOMING ACTIVITIES: date IN FUTURE AND confirmed IS TRUE
 const filterUpcoming = (activity) => {
-    curDate = new Date()
+    const curDate = new Date()
     return activity.date > curDate && activity.confirmed
 }
 //PLANTED ACTIVITIES: date IN FUTURE, confirmed IS FALSE, plantedId is "ME"
 const filterPlanted = (activity) => {
-    curDate = new Date()
+    const curDate = new Date()
     return activity.date > curDate && !activity.confirmed && activity.plantedId == MY_ID
 }
 
 //PENDING ACTIVITIES: date IN FUTURE, confirmed is FALSE, plantedId is "SOMEONE_ELSE" OR "AUTOMATIC"
 const filterPending = (activity) => {
-    curDate = new Date()
+    const curDate = new Date()
     return activity.date > curDate && !activity.confirmed && activity.plantedId != MY_ID
 }
 
 //Past Activities: date IN PAST, confirmed is TRUE
 const filterPast = (activity) => {
-    curDate = new Date()
+    const curDate = new Date()
     return activity.date < curDate && activity.confirmed
 }
 
 const Hangouts = ({
     selectedActivityType,
-    navigation
+    activities,
+    navigation,
 }) => {
     const [listToggled, setListToggled] = useState(true)
     const toggleView = () => setListToggled(!listToggled)
 
-    const activities = ALL_ACTIVITIES
+    // const activities = ALL_ACTIVITIES
 
     const [selectedActivities, setSelectedActivities] = useState(activities.filter(activity => filterUpcoming(activity)))
 
@@ -107,7 +110,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => ({
-    selectedActivityType: state.selectedActivityType
+    selectedActivityType: state.selectedActivityType,
+    activities: state.activities
 })
 
 export default connect(mapStateToProps)(Hangouts)
