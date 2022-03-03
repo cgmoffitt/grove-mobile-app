@@ -88,6 +88,9 @@ const Hangouts = ({
                     activities={selectedActivities} 
                     selected={selectedActivityType} 
                     navigation={navigation}
+                    acceptMethod={()=>console.log("Accepted")}
+                    declineMethod={()=>console.log("Declined")}
+                    editMethod={()=>console.log("Edited")}
                 />
                 {selectedActivityType === activityHeader.PLANTED && <PlantActivityButton navigation={navigation} />}
             </ImageBackground>

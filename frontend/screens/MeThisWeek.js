@@ -146,7 +146,7 @@ const MeThisWeek = () => {
         <PreferredDistanceCard />
         <Availability />
         <ActionButton 
-            main="Update Preferrences"
+            main="Update Preferences"
             style={{marginBottom: 30}}
             onPressMethod={() => schedulePushNotification()}
         />

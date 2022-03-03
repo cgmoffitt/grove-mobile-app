@@ -44,7 +44,7 @@ function ReduxApp() {
 
   return (
     <NavigationContainer ref={navigationRef}>
-      <BottomTabNavigator />
+      <BottomTabNavigator style={{color: "white"}}/>
     </NavigationContainer>
   )
 }

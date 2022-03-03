@@ -4,6 +4,8 @@ const CREME_WHITE = "#F4F3E7"
 const VIBRANT_GREEN = "#619641"
 const TEXT_GRAY = "#707070"
 const LIGHT_RED = "#FFCCCB"
+const DARK_CREME = "#E8DCC6"
+const BROWN = "#52504C"
 const shadows = {
     shadowColor: "black",
     shadowRadius: 10,
@@ -19,5 +21,7 @@ export {
     TEXT_GRAY,
     LIGHT_GREEN,
     LIGHT_RED,
+    DARK_CREME,
+    BROWN,
     shadows
 }
