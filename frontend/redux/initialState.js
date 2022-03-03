@@ -7,10 +7,12 @@
 
 import {
   ACTIVITY_HEADERS,
-  activityHeader
+  activityHeader,
+  ALL_ACTIVITIES
 } from "../constants/defaultData"
 
 
  export default {
-    selectedActivityType: activityHeader.UPCOMING
+    selectedActivityType: activityHeader.UPCOMING,
+    activities: ALL_ACTIVITIES
   };
