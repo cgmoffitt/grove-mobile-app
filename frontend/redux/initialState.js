@@ -8,11 +8,13 @@
 import {
   ACTIVITY_HEADERS,
   activityHeader,
-  ALL_ACTIVITIES
+  ALL_ACTIVITIES,
+  INITIAL_PREFERENCES
 } from "../constants/defaultData"
 
 
  export default {
     selectedActivityType: activityHeader.UPCOMING,
-    activities: ALL_ACTIVITIES
+    activities: ALL_ACTIVITIES,
+    preferences: INITIAL_PREFERENCES
   };

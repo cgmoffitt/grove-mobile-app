@@ -5,7 +5,10 @@ const PlantActivityButton = ({
   navigation
 }) => {
   return (
-        <ActionButton main="🌿  Plant an Activity  ☀️" onPressMethod={() => navigation.navigate("PlantActivity")}
+        <ActionButton 
+            main="🌿  Plant an Activity  ☀️" 
+            onPressMethod={() => navigation.navigate("PlantActivity")}
+            active={true}
         ></ActionButton>
   );
 };

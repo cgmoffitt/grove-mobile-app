@@ -41,7 +41,7 @@ async function schedulePushNotification() {
             body: 'Hike with Black on Saturday!',
             data: {route: routes.HANGOUTS_TAB} ,
         },
-        trigger: { seconds: 1 },
+        trigger: { seconds: 3 },
     });
 }
 

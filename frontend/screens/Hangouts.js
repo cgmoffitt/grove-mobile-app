@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from 'react-redux'
+import { connect, useDispatch } from 'react-redux'
 import { View, StyleSheet, ImageBackground } from "react-native";
 import commonStyles from "../styles/commonStyles"
 import { DARK_GREEN } from "../constants/themes";
@@ -13,7 +13,7 @@ import {
     activityHeader
 } from "../constants/defaultData"
 import {
-    setActivities
+    confirmActivity
 } from "../redux/utils"
 
 //UPCOMING ACTIVITIES: date IN FUTURE AND confirmed IS TRUE
@@ -46,11 +46,13 @@ const Hangouts = ({
 }) => {
     const [listToggled, setListToggled] = useState(true)
     const toggleView = () => setListToggled(!listToggled)
-
-    // const activities = ALL_ACTIVITIES
-
+    const dispatch = useDispatch()
     const [selectedActivities, setSelectedActivities] = useState(activities.filter(activity => filterUpcoming(activity)))
 
+    const acceptPendingActivity = (activity) => {
+        console.log("Confirming activity")
+        confirmActivity(activity.id, dispatch)
+    }
     
 
     useEffect(() => {
@@ -58,23 +60,23 @@ const Hangouts = ({
         if (mounted) {
             switch (selectedActivityType) {
                 case activityHeader.UPCOMING:
-                    setSelectedActivities(activities.filter(activity => filterUpcoming(activity)))
+                    setSelectedActivities(activities.filter(activity => filterUpcoming(activity)).sort((a,b) => a.date - b.date))
                     break;
                 case activityHeader.PENDING:
-                    setSelectedActivities(activities.filter(activity => filterPending(activity)))
+                    setSelectedActivities(activities.filter(activity => filterPending(activity)).sort((a,b) => a.date - b.date))
                     break;
                 case activityHeader.PLANTED:
-                    setSelectedActivities(activities.filter(activity => filterPlanted(activity)))
+                    setSelectedActivities(activities.filter(activity => filterPlanted(activity)).sort((a,b) => a.date - b.date))
                     break;
                 case activityHeader.PAST:
-                    setSelectedActivities(activities.filter(activity => filterPast(activity)))
+                    setSelectedActivities(activities.filter(activity => filterPast(activity)).sort((a,b) => a.date - b.date))
                     break;
             }
         }
 
         return () => mounted = false
 
-    }, [selectedActivityType])
+    }, [selectedActivityType, activities])
 
     return (
         <View style={[commonStyles.full, commonStyles.backgroundCreme]}>
@@ -91,7 +93,7 @@ const Hangouts = ({
                     activities={selectedActivities} 
                     selected={selectedActivityType} 
                     navigation={navigation}
-                    acceptMethod={()=>console.log("Accepted")}
+                    acceptMethod={acceptPendingActivity}
                     declineMethod={()=>console.log("Declined")}
                     editMethod={()=>console.log("Edited")}
                 />
