@@ -78,6 +78,7 @@ const FriendsStackNavigator = () => {
         name={routes.SINGLE_FRIEND}
         component={SingleFriend}
         options={configHeaderOptions("grove")}
+  
       />
       <Stack.Screen
         name={routes.REFLECT}
