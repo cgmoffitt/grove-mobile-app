@@ -85,7 +85,8 @@ const SingleFriend = ({route, navigation}) => {
       <View style={styles.mainFriendCard}>
       <ActionButton main={"📷 Memories with " + props.name}
                       style={styles.memoriesButton}
-                      onPressMethod={()=>navigation.navigate("Hangouts")} />
+                      onPressMethod={()=>navigation.navigate("Hangouts")}
+                      active={true} />
       <ImageBackground
       source={require("../assets/images/backgrounds/Me-This-Week.png")}
       resizeMode="cover"
