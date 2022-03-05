@@ -17,8 +17,11 @@ const Reflect = ({
         <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!"/>
         
         <View style={[commonStyles.cremeCard, styles.photosCard]}>
-          <ActionButton main="Add to Scrapbook" onPressMethod={() => navigation.navigate("UploadMemory")}/>
-
+          <ActionButton 
+            main="Add to Scrapbook" 
+            onPressMethod={() => navigation.navigate("UploadMemory")}
+            active={true}
+          />
           <InfoBar infoMessage="This is for your personal collection and will not be viewed by anyone else."/>
         </View>
       </ImageBackground>  

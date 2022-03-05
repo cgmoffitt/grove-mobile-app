@@ -20,7 +20,7 @@ const BottomTabNavigator = () => {
                 headerShown: false,
                 tabBarActiveBackgroundColor: CREME_WHITE,
                 tabBarInactiveBackgroundColor: CREME_WHITE,
-                tabBarStyle: {backgroundColor: CREME_WHITE, minHeight:110, color:"black"},
+                tabBarStyle: {backgroundColor: CREME_WHITE, minHeight:90, color:"black"},
                 tabBarIcon: ({focused}) => {
                     let sourceUrl = require("../assets/images/plants/plant2.png");
                     if (route.name === "TabHome"){
@@ -36,7 +36,7 @@ const BottomTabNavigator = () => {
                         sourceUrl = focused ? require("../assets/images/bottom-bar-icons/me-this-week-filled.png") 
                                     : require("../assets/bottom-bar-icons/me-this-week.png");
                     }
-                    return(<Image style={{width:35, height:35, marginTop: 10, marginBottom:10}} source={sourceUrl}></Image>)
+                    return(<Image style={{width:27, height:27, marginTop:10 }} source={sourceUrl}></Image>)
                     }
             })}
         >

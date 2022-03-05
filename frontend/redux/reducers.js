@@ -23,11 +23,28 @@
                 activities: action.activities
             }
         case 'ADD_ACTIVITY':
-            const activities = state.activities
-            activities.push(action.activity)
+            const nextActivities = state.activities
+            nextActivities.push(action.activity)
             return {
                 ...state,
-                activities: activities
+                activities: nextActivities
+            }
+        case 'CONFIRM_ACTIVITY':
+            let updatedActivities = state.activities
+            const activityToUpdate = action.activityId
+            updatedActivities = updatedActivities.map(activity => {
+                if (activity.id === activityToUpdate){
+                    return {
+                        ...activity,
+                        confirmed: true
+                    }
+                } else {
+                    return activity
+                }
+            })
+            return {
+                ...state,
+                activities: updatedActivities
             }
         default:
             return {

@@ -41,7 +41,7 @@ export default MultipleSelectModal = ({
                 <TouchableOpacity
                     onPress={closeModal}
                 >
-                    <Text>Close</Text>
+                    <Text style={[styles.textBold, {width: 50, height:30}]}>Close</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -53,8 +53,12 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSans",
         fontSize: 14
     },
+    textBold: {
+        fontFamily: "OpenSansBold",
+        fontSize: 16
+    },
     headerText: {
-        fontFamily: "OpenSans",
+        fontFamily: "OpenSansBold",
         color: DARK_GREEN,
         fontSize: 18
       },

@@ -56,18 +56,14 @@ const Square = ({
 }
 
 export default AvailabilityCard = ({
-
+    availability,
+    setAvailability
 }) => {
 
-    const initAvailabilityGrid = new Array(16).fill(0).map(() => new Array(8).fill(false));
-
-    const [availabilityGrid, setAvailabilityGrid] = useState(initAvailabilityGrid)
-
     const updateAvailability = (row, col) => {
-        availabilityGrid[row][col] = !availabilityGrid[row][col]
-        setAvailabilityGrid(availabilityGrid)
+        availability[row][col] = !availability[row][col]
+        setAvailability(availability)
     }
-
 
     return (
         <View
@@ -77,17 +73,17 @@ export default AvailabilityCard = ({
                 My Availability
             </Text>
             <View>
-                {availabilityGrid.map((_, row) =>
+                {availability.map((_, row) =>
 
                     <View style={{ flexDirection: "row" }}>
                         {
-                            availabilityGrid[0].map((_, col) => {
+                            availability[0].map((_, col) => {
                                 return <Square 
                                     key={row+","+col} 
                                     row={row} col={col} 
-                                    availabilityGrid={availabilityGrid}  
+                                    availabilityGrid={availability}  
                                     updateAvailability={updateAvailability}
-                                    available={availabilityGrid[row][col]}
+                                    available={availability[row][col]}
                                     />
                             })
                         }

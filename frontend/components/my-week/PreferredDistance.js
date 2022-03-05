@@ -6,9 +6,10 @@ import { Slider } from '@miblanchard/react-native-slider';
 
 
 export default PreferredDistance = ({
-
+    preferredDistance,
+    setPreferredDistance
 }) => {
-  const [preferredDistance, setPreferredDistance] = useState(0.2)
+    
   return (
     <View style={[{width: "100%", justifyContent: "center", alignItems: "center"}]}>
       <Text style={styles.textHeader}>I'm open to travel up to</Text>

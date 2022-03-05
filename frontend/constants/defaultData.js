@@ -26,6 +26,7 @@ const ALL_ACTIVITIES = [
         confirmed: true,
         plantedId: AUTOMATIC_ID,
         reflected: false,
+        location: "Lagunita Tennis Courts"
     },
     {
         id: 2,
@@ -35,6 +36,7 @@ const ALL_ACTIVITIES = [
         confirmed: true,
         plantedId: SOMEONE_ELSE_ID,
         reflected: false,
+        location: "CoHo"
     },
     {
         id: 3,
@@ -44,6 +46,7 @@ const ALL_ACTIVITIES = [
         confirmed: true,
         plantedId: MY_ID,
         reflected: false,
+        location: "Marin Trail"
     },
     //PLANTED ACTIVITIES: date IN FUTURE, confirmed IS FALSE, plantedId is "ME"
     {
@@ -54,6 +57,7 @@ const ALL_ACTIVITIES = [
         confirmed: false,
         plantedId: MY_ID,
         reflected: false,
+        location: "Lagunita Tennis Courts"
     },
     {
         id: 5,
@@ -63,6 +67,7 @@ const ALL_ACTIVITIES = [
         confirmed: false,
         plantedId: MY_ID,
         reflected: false,
+        location: "Nolas"
     },
     {
         id: 6,
@@ -72,6 +77,7 @@ const ALL_ACTIVITIES = [
         confirmed: false,
         plantedId: MY_ID,
         reflected: false,
+        location: "Coho"
     },
     //PENDING ACTIVITIES: date IN FUTURE, confirmed is FALSE, plantedId is "SOMEONE_ELSE" OR "AUTOMATIC"
     /*NO PENDING ACTIVITIES AT START*/
@@ -83,7 +89,8 @@ const ALL_ACTIVITIES = [
         date: new Date('March 1, 2022 18:00:00'),
         confirmed: true,
         plantedId: AUTOMATIC_ID,
-        reflected: false
+        reflected: false,
+        location: "Lagunita Tennis Courts"
     },
     {
         id: 8,
@@ -92,7 +99,8 @@ const ALL_ACTIVITIES = [
         date: new Date('March 1, 2022 18:00:00'),
         confirmed: true,
         plantedId: AUTOMATIC_ID,
-        reflected: true
+        reflected: true,
+        location: "Coho"
     },
     {
         id: 9,
@@ -101,7 +109,8 @@ const ALL_ACTIVITIES = [
         date: new Date('March 1, 2022 18:00:00'),
         confirmed: true,
         plantedId: AUTOMATIC_ID,
-        reflected: true
+        reflected: true,
+        location: "Marin Trail"
     }
 ]
 
@@ -141,7 +150,15 @@ const ACTIVITY_HEADERS = [
     activityHeader.PAST
 ]
 
+const INITIAL_AVAILABILITY = new Array(16).fill(0).map(() => new Array(8).fill(false));
 
+const INITIAL_PREFERENCES = {
+    numHangouts: 1,
+    focusFriends: DEFAULT_FOCUS_FRIENDS,
+    preferredActivities: [{ name: "Hiking" }, { name: "Tennis" }],
+    preferredDistance: 0.5,
+    availability: INITIAL_AVAILABILITY
+}
 
 export {
     ALL_ACTIVITIES,
@@ -153,5 +170,6 @@ export {
     activityHeader,
     MY_ID,
     SOMEONE_ELSE_ID,
-    AUTOMATIC_ID
+    AUTOMATIC_ID,
+    INITIAL_PREFERENCES
 }

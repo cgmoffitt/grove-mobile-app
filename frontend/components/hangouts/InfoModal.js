@@ -2,84 +2,144 @@ import { React, useState } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable, Modal } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import { LIGHT_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, DARK_GREEN } from "../../constants/themes"
-import InfoModal from "./InfoModal";
-import ActivityItem from "./ActivityItem";
 
-const NoActivities = ({
-    selected
+const ReflectButton = ({
+    navigation
 }) => {
     return (
-        <View style={styles.activityItem}>
-            <Text
-                style={styles.noActivities}
+        <TouchableOpacity
+            onPress={() => navigation.navigate("Reflect")}
+        >
+            <View
+                style={styles.reflectButton}
             >
-                No {selected.toLowerCase()} hangouts. Check back later!
-            </Text>
+                <Text style={styles.reflectText}>Reflect</Text>
+            </View>
+        </TouchableOpacity>
+    )
+}
+
+const AcceptButton = ({
+    navigation, acceptMethod
+}) => {
+    return (
+        <TouchableOpacity
+            onPress={acceptMethod}
+        >
+            <View
+                style={styles.acceptButton}
+            >
+                <Text style={styles.reflectText}>Accept</Text>
+            </View>
+        </TouchableOpacity>
+    )
+}
+const MaybeLaterButton = ({
+    navigation, declineMethod
+}) => {
+    return (
+        <TouchableOpacity
+            onPress={declineMethod}
+        >
+            <View
+                style={styles.maybeLaterButton}
+            >
+                <Text style={styles.maybeLaterText}>Maybe Later</Text>
+            </View>
+        </TouchableOpacity>
+    )
+}
+
+const AcceptOrDecline = ({
+    navigation, acceptMethod, declineMethod
+}) => {
+    return (
+        <View style={styles.buttonParent}>
+            <View style={styles.buttonChild}>
+                <MaybeLaterButton declineMethod={declineMethod} navigation={navigation} />
+            </View>
+            <View style={styles.buttonChild}>
+                <AcceptButton acceptMethod={acceptMethod} navigation={navigation} />
+            </View>
         </View>
     )
 }
 
-export default ActivitiesCard = ({
+const EditButton = ({
+    navigation, editMethod
+}) => {
+    return (
+        <TouchableOpacity
+            onPress={editMethod}
+        >
+            <View
+                style={styles.maybeLaterButton}
+            >
+                <Text style={styles.maybeLaterText}>Edit</Text>
+            </View>
+        </TouchableOpacity>
+    )
+}
+
+export default InfoModal = ({
     navigation,
-    activities,
+    activity,
     selected,
     acceptMethod,
     declineMethod,
-    editMethod
+    editMethod,
+    setModalVisible
 }) => {
 
-    const [successModalVisible, setSuccessModalVisible] = useState(false)
-    const [successPrompt, setSuccessPrompt] = useState("")
-    const openSuccessModal = (prompt) => {
-        setSuccessModalVisible(true)
-        setSuccessPrompt(prompt)
-        setTimeout(() => {
-            setSuccessModalVisible(false)
-        }, 3000)
+    const ACTIVITY_IMG_SOURCES = {
+        tennis: require("../../assets/images/activity-icons/tennis.png"),
+        coffee: require("../../assets/images/activity-icons/coffee.png"),
+        hiking: require("../../assets/images/activity-icons/hiking.png"),
+        ["bar hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
     }
 
     return (
-        <View
-            style={[
-                commonStyles.cremeCard,
-                styles.card
-            ]}
-        >
-            <Modal animationType="fade"
-                transparent={true}
-                visible={successModalVisible}
-                onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
-                    setSuccessModalVisible(!successModalVisible);
-                }}>
-                <SuccessModal
-                    setModalVisible={setSuccessModalVisible}
-                    prompt={successPrompt}
-                />
-            </Modal>
-            {activities.length == 0
-                &&
-                <NoActivities selected={selected} />
-            }
-            {activities.map((activity, i) =>
-                <ActivityItem
-                    key={i}
-                    activity={activity}
-                    selected={selected}
-                    navigation={navigation}
-                    acceptMethod={acceptMethod}
-                    declineMethod={declineMethod}
-                    editMethod={editMethod}
-                    openSuccessModal={openSuccessModal}
-                />
-            )}
+
+        <View style={[commonStyles.center, { backgroundColor: 'rgba(0,0,0,0.7)' }]}>
+            <View style={styles.modalView}>
+                <Text style={styles.modalText}>{selected} Hangout</Text>
+                <View style={styles.activityParent}>
+                    <View style={styles.activityChild}>
+                        <Image style={{ width: 45, height: 45, padding: '5%' }} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
+                    </View>
+                    <View style={styles.activityChild}>
+                        <Text style={styles.activityText}>
+                            {activity.title}
+                            {activity.friend &&
+                                <Text style={styles.activityText}>
+                                    {" "}with{" "}{activity.friend}
+                                </Text>
+                            } </Text>
+                    </View>
+                </View>
+                <Text style={styles.activitySubtext}>When: {activity.date.toDateString()}</Text>
+                <Text style={styles.activitySubtext}>Where: {activity.location}</Text>
+                {(selected === "Upcoming" || selected === "Planted")
+                    ? <View style={{ paddingTop: '5%' }}><EditButton editMethod={editMethod} navigation={navigation} /></View>
+                    : (selected === "Pending" && !activity.accepted)
+                        ? <AcceptOrDecline acceptMethod={acceptMethod} declineMethod={declineMethod} navigation={navigation} />
+                        : <View style={{ paddingTop: '5%' }} ><ReflectButton navigation={navigation} /></View>
+                }
+
+                <Pressable
+                    style={[styles.button, styles.buttonClose]}
+                    onPress={() => setModalVisible(false)}
+                >
+                    <Text style={styles.textStyle}>x </Text>
+                </Pressable>
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     card: {
-        width: "85%",
+        width: "80%",
     },
     activityItem: {
         width: "100%",
@@ -215,7 +275,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 18,
         color: DARK_GREEN,
-        fontFamily: "OpenSans"
+        fontFamily: "OpenSansBold"
     },
     activityParent: {
         display: "flex",

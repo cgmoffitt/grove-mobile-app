@@ -1,21 +1,35 @@
 import React from "react";
 import { Pressable, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { DARK_GREEN, CREME_WHITE, shadows} from "../../constants/themes";
+import { DARK_GREEN, CREME_WHITE, shadows, TEXT_GRAY} from "../../constants/themes";
 
 const ActionButton = ({
     main,
     onPressMethod,
+    active,
     style
 }) => {
     return(
-      <TouchableOpacity style={[styles.activeButton, style]} onPress={onPressMethod}>
+      <TouchableOpacity 
+        style={[
+          styles.button, 
+          active ? styles.active : styles.deactive,
+          style
+        ]} 
+        onPress={onPressMethod}
+      >
         <Text style={styles.buttonText}>{main}</Text>
       </TouchableOpacity>
     );
 };
 const styles = StyleSheet.create({
-    activeButton: {
+    active: {
       backgroundColor: DARK_GREEN,
+    },
+    deactive: {
+      backgroundColor: TEXT_GRAY
+    },
+    button: {
+      
       padding:'5%',
       borderRadius:10,
       width: '90%',

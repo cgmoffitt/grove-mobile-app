@@ -14,20 +14,6 @@ import { addActivity, setActivityType } from "./redux/utils"
 import { activityHeader, defaultActivity, AUTOMATIC_ID } from "./constants/defaultData"
 import routes from './constants/routes';
 
-const wizardOfOzGenerateActivity = (dispatch) => {
-  const ACTIVITY_TO_ADD = {
-    id: 10,
-    title: defaultActivity.HIKING,
-    friend: "Blake",
-    date: new Date('March 8, 2022 18:00:00'),
-    confirmed: false,
-    plantedId: AUTOMATIC_ID,
-    reflected: false,
-  }
-  addActivity(ACTIVITY_TO_ADD, dispatch)
-
-}
-
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -48,7 +34,6 @@ function ReduxApp() {
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       const route = response.notification.request.content.data.route
       if (route === routes.HANGOUTS_TAB) {
-        wizardOfOzGenerateActivity(dispatch)
         setActivityType(activityHeader.PENDING, dispatch)
         navigationRef.current?.navigate(route)
       }
