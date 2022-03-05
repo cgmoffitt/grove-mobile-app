@@ -1,12 +1,16 @@
-import React from "react";
-import { View, StyleSheet, Text, Image } from "react-native";
+import { React, useState } from "react";
+import { View, StyleSheet, Text, Image, ImageBackground, FlatList } from "react-native";
 import MyAutoTags from "../components/utils/MyAutoTags.js";
-import { CREME_WHITE, DARK_GREEN, VIBRANT_GREEN } from "../constants/themes.js";
+import { CREME_WHITE, DARK_GREEN, VIBRANT_GREEN, TEXT_GRAY } from "../constants/themes.js";
 import commonStyles from "../styles/commonStyles.js";
+import ActionButton from "../components/utils/ActionButton.js";
+import { Slider } from '@miblanchard/react-native-slider';
+import ToggleSwitch from 'toggle-switch-react-native';
 
 const ActivityChipNonInteractive = ({
   activity
 }) => {
+
   return (
       <View style={styles.chip}>
           <Text style={styles.activityText}>
@@ -16,43 +20,115 @@ const ActivityChipNonInteractive = ({
   )
 }
 
-const SingleFriend = ({props, navigation}) => {
+const FrequencySlider = ({
+  name
+}) => {
+  const [preferredDistance, setPreferredDistance] = useState(0.2);
+  return(
+    <View style={[{width: "100%", justifyContent: "center", alignItems: "center", paddingVertical: '3%'}]}>
+    <Text style={styles.textHeader}>It would be fun to see {name}</Text>
+    <View style={styles.sliderContainer}>
+      <Slider
+        minimumTrackTintColor={DARK_GREEN}
+        thumbTintColor={DARK_GREEN}
+        value={preferredDistance}
+        onValueChange={value => setPreferredDistance(value)}
+      />
+    </View>
+    <Text style={styles.textRegular}>{Math.round(preferredDistance*8)} times per month</Text>
+  </View>
+
+  )
+}
+
+const SingleFriend = ({route, navigation}) => {
+  const [alertIsOn, setAlertIsOn] = useState(false);
+  const [priorityIsOn, setPriorityIsOn] = useState(false);
+  const { props } = route.params;
+
+  const renderItem = (item, index) => (
+    <View style={styles.chipChild}> 
+      <ActivityChipNonInteractive activity={item}/>
+    </View>
+)
+
+
+
 
   return (
     <View style={[commonStyles.center, commonStyles.backgroundCreme]}>
     <View style={styles.headingParent}>
       <View style={styles.headingChild}>
-        <Image style={styles.profilePhoto} source={require("../assets/friends/nirali.jpeg")}></Image>
+        <Image style={styles.profilePhoto} source={props.url}></Image>
       </View>
       <View style={styles.headingChild}>
         <View style={styles.headingSubparent}>
           <View style={styles.headingSubchild}>
-          <Text style={styles.headingTitle}>Callie</Text>
+          <Text style={styles.headingTitle}>{props.name}</Text>
           </View>
           <View style={styles.headingSubchild}>
             <Text style={styles.headingSubTitle}>Favorite Activities</Text>
           </View>
           <View style={styles.headingSubchild}>
             <View style={styles.chipParent}>
-              <View style={styles.chipChild}> 
-                <ActivityChipNonInteractive activity={"Coffee"}/>
-              </View>
-              <View style={styles.chipChild}>             
-                <ActivityChipNonInteractive activity={"Bar-hopping"}/>
-              </View>
+              <FlatList
+                      data={props.activities}
+                      renderItem={({item, index}) => renderItem(item, index)}
+                      numColumns={2}
+                      keyExtractor={(item, index) => index.toString()}   
+              />
             </View>
           </View>
-
         </View>
-        
       </View>
     </View>
-      <View>
-        <Text>TO DO:This is the main Callie card</Text>
-      </View>
-    </View>
-  );
-};
+      <View style={styles.mainFriendCard}>
+      <ActionButton main={"📷 Memories with " + props.name}
+                      style={styles.memoriesButton}
+                      onPressMethod={()=>navigation.navigate("Hangouts")} />
+      <ImageBackground
+      source={require("../assets/images/backgrounds/Me-This-Week.png")}
+      resizeMode="cover"
+      imageStyle={{borderRadius: 20}}
+      style={[commonStyles.full, styles.mainFriendBackground]}
+       >
+       
+        <View style={[commonStyles.cremeCard, styles.cremeCard]}>
+          <FrequencySlider name={props.name} />
+          <View style={styles.thinLine}></View>
+          <View style={{padding: '5%'}}>
+            <ToggleSwitch
+                isOn={alertIsOn}
+                onColor= {DARK_GREEN}
+                offColor= {TEXT_GRAY}
+                label={"Alert me for their planted activities"}
+                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 16}}
+                size="medium"
+                onToggle={() => setAlertIsOn(!alertIsOn)}
+              />
+          </View>
+          <View style={styles.thinLine}></View>
+          <View style={{padding: '5%'}}>
+            <ToggleSwitch
+                isOn={priorityIsOn}
+                onColor= {DARK_GREEN}
+                offColor= {TEXT_GRAY}
+                label={"Make a top priority friend "}
+                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 16}}
+                size="medium"
+                onToggle={() => setPriorityIsOn(!priorityIsOn)}
+              />
+          </View>
+
+
+
+
+
+          </View>
+          </ImageBackground>
+        </View>
+    </View>)
+}
 
 const styles = StyleSheet.create({
   profilePhoto:{
@@ -103,7 +179,8 @@ const styles = StyleSheet.create({
     backgroundColor: VIBRANT_GREEN,
     marginLeft: 5,
     borderRadius: 20,
-    padding: 10
+    padding: 10,
+    marginTop: 5
   },
   activityText:{
     fontFamily: "OpenSansBold",
@@ -122,7 +199,63 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
   },
-
+  mainFriendCard:{
+    width: '90%',
+    height: '65%',
+    paddingVertical: '5%',
+  }, 
+  mainFriendBackground:{
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+  },
+  memoriesButton:{
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+    marginVertical: '2%',
+    width: '100%',
+    height: '18%',
+    marginBottom: '8%'
+  },
+  cremeCard:{
+    width:'92%',
+    height: '90%'
+  },
+  sliderContainer: {
+    width: "100%",
+    paddingLeft:10,
+    paddingRight:10,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
+  sliderOptions:{
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  textHeader:{
+      fontFamily: "OpenSans",
+      fontSize: 18,
+      color: DARK_GREEN
+  },
+  textRegular: {
+    fontFamily: "OpenSans",
+    fontSize: 16,
+    paddingBottom:'3%',
+    color: "black"
+  },
+  sliderContainer: {
+    width: "100%",
+    paddingLeft: 10,
+    paddingRight: 10,
+    alignItems: 'stretch',
+    justifyContent: 'center',
+  },
+  thinLine: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#E6E6E6",
+    width: "100%"
+  },
 });
 
 export default SingleFriend;

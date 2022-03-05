@@ -106,20 +106,20 @@ const ALL_ACTIVITIES = [
 ]
 
 const friends = [
-    { name: "Callie", plant: 1 },
-    { name: "Mihir", plant: 1 },
-    { name: "Blake", plant: 1 },
-    { name: "Jasmine", plant: 1 },
-    { name: "Tiff", plant: 1 },
-    { name: "Chris", plant: 1 },
-    { name: "Johnson", plant: 1 },
-    { name: "Enrique", plant: 1 },
-    { name: "Max", plant: 1 },
-    { name: "Camilla", plant: 1 },
-    { name: "Jacob", plant: 1 },
-    { name: "Simone", plant: 1 },
-    { name: "Helena", plant: 1 },
-    { name: "Tom", plant: 1 }
+    { name: "Callie", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Bar-hopping"]},
+    { name: "Mihir", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Bar-hopping"]},
+    { name: "Blake", plant: 1, url: require("../assets/friends/jacob.png"), activities: ["Tennis", "Bar-hopping"]},
+    { name: "Jasmine", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Bar-hopping", "Coffee"]},
+    { name: "Tiff", plant: 1, url: require("../assets/friends/sophia.png"), activities: ["Coffee"]},
+    { name: "Chris", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
+    { name: "Johnson", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
+    { name: "Enrique", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
+    { name: "Max", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"] },
+    { name: "Camilla", plant: 1, url: require("../assets/friends/jordan.png"), activities: ["Coffee", "Hiking"]},
+    { name: "Jacob", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
+    { name: "Simone", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
+    { name: "Helena", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
+    { name: "Tom", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]}
 ]
 
 const DEFAULT_FOCUS_FRIENDS = [

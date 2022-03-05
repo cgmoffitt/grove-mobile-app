@@ -90,6 +90,11 @@ const FriendsStackNavigator = () => {
         component={UploadMemory}
         options={configHeaderOptions("Upload a Memory")}
       />
+      <Stack.Screen
+        name={routes.HANGOUTS}
+        component={Hangouts}
+        options={configHeaderOptions("Hangouts")}
+      />
     </Stack.Navigator>
   );
 }

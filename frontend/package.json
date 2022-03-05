@@ -35,7 +35,8 @@
     "react-native-tag-autocomplete": "^1.0.22",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
-    "react-redux": "^7.2.6"
+    "react-redux": "^7.2.6",
+    "toggle-switch-react-native": "^3.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

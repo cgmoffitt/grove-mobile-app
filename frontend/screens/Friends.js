@@ -14,7 +14,8 @@ const Friends = ({
         <FriendCard 
             name={item.name} 
             plantLevel={item.plant} 
-            onPressMethod={() => navigation.navigate("SingleFriend")}
+            onPressMethod={() => navigation.navigate("SingleFriend", 
+                                                    {props: {name: item.name, url: item.url, activities: item.activities}})}
             size={"LARGE"}
         />
     )
