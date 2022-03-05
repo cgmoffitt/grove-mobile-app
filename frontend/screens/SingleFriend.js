@@ -110,19 +110,19 @@ const SingleFriend = ({route, navigation}) => {
                 isOn={alertIsOn}
                 onColor= {DARK_GREEN}
                 offColor= {TEXT_GRAY}
-                label={"Alert me for their planted activities"}
+                label={"Get alerts for planted activities"}
                 labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 16}}
                 size="medium"
                 onToggle={() => setAlertIsOn(!alertIsOn)}
               />
           </View>
           <View style={styles.thinLine}></View>
-          <View style={{paddingVertical: '5%', paddingHorizontal: '2%'}}>
+          <View style={{paddingVertical: '5%', paddingHorizontal: '3%'}}>
             <ToggleSwitch
                 isOn={priorityIsOn}
                 onColor= {DARK_GREEN}
                 offColor= {TEXT_GRAY}
-                label={"Make a top priority friend "}
+                label={"Make a top priority friend        "}
                 labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 16}}
                 size="medium"
                 onToggle={() => setPriorityIsOn(!priorityIsOn)}
