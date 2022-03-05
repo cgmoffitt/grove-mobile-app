@@ -64,7 +64,15 @@ const SingleFriend = ({route, navigation}) => {
       <View style={styles.headingChild}>
         <View style={styles.headingSubparent}>
           <View style={styles.headingSubchild}>
-          <Text style={styles.headingTitle}>{props.name}</Text>
+            <View style={styles.headingParentTitle}>
+              <View style={styles.headingChildTitle}>
+                  <Image style={{width: 50, height: 40}} source={require("../assets/images/plants/plant2.png")}></Image>
+              </View>
+              <View style={styles.headingChildTitle}>
+                <Text style={styles.headingTitle}>{props.name}</Text>
+              </View>
+            </View>
+
           </View>
           <View style={styles.headingSubchild}>
             <Text style={styles.headingSubTitle}>Favorite Activities</Text>
@@ -97,7 +105,7 @@ const SingleFriend = ({route, navigation}) => {
         <View style={[commonStyles.cremeCard, styles.cremeCard]}>
           <FrequencySlider name={props.name} />
           <View style={styles.thinLine}></View>
-          <View style={{padding: '5%'}}>
+          <View style={{paddingVertical: '5%', paddingHorizontal: '2%'}}>
             <ToggleSwitch
                 isOn={alertIsOn}
                 onColor= {DARK_GREEN}
@@ -109,7 +117,7 @@ const SingleFriend = ({route, navigation}) => {
               />
           </View>
           <View style={styles.thinLine}></View>
-          <View style={{padding: '5%'}}>
+          <View style={{paddingVertical: '5%', paddingHorizontal: '2%'}}>
             <ToggleSwitch
                 isOn={priorityIsOn}
                 onColor= {DARK_GREEN}
@@ -257,6 +265,18 @@ const styles = StyleSheet.create({
     borderBottomColor: "#E6E6E6",
     width: "100%"
   },
+  headingParentTitle:{
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "flex-start"
+  },
+  headingChildTitle:{
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+  }
 });
 
 export default SingleFriend;
