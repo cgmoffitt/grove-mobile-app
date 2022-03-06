@@ -1,6 +1,6 @@
 import React from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
-import { CREME_WHITE, DARK_GREEN } from "../constants/themes";
+import { CREME_WHITE, DARK_GREEN, shadows } from "../constants/themes";
 
 
 const styles = StyleSheet.create({
@@ -32,6 +32,13 @@ const styles = StyleSheet.create({
         padding: "3%",
         justifyContent: "center",
         alignItems: "center"
+    },
+    shadow: {
+        shadowColor: shadows.shadowColor,
+        shadowRadius: shadows.shadowRadius,
+        shadowOpacity: shadows.shadowOpacity,
+        shadowRadius: shadows.shadowRadius,
+        shadowOffset: shadows.shadowOffset,
     }
 });
 
