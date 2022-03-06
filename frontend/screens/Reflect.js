@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
   },
   cardWrapper:{
     paddingTop: '0%',
-
   }
 });
 
