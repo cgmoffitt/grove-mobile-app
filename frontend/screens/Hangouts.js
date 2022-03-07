@@ -15,29 +15,14 @@ import {
 import {
     confirmActivity
 } from "../redux/utils"
+import {
+    filterUpcoming,
+    filterPast,
+    filterPending,
+    filterPlanted
+} from "../util-functions"
 
-//UPCOMING ACTIVITIES: date IN FUTURE AND confirmed IS TRUE
-const filterUpcoming = (activity) => {
-    const curDate = new Date()
-    return activity.date > curDate && activity.confirmed
-}
-//PLANTED ACTIVITIES: date IN FUTURE, confirmed IS FALSE, plantedId is "ME"
-const filterPlanted = (activity) => {
-    const curDate = new Date()
-    return activity.date > curDate && !activity.confirmed && activity.plantedId == MY_ID
-}
 
-//PENDING ACTIVITIES: date IN FUTURE, confirmed is FALSE, plantedId is "SOMEONE_ELSE" OR "AUTOMATIC"
-const filterPending = (activity) => {
-    const curDate = new Date()
-    return activity.date > curDate && !activity.confirmed && activity.plantedId != MY_ID
-}
-
-//Past Activities: date IN PAST, confirmed is TRUE
-const filterPast = (activity) => {
-    const curDate = new Date()
-    return activity.date < curDate && activity.confirmed
-}
 
 const Hangouts = ({
     selectedActivityType,
