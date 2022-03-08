@@ -29,7 +29,7 @@ const Friends = ({
         <View style={[commonStyles.center, styles.topBar]}>
             <View style={styles.searchView}>
                 <SearchBar
-                    placeholder="Type Here..."
+                    placeholder="Search for a friend..."
                     onChangeText={updateSearch}
                     value={search}
                     style={styles.search}
@@ -45,10 +45,9 @@ const Friends = ({
                     renderItem={({item, index}) => renderItem(item, index)}
                     numColumns={3}
                     keyExtractor={(item, index) => index.toString()}
-                    
+                    style={{width: '90%'}}
                 />
             </ImageBackground>
-            
         </View>
     );
 };

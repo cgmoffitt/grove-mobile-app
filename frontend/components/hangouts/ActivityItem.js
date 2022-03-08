@@ -1,7 +1,7 @@
 import { React, useState } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable, Modal } from "react-native";
 import commonStyles from "../../styles/commonStyles"
-import { LIGHT_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, GREEN } from "../../constants/themes"
+import { LIGHT_GREEN, DARK_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, GREEN } from "../../constants/themes"
 import InfoModal from "./InfoModal";
 
 const ReflectButton = ({
@@ -144,27 +144,31 @@ export default ActivityItem = ({
                     setModalVisible={setModalVisible}
                 />
             </Modal>
-            <View
-                style={styles.activityItem}
-            >
-                <View style={styles.img}>
-                    <Image style={{ width: 25 }} resizeMode={"contain"} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
-                </View>
 
+            <View
+                style={[styles.activityItem]}
+            >
+                <View style={[styles.img, styles.activityChild]}>
+                        <Image style={{ width: 35 }} resizeMode={"contain"} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
+                    </View>
                 <View
-                    style={{ flex: 2, flexDirection: "column", justifyContent: "center" }}
-                >
-                    <Text style={styles.titleText}>
-                        {activity.friend &&
-                            <Text style={styles.titleText}>
-                                {activity.friend} •{" "}
-                            </Text>
-                        }
-                        {activity.title}
-                    </Text>
-                    <Text style={styles.dateText}>
-                        {activity.date.toDateString()}
-                    </Text>
+                    style={{ flex: 2, flexDirection: "column", justifyContent: "flex-start"}}
+                >   
+                    
+                    <View style={styles.activityChild}> 
+                        <Text style={styles.titleText}>
+                            {activity.friend &&
+                                <Text style={[styles.titleText, {fontFamily:"OpenSansBold"}]}>
+                                    {activity.friend} •{" "}
+                                </Text>
+                            }
+                            {activity.title}
+                        </Text>
+                        <Text style={styles.dateText}>
+                            {activity.date.toLocaleString('default', { weekday: 'short' }) + " " + activity.date.getDate() + " "+ activity.date.toLocaleString('default', { month: 'long' })}
+                        </Text>
+                        
+                    </View>
                 </View>
                 {selected === "Past"
                     ?
@@ -196,26 +200,27 @@ export default ActivityItem = ({
                 />
                 : <View></View>
             }
+            
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     activityItem: {
-        width: "100%",
+        width: "95%",
         height: 50,
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "center",
-        marginVertical: 5
+        justifyContent: "flex-start",
+        marginVertical: 5,
     },
     titleText: {
-        textAlign: "center",
+        textAlign: "left",
         fontFamily: "OpenSans",
-        fontSize: 18
+        fontSize: 17
     },
     dateText: {
-        textAlign: "center",
+        textAlign: "left",
         fontFamily: "OpenSans",
         fontSize: 14
     },
@@ -226,24 +231,22 @@ const styles = StyleSheet.create({
     },
     img: {
         flex: 1,
-        alignItems: "center",
+        alignItems: "flex-start",
+        paddingLeft: '2%',
+        marginBottom: 3,
+        marginLeft: 3
     },
     infoButton: {
         width: 30,
         height: 30,
         resizeMode: "contain",
-        marginBottom: 15
+        marginBottom: 20
     },
     reflectButton: {
         backgroundColor: GREEN,
         width: 80,
         borderRadius: 5,
         paddingHorizontal: 10,
-        shadowColor: shadows.shadowColor,
-        shadowRadius: shadows.shadowRadius,
-        shadowOpacity: shadows.shadowOpacity,
-        shadowRadius: shadows.shadowRadius,
-        shadowOffset: shadows.shadowOffset,
     },
     viewButton: {
         backgroundColor: "black",
@@ -251,12 +254,6 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginLeft: 5,
         paddingHorizontal: 10,
-        shadowColor: shadows.shadowColor,
-        shadowRadius: shadows.shadowRadius,
-        shadowOpacity: shadows.shadowOpacity,
-        shadowRadius: shadows.shadowRadius,
-        shadowOffset: shadows.shadowOffset,
-
     },
     reflectText: {
         fontFamily: "OpenSans",
@@ -271,11 +268,6 @@ const styles = StyleSheet.create({
         minWidth: 110,
         minHeight: 30,
         justifyContent: "center",
-        shadowColor: shadows.shadowColor,
-        shadowRadius: shadows.shadowRadius,
-        shadowOpacity: shadows.shadowOpacity,
-        shadowRadius: shadows.shadowRadius,
-        shadowOffset: shadows.shadowOffset,
     },
     maybeLaterButton: {
         backgroundColor: DARK_CREME,
@@ -284,11 +276,6 @@ const styles = StyleSheet.create({
         minWidth: 110,
         minHeight: 30,
         justifyContent: "center",
-        shadowColor: shadows.shadowColor,
-        shadowRadius: shadows.shadowRadius,
-        shadowOpacity: shadows.shadowOpacity,
-        shadowRadius: shadows.shadowRadius,
-        shadowOffset: shadows.shadowOffset,
     },
     maybeLaterText: {
         fontFamily: "OpenSans",
@@ -316,5 +303,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22
-    }
+    },
+   
 });

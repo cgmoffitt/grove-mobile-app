@@ -62,6 +62,7 @@ export default ActivitiesCard = ({
                 <NoActivities selected={selected} />
             }
             {activities.map((activity, i) =>
+                <View style={{width: '100%'}}>
                 <ActivityItem
                     key={i}
                     activity={activity}
@@ -72,6 +73,8 @@ export default ActivitiesCard = ({
                     editMethod={editMethod}
                     openSuccessModal={openSuccessModal}
                 />
+                <View style={styles.thinLine}></View>
+                </View>
             )}
         </View>
     )
@@ -237,5 +240,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         fontFamily: "OpenSans",
         fontSize: 14
-    }
+    },
+    thinLine: {
+        borderBottomWidth: 1,
+        borderBottomColor: "#E6E6E6",
+        width: "100%"
+    },
 });
