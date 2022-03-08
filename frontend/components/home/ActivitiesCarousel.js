@@ -4,7 +4,7 @@ import commonStyles from "../../styles/commonStyles"
 import { CREME_WHITE, BROWN } from "../../constants/themes";
 import { activityHeader } from "../../constants/defaultData";
 import HomeCard from "./HomeCard";
-import Carousel from 'react-native-banner-carousel'
+import Carousel from 'react-native-banner-carousel';
 import {
   filterUpcoming,
   filterPending
