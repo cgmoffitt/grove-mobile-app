@@ -3,7 +3,11 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
 import Home from "../screens/Home";
-import PlantActivity from "../screens/PlantActivity";
+import PlantActivityA from "../screens/PlantActivityA";
+import PlantActivityB from "../screens/PlantActivityB";
+import PlantActivityC from "../screens/PlantActivityC";
+import PlantActivityD from "../screens/PlantActivityD";
+import PlantActivityE from "../screens/PlantActivityE";
 import Friends from "../screens/Friends";
 import MeThisWeek from "../screens/MeThisWeek"
 import Hangouts from "../screens/Hangouts";
@@ -47,7 +51,11 @@ const HomeStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name={routes.HOME} component={HomeDrawer} options={{ headerShown: false, title: "home" }} />
-      <Stack.Screen name={routes.PLANT_ACTIVITY} component={PlantActivity} options={configHeaderOptions("Plant Activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYA} component={PlantActivityA} options={configHeaderOptions("Plant Activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYB} component={PlantActivityB} options={configHeaderOptions("Plant Activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYC} component={PlantActivityC} options={configHeaderOptions("Plant Activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYD} component={PlantActivityD} options={configHeaderOptions("Plant Activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYE} component={PlantActivityE} options={configHeaderOptions("Plant Activity")} />
     </Stack.Navigator>
   );
 }
@@ -143,8 +151,8 @@ const HangoutsStackNavigator = ({
         options={configHeaderOptions("Write a Caption")}
       />
       <Stack.Screen 
-        name={routes.PLANT_ACTIVITY} 
-        component={PlantActivity} 
+        name={routes.PLANT_ACTIVITYA} 
+        component={PlantActivityA} 
         options={configHeaderOptions("Plant an Activity")}
       />
     </Stack.Navigator>

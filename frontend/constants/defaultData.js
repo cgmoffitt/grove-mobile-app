@@ -160,6 +160,29 @@ const INITIAL_PREFERENCES = {
     availability: INITIAL_AVAILABILITY
 }
 
+const steps = {
+    ACTIVITY: {
+        step: 1,
+        title: "Activity",
+        progress: "15%"
+    },
+    LOCATION: {
+        step: 2,
+        title: "Location",
+        progress: "37%"
+    },
+    DATE: {
+        step:3,
+        title: "Date/Time",
+        progress: "62%"
+    },
+    FRIENDS: {
+        step:4,
+        title: "Friends",
+        progress: "85%"
+    }
+}
+
 export {
     ALL_ACTIVITIES,
     friends,
@@ -171,5 +194,6 @@ export {
     MY_ID,
     SOMEONE_ELSE_ID,
     AUTOMATIC_ID,
-    INITIAL_PREFERENCES
+    INITIAL_PREFERENCES,
+    steps
 }
