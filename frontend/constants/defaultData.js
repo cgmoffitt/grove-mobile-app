@@ -84,8 +84,8 @@ const ALL_ACTIVITIES = [
     //Past Activities: date IN PAST, confirmed is TRUE
     {
         id: 7,
-        title: defaultActivity.TENNIS,
-        friend: "Mihir",
+        title: defaultActivity.COFFEE,
+        friend: "Callie",
         date: new Date('March 1, 2022 18:00:00'),
         confirmed: true,
         plantedId: AUTOMATIC_ID,
@@ -94,7 +94,7 @@ const ALL_ACTIVITIES = [
     },
     {
         id: 8,
-        title: defaultActivity.COFFEE,
+        title: defaultActivity.TENNIS,
         friend: "Jasmine",
         date: new Date('March 1, 2022 18:00:00'),
         confirmed: true,
