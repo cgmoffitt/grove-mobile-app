@@ -9,11 +9,12 @@ const NearbyCard = ({
     location,
     index,
     selectedIndex,
-    setSelectedIndex
+    setSelectedIndex,
+    locationCardContainerStyle
 }) => {
 
     return (
-        <View style={styles.nearbyCardContainer}>
+        <View style={[styles.nearbyCardContainer, locationCardContainerStyle]}>
 
             <View style={[styles.nearbyCard, commonStyles.shadow]}>
                 <Image
@@ -55,13 +56,12 @@ const NearbyLocations = ({
     setCurNearbyIndex,
     nearbyLocations,
     selectedIndex,
-    setSelectedIndex
+    setSelectedIndex,
+    locationCardContainerStyle
 }) => {
 
     const carouselWidth = Dimensions.get('window').width * 0.8;
-
-
-
+    
     return (
         <View style={styles.nearbySection}>
             <Text style={styles.nearbyHeader}>Nearby Locations</Text>
@@ -78,6 +78,7 @@ const NearbyLocations = ({
                         selectedIndex={selectedIndex}
                         setSelectedIndex={setSelectedIndex}
                         key={index}
+                        locationCardContainerStyle={locationCardContainerStyle}
                     />
                 )}
             </Carousel>
@@ -129,7 +130,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         alignSelf: "center",
-        marginLeft: 25
+        marginLeft: 15
     },
     selectText: {
         fontFamily: "OpenSans",

@@ -1,16 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, TextInput, Dimensions } from "react-native";
-import commonStyles from "../styles/commonStyles"
-import { DARK_GREEN } from "../constants/themes";
-import { steps, NEARBY_LOCATIONS } from "../constants/defaultData"
+import commonStyles from "../../styles/commonStyles"
+import { DARK_GREEN } from "../../constants/themes";
+import { NEARBY_LOCATIONS } from "../../constants/defaultData"
 
-import ActionButton from "../components/utils/ActionButton";
-import ProgressBar from "../components/plant-activity/ProgressBar";
+
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Marker } from "react-native-maps";
-import customMapStyle from "../styles/customMapStyle";
-import NearbyLocations from "../components/plant-activity/NearbyLocations";
-import LocationsMap from "../components/plant-activity/LocationsMap";
+import customMapStyle from "../../styles/customMapStyle";
+import NearbyLocations from "./NearbyLocations";
 
 const LocationMarker = ({
     coordinate
@@ -47,34 +45,49 @@ const SearchBar = ({
     )
 }
 
-const PlantActivityC = ({
-    navigation,
-    route
+const LocationsMap = ({
+    curNearbyIndex, 
+    setCurNearbyIndex,
+    selectedIndex, 
+    setSelectedIndex,
+    containerStyle,
+    locationCardContainerStyle
 }) => {
 
-    const [curNearbyIndex, setCurNearbyIndex] = useState(0)
-    const [selectedIndex, setSelectedIndex] = useState(-1)
-    const { activity } = route.params
-
     return (
-        <View style={[commonStyles.backgroundCreme, styles.screen]}>
-            <ProgressBar
-                curStep={steps.LOCATION}
-                activity={activity}
-                showLabels={true}
-            />
-            <Text style={styles.textHeader}>Select a location</Text>
-            <LocationsMap
-                curNearbyIndex={curNearbyIndex}
+        <View style={[styles.map, containerStyle]}>
+            <MapView
+                style={commonStyles.full}
+                customMapStyle={customMapStyle}
+                userLocationCalloutEnabled={true}
+                provider={PROVIDER_GOOGLE}
+                showsUserLocation
+                initialRegion={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                }}
+            >
+                <LocationMarker coordinate={{
+                    latitude: 37.78825,
+                    longitude: -122.4324
+                }} />
+                <Marker
+                    coordinate={NEARBY_LOCATIONS[curNearbyIndex].coordinate}
+                    title={NEARBY_LOCATIONS[curNearbyIndex].name}
+                    pinColor={selectedIndex === curNearbyIndex ? DARK_GREEN : undefined}
+                >
+
+                </Marker>
+            </MapView>
+            <SearchBar />
+            <NearbyLocations
+                nearbyLocations={NEARBY_LOCATIONS}
                 setCurNearbyIndex={setCurNearbyIndex}
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
-            />
-            <ActionButton
-                active={true}
-                main={"Next"}
-                style={styles.nextButton}
-                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYD, {activity: activity, location: NEARBY_LOCATIONS[selectedIndex].name})}
+                locationCardContainerStyle={locationCardContainerStyle}
             />
         </View>
     );
@@ -105,4 +118,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default PlantActivityC;
+export default LocationsMap;
