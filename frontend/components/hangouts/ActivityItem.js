@@ -244,22 +244,22 @@ const styles = StyleSheet.create({
     },
     reflectButton: {
         backgroundColor: GREEN,
-        width: 80,
+        width: 69,
         borderRadius: 5,
         paddingHorizontal: 10,
     },
     viewButton: {
         backgroundColor: "black",
-        width: 80,
+        width: 69,
         borderRadius: 5,
         marginLeft: 5,
         paddingHorizontal: 10,
     },
     reflectText: {
-        fontFamily: "OpenSans",
+        fontFamily: "OpenSansBold",
         color: "white",
         textAlign: "center",
-        fontSize: 18
+        fontSize: 14
     },
     acceptButton: {
         backgroundColor: GREEN,

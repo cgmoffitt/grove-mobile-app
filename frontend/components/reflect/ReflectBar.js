@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        paddingHorizontal: '10%'
     },
     reflectIconBold: {
         borderColor: DARK_GREEN,

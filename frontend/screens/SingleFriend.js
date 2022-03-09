@@ -63,9 +63,20 @@ const SingleFriend = ({route, navigation}) => {
       </View>
       <View style={styles.headingChild}>
         <View style={styles.headingSubparent}>
+        <View style={styles.headingSubchild}>
+        <View style={[styles.headingParentUtils, {paddingBottom: '10%'}]}>
+          <View style={[styles.headingChildUtils]}>
+              <Image style={styles.upperIcon} source={require("../assets/single_friend/speech-bubble.png")}></Image>
+            </View>
+            <View style={styles.headingChildUtils} >
+              <Image style={styles.upperIcon} source={require("../assets/single_friend/warning.png")}></Image>
+            </View>
+        </View>
+
+        </View>
           <View style={styles.headingSubchild}>
             <View style={styles.headingParentTitle}>
-              <View style={styles.headingChildTitle}>
+              <View style={[styles.headingChildTitle]}>
                   <Image style={{width: 50, height: 40}} source={require("../assets/images/plants/plant2.png")}></Image>
               </View>
               <View style={styles.headingChildTitle}>
@@ -75,7 +86,7 @@ const SingleFriend = ({route, navigation}) => {
 
           </View>
           <View style={styles.headingSubchild}>
-            <Text style={styles.headingSubTitle}>Favorite Activities</Text>
+            <Text style={styles.headingSubTitle}>  Favorite Activities</Text>
           </View>
           <View style={styles.headingSubchild}>
             <View style={styles.chipParent}>
@@ -91,7 +102,7 @@ const SingleFriend = ({route, navigation}) => {
       </View>
     </View>
       <View style={styles.mainFriendCard}>
-      <ActionButton main={"📷 Memories with " + props.name}
+      <ActionButton main={"📷  Memories with " + props.name}
                       style={styles.memoriesButton}
                       onPressMethod={()=>navigation.navigate("Hangouts")}
                       active={true} />
@@ -110,8 +121,8 @@ const SingleFriend = ({route, navigation}) => {
                 isOn={alertIsOn}
                 onColor= {DARK_GREEN}
                 offColor= {TEXT_GRAY}
-                label={"Get alerts for planted activities"}
-                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 16}}
+                label={"Alert me for their planted activities"}
+                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15}}
                 size="medium"
                 onToggle={() => setAlertIsOn(!alertIsOn)}
               />
@@ -122,8 +133,8 @@ const SingleFriend = ({route, navigation}) => {
                 isOn={priorityIsOn}
                 onColor= {DARK_GREEN}
                 offColor= {TEXT_GRAY}
-                label={"Make a top priority friend        "}
-                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 16}}
+                label={"Make " + props.name + " a top priority friend      "}
+                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15}}
                 size="medium"
                 onToggle={() => setPriorityIsOn(!priorityIsOn)}
               />
@@ -136,8 +147,9 @@ const SingleFriend = ({route, navigation}) => {
 
 const styles = StyleSheet.create({
   profilePhoto:{
-    width:150,
-    height:150,
+    width:170,
+    height:170,
+    marginLeft: '2%',
     borderRadius: 100,
     borderStyle: "solid",
     borderWidth: 10,
@@ -147,14 +159,14 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-evenly",
-    alignItems: "center"
+    alignItems: "flex-start"
   },
   headingChild: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: '5%'
+    paddingVertical: '5%'
   },
   headingTitle:{
     fontFamily: "OpenSansBold",
@@ -271,7 +283,24 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "flex-start",
-  }
+  },
+  upperIcon: {
+    width: 25,
+    height: 25
+  },
+  headingParentUtils:{
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+  },
+  headingChildUtils:{
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    paddingLeft:'5%'
+  },
 });
 
 export default SingleFriend;

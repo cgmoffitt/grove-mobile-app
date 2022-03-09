@@ -21,7 +21,7 @@ const Reflect = ({
   const hangout = {
     event: {
       name: "Coffee at 52nd St. Cafe",
-      date: "15th January 2022, 1pm",
+      date: "Sat 15 January, 1pm",
       memories: [{url: require("../assets/hangouts/nirali_selfie.png"), caption: "Got coffee with Callie at the cutest cafe!"}, 
       {url: require("../assets/hangouts/nirali_coffee.png"), caption: "Look at the beautiful latte art!"}]
     }
@@ -31,7 +31,7 @@ const Reflect = ({
   return (
     <View style={styles.center}>
     <Banner event={hangout.event.name} date={hangout.event.date}/>
-      <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
+      <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
         
         <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!"/>
         
@@ -101,8 +101,8 @@ const styles = StyleSheet.create({
   },
   photosCard: {
     width: '90%',
-    marginTop: '5%',
-    height: '45%'
+    marginTop: '3%',
+    height: '40%'
   },
   cardWrapper:{
     paddingTop: '0%',

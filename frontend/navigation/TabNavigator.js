@@ -63,7 +63,7 @@ const BottomTabNavigator = () => {
                 component={FriendsStackNavigator} 
                 options={{
                     tabBarLabel: ({focused,}) => (
-                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>Friends</Text>
+                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>My Grove</Text>
                     ),
                 }}
             />

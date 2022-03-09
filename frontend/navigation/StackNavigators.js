@@ -226,7 +226,7 @@ const MeThisWeekDrawer = () => {
         component={MeThisWeek}
         options={{ 
           headerShown: true, 
-          title: "hangouts", 
+          title: "me this week", 
           headerStyle: {  
             backgroundColor: CREME_WHITE
           },
