@@ -24,7 +24,7 @@ export default EditActivityModal = ({
             modalVisible={modalVisible}
             onClose={onClose}
             onSave={() => onSave(editDate, editStartTime, editEndTime)}
-            title={"Edit Date / Time"}
+            title={"Edit Date/Time"}
         >
             <DatePicker
                 updateDate={(date) => setEditDate(date)}
