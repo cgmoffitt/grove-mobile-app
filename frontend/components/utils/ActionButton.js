@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
       backgroundColor: TEXT_GRAY
     },
     button: {
-      
       padding:'5%',
       borderRadius:10,
       width: '90%',

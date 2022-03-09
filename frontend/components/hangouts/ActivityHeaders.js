@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
         width: "100%",
         flexDirection: "row",
         justifyContent: "space-around",
-        marginBottom: 5
+        marginBottom: 6,
+        marginTop: 20
     },
     selected: {
         borderBottomWidth: 2, 

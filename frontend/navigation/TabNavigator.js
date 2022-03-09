@@ -45,7 +45,7 @@ const BottomTabNavigator = () => {
                 component={HomeStackNavigator} 
                 options={{
                     tabBarLabel: ({focused,}) => (
-                        <Text style={[styles.tabTitle, {color: focused ? DARK_GREEN : TEXT_GRAY}]}>Home</Text>
+                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>Home</Text>
                     ),
                 }}
             />
@@ -54,7 +54,7 @@ const BottomTabNavigator = () => {
                 component={HangoutsStackNavigator} 
                 options={{
                     tabBarLabel: ({focused,}) => (
-                        <Text style={[styles.tabTitle, {color: focused ? DARK_GREEN : TEXT_GRAY}]}>Hangouts</Text>
+                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>Hangouts</Text>
                     ),
                 }}
             />
@@ -63,7 +63,7 @@ const BottomTabNavigator = () => {
                 component={FriendsStackNavigator} 
                 options={{
                     tabBarLabel: ({focused,}) => (
-                        <Text style={[styles.tabTitle, {color: focused ? DARK_GREEN : TEXT_GRAY}]}>Friends</Text>
+                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>Friends</Text>
                     ),
                 }}
             />
@@ -72,7 +72,7 @@ const BottomTabNavigator = () => {
                 component={MeThisWeekDrawer} 
                 options={{
                     tabBarLabel: ({focused,}) => (
-                        <Text style={[styles.tabTitle, {color: focused ? DARK_GREEN : TEXT_GRAY}]}>Me This Week</Text>
+                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>Me This Week</Text>
                     ),
                 }}
             />

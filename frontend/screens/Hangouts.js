@@ -65,10 +65,10 @@ const Hangouts = ({
 
     return (
         <View style={[commonStyles.full, commonStyles.backgroundCreme]}>
-            <ListCalendarToggle
+            {/* <ListCalendarToggle
                 listToggled={listToggled}
                 toggleView={toggleView}
-            />
+            /> */}
             <ActivityHeaders
                 headers={ACTIVITY_HEADERS}
                 selected={selectedActivityType}

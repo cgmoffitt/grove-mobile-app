@@ -10,10 +10,10 @@ const defaultActivity = {
 }
 
 const DEFAULT_ACTIVITIES = [
-    { name: defaultActivity.HIKING },
-    { name: defaultActivity.TENNIS },
-    { name: defaultActivity.COFFEE },
-    { name: defaultActivity.BAR_HOPPING }
+    { title: defaultActivity.HIKING },
+    { title: defaultActivity.TENNIS },
+    { title: defaultActivity.COFFEE },
+    { title: defaultActivity.BAR_HOPPING }
 ]
 
 const plantToImage = {
@@ -95,8 +95,8 @@ const ALL_ACTIVITIES = [
     //Past Activities: date IN PAST, confirmed is TRUE
     {
         id: 7,
-        title: defaultActivity.TENNIS,
-        friend: "Mihir",
+        title: defaultActivity.COFFEE,
+        friend: "Callie",
         date: new Date('March 1, 2022 18:00:00'),
         confirmed: true,
         plantedId: AUTOMATIC_ID,
@@ -105,7 +105,7 @@ const ALL_ACTIVITIES = [
     },
     {
         id: 8,
-        title: defaultActivity.COFFEE,
+        title: defaultActivity.TENNIS,
         friend: "Jasmine",
         date: new Date('March 1, 2022 18:00:00'),
         confirmed: true,
@@ -171,6 +171,34 @@ const INITIAL_PREFERENCES = {
     availability: INITIAL_AVAILABILITY
 }
 
+const steps = {
+    ACTIVITY: {
+        step: 1,
+        title: "Activity",
+        progress: "15%"
+    },
+    LOCATION: {
+        step: 2,
+        title: "Location",
+        progress: "37%"
+    },
+    DATE: {
+        step:3,
+        title: "Date/Time",
+        progress: "62%"
+    },
+    FRIENDS: {
+        step:4,
+        title: "Friends",
+        progress: "85%"
+    },
+    CONFIRM: {
+        step:5,
+        title: "Confirm",
+        progress: "100%"
+    }
+}
+
 export {
     ALL_ACTIVITIES,
     friends,
@@ -183,5 +211,6 @@ export {
     SOMEONE_ELSE_ID,
     AUTOMATIC_ID,
     INITIAL_PREFERENCES,
-    plantToImage
+    plantToImage,
+    steps
 }
