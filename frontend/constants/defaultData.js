@@ -150,8 +150,8 @@ const ProfileInfo = {
 }
 
 const DEFAULT_FOCUS_FRIENDS = [
-    { name: "Callie", plant: 1 },
-    { name: "Mihir", plant: 1 }
+    { name: "Callie", plant: 2 },
+    { name: "Mihir", plant: 3 }
 ]
 
 const activityHeader = {
