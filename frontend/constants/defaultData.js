@@ -37,7 +37,7 @@ const ALL_ACTIVITIES = [
         confirmed: true,
         plantedId: AUTOMATIC_ID,
         reflected: false,
-        location: "Lagunita Tennis Courts"
+        location: "Lagunita Tennis Courts",
     },
     {
         id: 2,

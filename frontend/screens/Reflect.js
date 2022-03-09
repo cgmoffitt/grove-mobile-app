@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text, Button, ImageBackground, Dimensions, Pressable, Image } from "react-native";
 import ReflectCard from "../components/reflect/ReflectCard";
 import commonStyles from "../styles/commonStyles";
@@ -8,17 +8,32 @@ import Banner from "../components/utils/Banner";
 import { TabRouter } from "@react-navigation/native";
 import Carousel from 'react-native-banner-carousel';
 import { TEXT_GRAY, DARK_GREEN, VIBRANT_GREEN } from "../constants/themes";
+import { connect } from "react-redux";
 
 
 const Reflect = ({
   navigation,
-  route
+  route,
+  activities
 }) => {
-  const { friend } = route.params
+  const { activityId } = route.params
+  const [hangout, setHangout] = useState(null)
+  const [loaded, setLoaded] = useState(false)
+  console.log("Hangout: ", hangout)
+
+  useEffect(() => {
+    let mounted = true
+    if (mounted) {
+      setHangout(activities.find(activity => activity.id === activityId))
+      setLoaded(true)
+    }
+  }, [activities])
 
   React.useLayoutEffect(() => {
+    console.log("Id: ", activityId)
+    const thisHangout = activities.find(activity => activity.id === activityId)
     navigation.setOptions({
-      title: `Hangout with ${friend}`,
+      title: `Hangout with ${thisHangout.friend}`,
     });
   }, [navigation]);
 
@@ -27,87 +42,54 @@ const Reflect = ({
   const logoWidth = windowWidth * 0.8;
   const [filteredActivities, setFilteredActivities] = useState([])
 
-  const hangout = {
-    event: {
-      name: "Coffee at 52nd St. Cafe",
-<<<<<<< HEAD
-      date: "Sat 15 January, 1pm",
-      memories: [{url: require("../assets/hangouts/nirali_selfie.png"), caption: "Got coffee with Callie at the cutest cafe!"}, 
-      {url: require("../assets/hangouts/nirali_coffee.png"), caption: "Look at the beautiful latte art!"}]
-=======
-      date: "15th January 2022, 1pm",
-      memories: [{ url: require("../assets/hangouts/nirali_selfie.png"), caption: "Got coffee with Callie at the cutest cafe!" },
-      { url: require("../assets/hangouts/nirali_coffee.png"), caption: "Look at the beautiful latte art!" }]
->>>>>>> edc798af9e4150af9c1cf1380168abe52ae8ad93
-    }
+  const [photosUploaded, setPhotosUploaded] = useState(false);
+
+  if (!loaded) {
+    return <View></View>
   }
 
-  const [photosUploaded, setPhotosUploaded] = useState(false);
   return (
     <View style={styles.center}>
-<<<<<<< HEAD
-    <Banner event={hangout.event.name} date={hangout.event.date}/>
-      <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
-        
-        <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!"/>
-        
-=======
-      <Banner event={hangout.event.name} date={hangout.event.date} />
+      <Banner event={hangout.title + " at " + hangout.location} date={hangout.date.toDateString()} />
       <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
-
         <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!" />
 
->>>>>>> edc798af9e4150af9c1cf1380168abe52ae8ad93
         <View style={[commonStyles.cremeCard, styles.photosCard]}>
-          {(!photosUploaded)
+          {(!hangout.memories)
             ? <ActionButton
               main="Add to Scrapbook"
               onPressMethod={() => navigation.navigate("UploadMemory",
                 {
-                  hangout: {
-                    event: hangout.event, date: hangout.date,
-                    photoLinks: hangout.photoLinks,
-                    captions: hangout.captions,
-                    baseImagesAdded: false,
-                    updatePhotosUploaded: () => { setPhotosUploaded(true) }
-                  }
+                  activity: hangout
                 })}
               active={true}
             />
-            : <View>
-              <View >
-                <Pressable
-                  style={[styles.buttonAdd]}
-                  onPress={() => navigation.navigate("UploadMemory", {
-                    hangout: {
-                      event: hangout.event, date: hangout.date,
-                      photoLinks: hangout.photoLinks,
-                      captions: hangout.captions,
-                      baseImagesAdded: true,
-                      updatePhotosUploaded: () => { setPhotosUploaded(true) }
-                    }
-                  })}
+            :
+            <View>
+              <Pressable
+                style={[styles.buttonAdd]}
+                onPress={() => navigation.navigate("UploadMemory", {
+                  activity: hangout
+                })}
+              >
+                <Text style={styles.textStyle}>+</Text>
+              </Pressable>
+              <View style={[styles.container, styles.upcomingHeight]}>
+                <Carousel
+                  autoplay={true}
+                  showsPageIndicator={true}
+                  pageSize={windowWidth}
+                  useNativeDriver={false}
                 >
-                  <Text style={styles.textStyle}>+</Text>
-                </Pressable>
-                <View style={[styles.container, styles.upcomingHeight]}>
-                  <Carousel
-                    autoplay={true}
-                    showsPageIndicator={true}
-                    pageSize={windowWidth}
-                    useNativeDriver={false}
-                  >
-                    {hangout.event.memories.map((item, index) =>
-                      <View style={styles.carouselCard}>
-                        <Image style={styles.cardImage} source={item.url}></Image>
-                        <Text style={styles.carouselText}>{item.caption}</Text>
-                      </View>)}
-                  </Carousel>
-
-
-                </View>
+                  {hangout.memories.map((item, index) =>
+                    <View style={styles.carouselCard}>
+                      <Image style={styles.cardImage} source={item}></Image>
+                      <Text style={styles.carouselText}>{item.caption}</Text>
+                    </View>)}
+                </Carousel>
               </View>
             </View>
+
           }
         </View>
       </ImageBackground>
@@ -133,7 +115,7 @@ const styles = StyleSheet.create({
   photosCard: {
     width: '90%',
     marginTop: '5%',
-    height: '30%'
+    height: '40%'
   },
   cardWrapper: {
     paddingTop: '0%',
@@ -187,4 +169,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Reflect;
+const mapStateToProps = state => ({
+  activities: state.activities
+})
+
+export default connect(mapStateToProps)(Reflect);

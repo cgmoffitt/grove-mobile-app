@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         color: CREME_WHITE
     },
     viewButton: {
-        marginVertical: 10,
+        marginVertical: 20,
         backgroundColor: DARK_GREEN,
         width: 69,
         borderRadius: 5,
