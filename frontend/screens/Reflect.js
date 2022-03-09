@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text, Button, ImageBackground, Dimensions, Pressable, Image } from "react-native";
 import ReflectCard from "../components/reflect/ReflectCard";
 import commonStyles from "../styles/commonStyles";
@@ -11,8 +11,17 @@ import { TEXT_GRAY, DARK_GREEN, VIBRANT_GREEN } from "../constants/themes";
 
 
 const Reflect = ({
-  navigation
+  navigation,
+  route
 }) => {
+  const { friend } = route.params
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: `Hangout with ${friend}`,
+    });
+  }, [navigation]);
+
 
   const windowWidth = Dimensions.get('window').width;
   const logoWidth = windowWidth * 0.8;
@@ -21,65 +30,87 @@ const Reflect = ({
   const hangout = {
     event: {
       name: "Coffee at 52nd St. Cafe",
+<<<<<<< HEAD
       date: "Sat 15 January, 1pm",
       memories: [{url: require("../assets/hangouts/nirali_selfie.png"), caption: "Got coffee with Callie at the cutest cafe!"}, 
       {url: require("../assets/hangouts/nirali_coffee.png"), caption: "Look at the beautiful latte art!"}]
+=======
+      date: "15th January 2022, 1pm",
+      memories: [{ url: require("../assets/hangouts/nirali_selfie.png"), caption: "Got coffee with Callie at the cutest cafe!" },
+      { url: require("../assets/hangouts/nirali_coffee.png"), caption: "Look at the beautiful latte art!" }]
+>>>>>>> edc798af9e4150af9c1cf1380168abe52ae8ad93
     }
   }
 
   const [photosUploaded, setPhotosUploaded] = useState(false);
   return (
     <View style={styles.center}>
+<<<<<<< HEAD
     <Banner event={hangout.event.name} date={hangout.event.date}/>
       <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
         
         <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!"/>
         
+=======
+      <Banner event={hangout.event.name} date={hangout.event.date} />
+      <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
+
+        <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!" />
+
+>>>>>>> edc798af9e4150af9c1cf1380168abe52ae8ad93
         <View style={[commonStyles.cremeCard, styles.photosCard]}>
           {(!photosUploaded)
-          ? <ActionButton 
-            main="Add to Scrapbook" 
-            onPressMethod={() => navigation.navigate("UploadMemory", 
-                                    {hangout: {event: hangout.event, date: hangout.date, 
-                                    photoLinks: hangout.photoLinks, 
-                                    captions: hangout.captions,
-                                    baseImagesAdded: false,
-                                    updatePhotosUploaded: () => {setPhotosUploaded(true)}}})}
-            active={true}
-          />
-          : <View>
-          <View >
-            <Pressable
+            ? <ActionButton
+              main="Add to Scrapbook"
+              onPressMethod={() => navigation.navigate("UploadMemory",
+                {
+                  hangout: {
+                    event: hangout.event, date: hangout.date,
+                    photoLinks: hangout.photoLinks,
+                    captions: hangout.captions,
+                    baseImagesAdded: false,
+                    updatePhotosUploaded: () => { setPhotosUploaded(true) }
+                  }
+                })}
+              active={true}
+            />
+            : <View>
+              <View >
+                <Pressable
                   style={[styles.buttonAdd]}
-                  onPress={() => navigation.navigate("UploadMemory", {hangout: {event: hangout.event, date: hangout.date, 
-                              photoLinks: hangout.photoLinks, 
-                              captions: hangout.captions,
-                              baseImagesAdded: true,
-                              updatePhotosUploaded: () => {setPhotosUploaded(true)}}})}
-                      >
-                      <Text style={styles.textStyle}>+</Text>
+                  onPress={() => navigation.navigate("UploadMemory", {
+                    hangout: {
+                      event: hangout.event, date: hangout.date,
+                      photoLinks: hangout.photoLinks,
+                      captions: hangout.captions,
+                      baseImagesAdded: true,
+                      updatePhotosUploaded: () => { setPhotosUploaded(true) }
+                    }
+                  })}
+                >
+                  <Text style={styles.textStyle}>+</Text>
                 </Pressable>
-            <View style={[styles.container, styles.upcomingHeight]}>
-                <Carousel
+                <View style={[styles.container, styles.upcomingHeight]}>
+                  <Carousel
                     autoplay={true}
                     showsPageIndicator={true}
                     pageSize={windowWidth}
                     useNativeDriver={false}
                   >
-                    {hangout.event.memories.map((item, index) => 
-                    <View style={styles.carouselCard}>
+                    {hangout.event.memories.map((item, index) =>
+                      <View style={styles.carouselCard}>
                         <Image style={styles.cardImage} source={item.url}></Image>
-                      <Text style={styles.carouselText}>{item.caption}</Text>
-                    </View>)}
-                  </Carousel> 
+                        <Text style={styles.carouselText}>{item.caption}</Text>
+                      </View>)}
+                  </Carousel>
 
-                  
+
                 </View>
               </View>
-          </View>
+            </View>
           }
         </View>
-      </ImageBackground>  
+      </ImageBackground>
     </View>
   );
 };
@@ -91,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     textAlign: "center",
   },
-  image:{
+  image: {
     flex: 1,
     justifyContent: "center",
     width: '100%',
@@ -101,13 +132,13 @@ const styles = StyleSheet.create({
   },
   photosCard: {
     width: '90%',
-    marginTop: '3%',
-    height: '40%'
+    marginTop: '5%',
+    height: '30%'
   },
-  cardWrapper:{
+  cardWrapper: {
     paddingTop: '0%',
   },
-  cardImage:{
+  cardImage: {
     width: 180,
     height: 140,
     borderRadius: 10
@@ -126,14 +157,14 @@ const styles = StyleSheet.create({
   upcomingHeight: {
     height: '100%'
   },
-  carouselText:{
+  carouselText: {
     fontFamily: "OpenSans",
     color: TEXT_GRAY,
     fontSize: 16,
     padding: '4%',
     textAlign: "center"
   },
-  carouselCard:{
+  carouselCard: {
     justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
@@ -142,17 +173,17 @@ const styles = StyleSheet.create({
   buttonAdd: {
     backgroundColor: VIBRANT_GREEN,
     borderRadius: 100,
-    width:42,
-    height:42,
+    width: 42,
+    height: 42,
     textAlign: "center",
     position: "relative"
   },
   textStyle: {
-        color: "white",
-        fontWeight: "bold",
-        textAlign: "center",
-        fontFamily: "OpenSansBold",
-        fontSize:30
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    fontFamily: "OpenSansBold",
+    fontSize: 30
   },
 });
 

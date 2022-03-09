@@ -54,7 +54,7 @@ const Hangouts = ({
                     setSelectedActivities(activities.filter(activity => filterPlanted(activity)).sort((a,b) => a.date - b.date))
                     break;
                 case activityHeader.PAST:
-                    setSelectedActivities(activities.filter(activity => filterPast(activity)).sort((a,b) => a.date - b.date))
+                    setSelectedActivities(activities.filter(activity => filterPast(activity)).sort((a,b) => b.date - a.date))
                     break;
             }
         }

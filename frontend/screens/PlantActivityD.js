@@ -6,42 +6,20 @@ import { steps } from "../constants/defaultData"
 
 import ActionButton from "../components/utils/ActionButton";
 import ProgressBar from "../components/plant-activity/ProgressBar";
-import CalendarPicker from 'react-native-calendar-picker';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { TouchableOpacity } from "react-native-gesture-handler";
-
-
-const customDayHeaderStylesCallback = () => {
-    return {
-        textStyle: {
-            fontFamily: "OpenSansBold",
-            fontSize: 14
-        }
-    };
-}
-
-const customDateStylesCallback = () => {
-    return {
-        textStyle: {
-            fontFamily: "OpenSans",
-            fontSize: 14
-        }
-    };
-}
+import DatePicker from "../components/plant-activity/DatePicker";
+import TimePicker from "../components/plant-activity/TimePicker";
 
 const PlantActivityD = ({
     navigation,
     route
 }) => {
-
-    const calendarWidth = Dimensions.get("screen").width * 0.7
+    const { activity, location } = route.params
 
     const [startTime, setStartTime] = useState(new Date());
     const [endTime, setEndTime] = useState(new Date())
+
+
     const [date, setDate] = useState(null)
-
-    const {activity, location} = route.params
-
     const updateDate = (date) => {
         setDate(date)
     }
@@ -55,56 +33,20 @@ const PlantActivityD = ({
                 showLabels={true}
             />
             <Text style={styles.textHeader}>Select a date and time</Text>
-            <View style={[styles.calendarContainer, commonStyles.shadow]}>
-                <CalendarPicker
-                    onDateChange={updateDate}
-                    width={calendarWidth}
-                    selectedDayStyle={{ backgroundColor: DARK_GREEN, color: DARK_GREEN }}
-                    selectedDayColor={DARK_GREEN}
-                    selectedDayTextColor={"white"}
-                    todayBackgroundColor={TEXT_GRAY}
-                    textStyle={{
-                        fontFamily: "OpenSans",
-                        fontSize: 12
-                    }}
-                    customDayHeaderStyles={customDayHeaderStylesCallback}
-                    customDatesStyles={customDateStylesCallback}
-                    monthTitleStyle={[styles.boldCalendarText, { paddingRight: 10 }]}
-                    yearTitleStyle={styles.boldCalendarText}
-                    dayLabelsWrapper={{ borderTopWidth: 0, borderBottomWidth: 0 }}
-                    previousTitle="<"
-                    nextTitle=">"
-                />
-            </View>
-            <View style={[styles.timeContainer, commonStyles.shadow]}>
-                <View style={styles.timeRow}>
-                    <Text style={styles.timePrompt}>Start Time</Text>
-                    <DateTimePicker
-                        testID="dateTimePicker"
-                        style={{ width: 110 }}
-                        mode={"time"}
-                        value={startTime}
-                        onChange={(e, time) => setStartTime(time)}
-                        display="default"
-                    />
-                </View>
-                <View style={styles.timeRow}>
-                    <Text style={styles.timePrompt}>End Time</Text>
-                    <DateTimePicker
-                        testID="dateTimePicker"
-                        style={{ width: 110 }}
-                        mode={"time"}
-                        value={endTime}
-                        onChange={(e, time) => setEndTime(time)}
-                        display="default"
-                    />
-                </View>
-            </View>
+            <DatePicker
+                updateDate={updateDate}
+            />
+            <TimePicker
+                startTime={startTime}
+                setStartTime={setStartTime}
+                endTime={endTime}
+                setEndTime={setEndTime}
+            />
             <ActionButton
                 active={true}
                 main={"Next"}
                 style={styles.nextButton}
-                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYE, {activity: activity, location: location, date: date, time: [startTime, endTime] })}
+                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYE, { activity: activity, location: location, date: date, time: [startTime, endTime] })}
             />
         </View>
     );

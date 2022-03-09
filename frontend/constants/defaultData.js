@@ -150,8 +150,8 @@ const ProfileInfo = {
 }
 
 const DEFAULT_FOCUS_FRIENDS = [
-    { name: "Callie", plant: 1 },
-    { name: "Mihir", plant: 1 }
+    { name: "Callie", plant: 2 },
+    { name: "Mihir", plant: 3 }
 ]
 
 const activityHeader = {
@@ -206,6 +206,36 @@ const steps = {
     }
 }
 
+const NEARBY_LOCATIONS = [
+    {
+        name: "Verve Coffee",
+        distance: "10 miles",
+        coordinate: {
+            latitude: 37.79825,
+            longitude: -122.4224
+        },
+        uri: "http://www.thatveganlifedoe.com/wp-content/uploads/2016/02/3.jpg"
+    },
+    {
+        name: "Casa Blanka",
+        distance: "10 miles",
+        coordinate: {
+            latitude: 37.77825,
+            longitude: -122.4414
+        },
+        uri: "https://media-cdn.tripadvisor.com/media/photo-s/0c/be/2d/a9/la-casa-blanca-restaurant.jpg"
+    },
+    {
+        name: "Pizza Royal",
+        distance: "10 miles",
+        coordinate: {
+            latitude: 37.76825,
+            longitude: -122.4300
+        },
+        uri:"https://img.restaurantguru.com/w550/h367/r6fb-meals-Pizza-Royal-2021-09-3.jpg"
+    }
+]
+
 export {
     ALL_ACTIVITIES,
     friends,
@@ -220,5 +250,6 @@ export {
     INITIAL_PREFERENCES,
     steps,
     ProfileInfo,
-    plantToImage
+    plantToImage,
+    NEARBY_LOCATIONS
 }

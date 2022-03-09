@@ -3,13 +3,15 @@ import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable, Modal } fro
 import commonStyles from "../../styles/commonStyles"
 import { LIGHT_GREEN, DARK_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, GREEN } from "../../constants/themes"
 import InfoModal from "./InfoModal";
+import routes from "../../constants/routes";
 
 const ReflectButton = ({
-    navigation
+    navigation,
+    friend
 }) => {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate("Reflect")}
+            onPress={() => navigation.navigate(routes.REFLECT, {friend: friend})}
         >
             <View
                 style={styles.reflectButton}
@@ -20,11 +22,12 @@ const ReflectButton = ({
     )
 }
 const ViewButton = ({
-    navigation
+    navigation,
+    friend
 }) => {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate("Reflect")}
+            onPress={() => navigation.navigate(routes.REFLECT, {friend: friend})}
         >
             <View
                 style={styles.viewButton}
@@ -37,7 +40,7 @@ const ViewButton = ({
 
 const AcceptButton = ({
     navigation,
-    acceptMethod
+    acceptMethod,
 }) => {
     return (
         <TouchableOpacity
@@ -174,9 +177,9 @@ export default ActivityItem = ({
                     ?
                     !activity.reflected
                         ?
-                        <ReflectButton navigation={navigation} />
+                        <ReflectButton friend={activity.friend} navigation={navigation} />
                         :
-                        <ViewButton navigation={navigation} />
+                        <ViewButton friend={activity.friend} navigation={navigation} />
                     :
                     <TouchableOpacity
                         onPress={() => setModalVisible(true)}
