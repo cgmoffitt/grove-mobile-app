@@ -1,7 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { Text, Image } from "react-native"
+import { TouchableOpacity, Image } from "react-native"
 
 import Home from "../screens/Home";
 import PlantActivityA from "../screens/PlantActivityA";
@@ -17,8 +17,11 @@ import Reflect from "../screens/Reflect";
 import SingleFriend from "../screens/SingleFriend";
 import UploadMemory from "../screens/UploadMemory";
 import WriteCaption from "../screens/WriteCaption";
+import MyProfile from "../screens/MyProfile";
 import { DARK_GREEN, CREME_WHITE } from "../constants/themes";
 import routes from "../constants/routes";
+import navigation from "./RootNavigation.js";
+import { navigationRef } from './RootNavigation';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -54,19 +57,29 @@ const HomeDrawer = () => {
 const HomeStackNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen 
-        name={routes.HOME} 
-        component={Home} 
-        options={{ 
+      <Stack.Screen name={routes.HOME}
+      component={Home}
+      
+      options={{ 
           headerShown: true, 
-          title: "", 
-          headerStyle: {
+          title: "grove", 
+          headerStyle: {  
             backgroundColor: CREME_WHITE
           },
+          headerTitleStyle: {
+            fontFamily: "Poppins",
+            color: DARK_GREEN,
+            fontSize: 20
+          },
           headerLeft: () => (
-            <Image style={{width: 40, height: 40, borderRadius: 20, marginLeft: 20}} source={require("../assets/hangouts/nirali_selfie.png")} />
+            <TouchableOpacity onPress={()=> navigationRef.current?.navigate(routes.MY_PROFILE)}><Image style={{width: 45, height: 45, borderRadius:30, marginLeft: 20, marginBottom: 10}} source={require("../assets/profile/amelia_profile.jpeg")}/></TouchableOpacity>
           ),
         }} 
+      ></Stack.Screen>
+      <Stack.Screen 
+        name={routes.MY_PROFILE} 
+        component={MyProfile} 
+        options={configHeaderOptions("My Profile")}
         />
       <Stack.Screen name={routes.PLANT_ACTIVITYA} component={PlantActivityA} options={configHeaderOptions("Plant Activity")} />
       <Stack.Screen name={routes.PLANT_ACTIVITYB} component={PlantActivityB} options={configHeaderOptions("Plant Activity")} />
@@ -96,9 +109,23 @@ const FriendsStackNavigator = () => {
     <Stack.Navigator>
       <Stack.Screen
         name={routes.FRIENDS}
-        component={FriendDrawer}
-        options={{ headerShown: false, title: "my grove" }}
-
+        component={Friends}
+        options={{ 
+          headerShown: true, 
+          title: "my grove", 
+          headerStyle: {  
+            backgroundColor: CREME_WHITE
+          },
+          headerTitleStyle: {
+            fontFamily: "Poppins",
+            color: DARK_GREEN,
+            fontSize: 20
+          },
+          headerShown: true,
+          headerLeft: () => (
+            <TouchableOpacity onPress={()=> navigationRef.current?.navigate(routes.MY_PROFILE)}><Image style={{width: 45, height: 45, borderRadius:30, marginLeft: 20, marginBottom: 10}} source={require("../assets/profile/amelia_profile.jpeg")}/></TouchableOpacity>
+          ),
+        }} 
       />
       <Stack.Screen
         name={routes.SINGLE_FRIEND}
@@ -147,11 +174,25 @@ const HangoutsStackNavigator = ({
 
   return (
     <Stack.Navigator>
-      <Stack.Screen
+        <Stack.Screen
         name={routes.HANGOUTS}
-        component={HangoutsDrawer}
-        initialParams={route.params}
-        options={{ headerShown: false, title: "" }}
+        component={Hangouts}
+        options={{ 
+          headerShown: true, 
+          title: "hangouts", 
+          headerStyle: {  
+            backgroundColor: CREME_WHITE
+          },
+          headerTitleStyle: {
+            fontFamily: "Poppins",
+            color: DARK_GREEN,
+            fontSize: 20
+          },
+          headerShown: true,
+          headerLeft: () => (
+            <TouchableOpacity onPress={()=> navigationRef.current?.navigate(routes.MY_PROFILE)}><Image style={{width: 45, height: 45, borderRadius:30, marginLeft: 20, marginBottom: 10}} source={require("../assets/profile/amelia_profile.jpeg")}/></TouchableOpacity>
+          ),
+        }} 
       />
       <Stack.Screen
         name={routes.REFLECT}
@@ -179,14 +220,28 @@ const HangoutsStackNavigator = ({
 
 const MeThisWeekDrawer = () => {
   return (
-    <Drawer.Navigator
-    >
-      <Drawer.Screen
+    <Stack.Navigator>
+      <Stack.Screen
         name="me this week"
         component={MeThisWeek}
-        options={configHeaderOptions("me this week")}
+        options={{ 
+          headerShown: true, 
+          title: "hangouts", 
+          headerStyle: {  
+            backgroundColor: CREME_WHITE
+          },
+          headerTitleStyle: {
+            fontFamily: "Poppins",
+            color: DARK_GREEN,
+            fontSize: 20
+          },
+          headerShown: true,
+          headerLeft: () => (
+            <TouchableOpacity onPress={()=> navigationRef.current?.navigate(routes.MY_PROFILE)}><Image style={{width: 45, height: 45, borderRadius:30, marginLeft: 20, marginBottom: 10}} source={require("../assets/profile/amelia_profile.jpeg")}/></TouchableOpacity>
+          ),
+        }} 
       />
-    </Drawer.Navigator>
+    </Stack.Navigator>
   );
 }
 
