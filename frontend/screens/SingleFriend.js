@@ -128,11 +128,6 @@ const SingleFriend = ({route, navigation}) => {
                 onToggle={() => setPriorityIsOn(!priorityIsOn)}
               />
           </View>
-
-
-
-
-
           </View>
           </ImageBackground>
         </View>

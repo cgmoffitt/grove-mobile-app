@@ -13,6 +13,7 @@ import SuccessModal from "../components/utils/SuccessModal";
 import { schedulePushNotification } from "../notifications";
 import { addActivity } from "../redux/utils";
 import { useDispatch, connect } from "react-redux";
+import InfoBar from "../components/utils/InfoBar.js";
 
 import {
   DEFAULT_FOCUS_FRIENDS,
@@ -151,7 +152,7 @@ const MeThisWeek = ({
 
   return (
     <ImageBackground
-      source={require("../assets/images/backgrounds/Me-This-Week.png")}
+      source={require("../assets/backgrounds/grove_newbackground.png")}
       resizeMode="cover"
       style={[commonStyles.full]}
     >
@@ -161,7 +162,7 @@ const MeThisWeek = ({
           onClose={() => setSuccessModalVisible(false)}
           prompt={"We will use these preferences to generate personalized hangouts for you this week."}
         />
-        <InfoCard />
+        <InfoBar infoMessage="We will use these preferences to generate personalized hangouts for you this week."/>
         <NumHangouts
           incrementNumHangouts={incrementNumHangouts}
           decrementNumHangouts={decrementNumHangouts}

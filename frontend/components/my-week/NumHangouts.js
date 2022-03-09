@@ -10,7 +10,7 @@ export default NumHangouts = ({
 }) => {
     return (
         <View
-            style={[commonStyles.cremeCard, { marginTop: 30, width: "90%" }]}
+            style={[commonStyles.cremeCard, { marginTop: 10, width: "90%" }]}
         >
             <Text
                 style={[styles.headerText, { marginBottom: 10 }]}
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     },
     plusMinusContainer: {
         backgroundColor: "white",
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: DARK_GREEN,
         borderRadius: 10,
         width: 30,

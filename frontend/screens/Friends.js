@@ -39,7 +39,7 @@ const Friends = ({
                 />
             </View>
             
-            <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
+            <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
                 <FlatList
                     data={friends}
                     renderItem={({item, index}) => renderItem(item, index)}

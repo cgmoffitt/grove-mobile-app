@@ -11,9 +11,10 @@ const FriendCard = ({
   removable
 }) => {
   //Will need to dynamically change the level of the plant based on how much a friendship is growing
+  console.log("plant level: ", plantLevel)
   return (
-    <View style={[styles.cardSpace, size === "LARGE" ? styles.cardLarge : styles.cardSmall]}>
-      <Pressable style={styles.card} onPress={onPressMethod}>
+    <View style={[styles.cardSpace, size === "LARGE" ? styles.cardLarge : styles.cardSmall, {margin: 10}]}>
+      <Pressable style={[styles.card, size=== "LARGE" ? styles.cardLargeTotal : styles.cardSmallTotal]} onPress={onPressMethod}>
         {removable && <MaterialIcons name="remove-circle-outline" size={16} color="black" style={styles.removeIcon} />}
         <Image style={size === "Large" ? styles.plantLarge : styles.plantSmall} source={plantToImage[plantLevel]}></Image>
         <Text style={[styles.cardText, size === "LARGE" ? styles.textLarge : styles.textSmall]}>{name}</Text>
@@ -25,9 +26,8 @@ const FriendCard = ({
 const styles = StyleSheet.create({
   card: {
     backgroundColor: CREME_WHITE,
-    height: 125,
-    width: 100,
     borderRadius: 10,
+    padding: '5%',
     justifyContent: "center",
     alignItems: "center",
     shadowColor: shadows.shadowColor,
@@ -36,17 +36,16 @@ const styles = StyleSheet.create({
     shadowRadius: shadows.shadowRadius,
     shadowOffset: shadows.shadowOffset,
   },
+  cardSmallTotal:{
+    backgroundColor: "white"
+  },
   cardLarge: {
-    width: 110,
-    height: 140,
+    width: 100,
+    height: 160
   },
   cardSmall: {
     width: 80,
-    height: 100,
-    padding: '10%'
-  },
-  cardSpace: {
-    padding: '4%'
+    height: 100
   },
   cardText: {
     color: DARK_GREEN,
