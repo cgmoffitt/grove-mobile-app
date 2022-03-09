@@ -68,25 +68,23 @@ const PlantActivityD = ({
             <View style={[styles.timeContainer, commonStyles.shadow]}>
                 <View style={styles.timeRow}>
                     <Text style={styles.timePrompt}>Start Time</Text>
-                        <DateTimePicker
-                            testID="dateTimePicker"
-                            style={{ width: 100 }}
-                            mode={"time"}
-                            value={date}
-                            // is24Hour={true}
-                            display="default"
-                        />
+                    <DateTimePicker
+                        testID="dateTimePicker"
+                        style={{ width: 110 }}
+                        mode={"time"}
+                        value={date}
+                        display="default"
+                    />
                 </View>
                 <View style={styles.timeRow}>
                     <Text style={styles.timePrompt}>End Time</Text>
-                        <DateTimePicker
-                            testID="dateTimePicker"
-                            style={{ width: 100 }}
-                            mode={"time"}
-                            value={date}
-                            // is24Hour={true}
-                            display="default"
-                        />
+                    <DateTimePicker
+                        testID="dateTimePicker"
+                        style={{ width: 110 }}
+                        mode={"time"}
+                        value={date}
+                        display="default"
+                    />
                 </View>
             </View>
             <ActionButton
@@ -145,7 +143,8 @@ const styles = StyleSheet.create({
     },
     timePrompt: {
         fontFamily: "OpenSans",
-        fontSize: 16
+        fontSize: 16,
+        width: 100
     },
     time: {
         backgroundColor: "rgba(118, 118, 128, 0.4)",

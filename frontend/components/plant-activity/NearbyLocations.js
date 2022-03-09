@@ -3,26 +3,46 @@ import { View, StyleSheet, Text, TextInput, Dimensions, Image, TouchableOpacity 
 import commonStyles from "../../styles/commonStyles"
 import { DARK_GREEN } from "../../constants/themes";
 import Carousel from 'react-native-banner-carousel'
+import Icon from "react-native-vector-icons/MaterialCommunityIcons"
 
 const NearbyCard = ({
-
+    location,
+    index,
+    selectedIndex,
+    setSelectedIndex
 }) => {
+
     return (
         <View style={styles.nearbyCardContainer}>
 
             <View style={[styles.nearbyCard, commonStyles.shadow]}>
                 <Image
-                    source={require("../../assets/images/plant-activity/plant-1.png")}
-                    style={{ width: 50, height: 50 }}
+                    source={{uri: location.uri}}
+                    style={{ width: 50, height: 50, borderRadius:5, marginRight:10 }}
                 />
                 <View>
-                    <Text style={styles.textTitle}>Verve Coffee</Text>
-                    <Text style={styles.textSub}>10 miles</Text>
+                    <Text style={styles.textTitle}>{location.name}</Text>
+                    <Text style={styles.textSub}>{location.distance}</Text>
                 </View>
 
-                <TouchableOpacity style={{ alignSelf: "center" }}>
+                <TouchableOpacity 
+                    style={{ alignSelf: "center" }}
+                    onPress={() => {
+                        if (selectedIndex === index){
+                            setSelectedIndex(-1)
+                        } else {
+                            setSelectedIndex(index)
+                        }
+                    }}
+                >
                     <View style={styles.selectButton}>
-                        <Text style={styles.selectText}>Select</Text>
+                        {
+                            selectedIndex === index 
+                            ?
+                            <Icon name="check" color={"white"} size={20}></Icon>
+                            :
+                            <Text style={styles.selectText}>Select</Text>
+                        }
                     </View>
                 </TouchableOpacity>
 
@@ -32,12 +52,15 @@ const NearbyCard = ({
 }
 
 const NearbyLocations = ({
-
+    setCurNearbyIndex,
+    nearbyLocations,
+    selectedIndex,
+    setSelectedIndex
 }) => {
 
     const carouselWidth = Dimensions.get('window').width * 0.8;
 
-    const nearby = [0, 0, 0]
+
 
     return (
         <View style={styles.nearbySection}>
@@ -46,8 +69,16 @@ const NearbyLocations = ({
                 autoplay={false}
                 showsPageIndicator={true}
                 pageSize={carouselWidth}
+                onPageChanged={(index) => setCurNearbyIndex(index)}
             >
-                {nearby.map((_, index) => <NearbyCard />)}
+                {nearbyLocations.map((location, index) =>
+                    <NearbyCard 
+                        location={location} 
+                        index={index}
+                        selectedIndex={selectedIndex}
+                        setSelectedIndex={setSelectedIndex}
+                    />
+                )}
             </Carousel>
         </View>
     )

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import commonStyles from "../styles/commonStyles"
 import { DARK_GREEN } from "../constants/themes";
 import { steps } from "../constants/defaultData"
@@ -17,13 +17,14 @@ const PlantActivityE = () => {
         return a.name.localeCompare(b.name)
     })
     const items = [{ label: "All friends", value: "All friends" }].concat(friends.map(friend => ({ label: friend.name, value: friend.name })))
-    const [value, setValue] = useState([])
     const [friendsToReceive, setFriendsToReceive] = useState([])
-    const updateFriends = (selected) => {
-        console.log("hi")
-        const nextFriends = selected.map(friendItem => friends.find(friend => friend.name === friendItem.value))
+
+    const removeFriend = (friend) => {
+        const indexToRemove = friendsToReceive.findIndex(thisFriend => thisFriend === friend)
+        const nextFriends = friendsToReceive.splice(0,indexToRemove).concat(friendsToReceive.splice(indexToRemove + 1))
         setFriendsToReceive(nextFriends)
     }
+
 
     return (
         <View style={[commonStyles.backgroundCreme, styles.screen]}>
@@ -36,17 +37,16 @@ const PlantActivityE = () => {
             <Text style={styles.textHeader}>Select friends to send this activity to</Text>
             <View style={[styles.dropDownContainer, commonStyles.shadow]}>
                 <DropDownPicker
-                    value={value}
+                    value={friendsToReceive}
                     items={items}
-                    setValue={setValue}
+                    setValue={setFriendsToReceive}
                     onPress={() => console.log("pressed")}
-                    onChangeValue={(value) => console.log("change value: ", value)}
                     // multipleText={multipleText}
                     open={true}
                     setOpen={() => { }}
                     textStyle={styles.textItalic}
-                    style={{display: "none"}}
-                    dropDownContainerStyle={{borderWidth:0}}
+                    style={{ display: "none" }}
+                    dropDownContainerStyle={{ borderWidth: 0 }}
                     multiple={true}
                     ArrowDownIconComponent={() => <View></View>}
                     ArrowUpIconComponent={() => <View></View>}
@@ -54,9 +54,23 @@ const PlantActivityE = () => {
                     searchPlaceholder="Search for a friend..."
                     searchPlaceholderTextColor={DARK_GREEN}
                     searchTextInputStyle={styles.textItalic}
-                    searchContainerStyle={{height: 50,}}
-                    searchTextInputStyle={{borderWidth: 0}}
+                    searchContainerStyle={{ height: 50, }}
+                    searchTextInputStyle={{ borderWidth: 0 }}
                 />
+            </View>
+            <View style={styles.selectedSection}>
+                <Text style={styles.selectedHeader}>Selected:</Text>
+                <View style={styles.selectedFriends}>
+                    {friendsToReceive.map(friend =>
+                        <TouchableOpacity 
+                            style={commonStyles.darkGreenChip}
+                            onPress={() => removeFriend(friend)}
+                        >
+                            <Text style={styles.selectedText}>{friend}</Text>
+                        </TouchableOpacity>
+                    )}
+                </View>
+
             </View>
 
             <ActionButton
@@ -99,12 +113,32 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     dropDownContainer: {
-        width:"80%", 
-        height:250, 
-        backgroundColor: "white", 
-        borderRadius: 10, 
+        width: "80%",
+        height: 250,
+        backgroundColor: "white",
+        borderRadius: 10,
         // alignItems:"center", 
-        paddingTop:10
+        paddingTop: 10
+    },
+    selectedHeader: {
+        fontFamily: "OpenSansBold",
+        color: DARK_GREEN,
+        fontSize: 16
+    },
+    selectedSection: {
+        width: "100%",
+        marginTop:20,
+        paddingHorizontal: 20
+    },
+    selectedFriends: {
+        width: "100%",
+        flexDirection: "row",
+        marginTop: 10
+    },
+    selectedText: {
+        fontFamily: "OpenSans",
+        color: "white",
+        fontSize: 16
     }
 });
 
