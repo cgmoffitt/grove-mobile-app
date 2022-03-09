@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import commonStyles from "../styles/commonStyles"
 import { DARK_GREEN } from "../constants/themes";
 import { steps } from "../constants/defaultData"
@@ -11,42 +11,47 @@ import { friends } from "../constants/defaultData";
 
 
 
-const PlantActivityE = () => {
+const PlantActivityE = ({
+    route,
+    navigation
+}) => {
+    const {activity, location, date, time} = route.params
 
     friends.sort((a, b) => {
         return a.name.localeCompare(b.name)
     })
     const items = [{ label: "All friends", value: "All friends" }].concat(friends.map(friend => ({ label: friend.name, value: friend.name })))
-    const [value, setValue] = useState([])
     const [friendsToReceive, setFriendsToReceive] = useState([])
-    const updateFriends = (selected) => {
-        console.log("hi")
-        const nextFriends = selected.map(friendItem => friends.find(friend => friend.name === friendItem.value))
+
+    const removeFriend = (friend) => {
+        const indexToRemove = friendsToReceive.findIndex(thisFriend => thisFriend === friend)
+        const nextFriends = friendsToReceive.splice(0,indexToRemove).concat(friendsToReceive.splice(indexToRemove + 1))
         setFriendsToReceive(nextFriends)
     }
+
 
     return (
         <View style={[commonStyles.backgroundCreme, styles.screen]}>
             <ProgressBar
                 curStep={steps.FRIENDS}
-                activity="Tennis"
-                location="EVGR Courts"
-                date="Mon, March 3"
+                activity={activity}
+                location={location}
+                date={new Date(date).toDateString()}
+                showLabels={true}
             />
             <Text style={styles.textHeader}>Select friends to send this activity to</Text>
             <View style={[styles.dropDownContainer, commonStyles.shadow]}>
                 <DropDownPicker
-                    value={value}
+                    value={friendsToReceive}
                     items={items}
-                    setValue={setValue}
+                    setValue={setFriendsToReceive}
                     onPress={() => console.log("pressed")}
-                    onChangeValue={(value) => console.log("change value: ", value)}
                     // multipleText={multipleText}
                     open={true}
                     setOpen={() => { }}
                     textStyle={styles.textItalic}
-                    style={{display: "none"}}
-                    dropDownContainerStyle={{borderWidth:0}}
+                    style={{ display: "none" }}
+                    dropDownContainerStyle={{ borderWidth: 0 }}
                     multiple={true}
                     ArrowDownIconComponent={() => <View></View>}
                     ArrowUpIconComponent={() => <View></View>}
@@ -54,15 +59,29 @@ const PlantActivityE = () => {
                     searchPlaceholder="Search for a friend..."
                     searchPlaceholderTextColor={DARK_GREEN}
                     searchTextInputStyle={styles.textItalic}
-                    searchContainerStyle={{height: 50,}}
-                    searchTextInputStyle={{borderWidth: 0}}
+                    searchContainerStyle={{ height: 50, }}
+                    searchTextInputStyle={{ borderWidth: 0 }}
                 />
             </View>
-
+            <View style={styles.selectedSection}>
+                <Text style={styles.selectedHeader}>Selected:</Text>
+                <View style={styles.selectedFriends}>
+                    {friendsToReceive.map(friend =>
+                        <TouchableOpacity 
+                            key={friend}
+                            style={commonStyles.darkGreenChip}
+                            onPress={() => removeFriend(friend)}
+                        >
+                            <Text style={styles.selectedText}>{friend}</Text>
+                        </TouchableOpacity>
+                    )}
+                </View>
+            </View>
             <ActionButton
                 active={true}
                 main={"Next"}
                 style={styles.nextButton}
+                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYF, {activity: activity, location: location, date: date, friends: friendsToReceive, time: time})}
             />
         </View>
     );
@@ -72,15 +91,6 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         alignItems: "center"
-    },
-    activities: {
-        flexDirection: "row",
-        justifyContent: "center",
-        width: "100%",
-        flexWrap: "wrap"
-    },
-    activityCard: {
-        marginHorizontal: 20
     },
     nextButton: {
         paddingVertical: 8,
@@ -92,19 +102,39 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSansItalic",
         fontSize: 22,
         color: DARK_GREEN,
-        marginVertical: 30
+        marginVertical: 20
     },
     textItalic: {
         fontFamily: "OpenSans",
         fontSize: 18
     },
     dropDownContainer: {
-        width:"80%", 
-        height:250, 
-        backgroundColor: "white", 
-        borderRadius: 10, 
+        width: "80%",
+        height: 250,
+        backgroundColor: "white",
+        borderRadius: 10,
         // alignItems:"center", 
-        paddingTop:10
+        paddingTop: 10
+    },
+    selectedHeader: {
+        fontFamily: "OpenSansBold",
+        color: DARK_GREEN,
+        fontSize: 16
+    },
+    selectedSection: {
+        width: "80%",
+        marginTop:20,
+        paddingHorizontal: 0
+    },
+    selectedFriends: {
+        width: "100%",
+        flexDirection: "row",
+        marginTop: 10
+    },
+    selectedText: {
+        fontFamily: "OpenSans",
+        color: "white",
+        fontSize: 16
     }
 });
 

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     backgroundCreme: {
-        backgroundColor: CREME_WHITE 
+        backgroundColor: CREME_WHITE
     },
     backgroundDarkGreen: {
         backgroundColor: DARK_GREEN
@@ -39,6 +39,12 @@ const styles = StyleSheet.create({
         shadowOpacity: shadows.shadowOpacity,
         shadowRadius: shadows.shadowRadius,
         shadowOffset: shadows.shadowOffset,
+    },
+    darkGreenChip: {
+        backgroundColor: DARK_GREEN,
+        marginLeft: 5,
+        borderRadius: 20,
+        padding: 10
     }
 });
 

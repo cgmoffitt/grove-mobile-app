@@ -10,11 +10,22 @@ const defaultActivity = {
 }
 
 const DEFAULT_ACTIVITIES = [
-    { name: defaultActivity.HIKING },
-    { name: defaultActivity.TENNIS },
-    { name: defaultActivity.COFFEE },
-    { name: defaultActivity.BAR_HOPPING }
+    { title: defaultActivity.HIKING },
+    { title: defaultActivity.TENNIS },
+    { title: defaultActivity.COFFEE },
+    { title: defaultActivity.BAR_HOPPING }
 ]
+
+const plantToImage = {
+    2: require("../assets/plants/grove_updated2.png"),
+    3: require("../assets/plants/grove_updated3.png"),
+    4: require("../assets/plants/grove_updated4.png"),
+    5: require("../assets/plants/grove_updated5.png"),
+    6: require("../assets/plants/grove_updated6.png"),
+    7: require("../assets/plants/grove_updated7.png"),
+    8: require("../assets/plants/grove_updated8.png"),
+    9: require("../assets/plants/grove_updated9.png"),
+}
 
 const ALL_ACTIVITIES = [
     //UPCOMING ACTIVITIES: date IN FUTURE AND confirmed IS TRUE
@@ -115,20 +126,20 @@ const ALL_ACTIVITIES = [
 ]
 
 const friends = [
-    { name: "Callie", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Bar-hopping"]},
-    { name: "Mihir", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Bar-hopping"]},
-    { name: "Blake", plant: 1, url: require("../assets/friends/jacob.png"), activities: ["Tennis", "Bar-hopping"]},
-    { name: "Jasmine", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Bar-hopping", "Coffee"]},
-    { name: "Tiff", plant: 1, url: require("../assets/friends/sophia.png"), activities: ["Coffee"]},
-    { name: "Chris", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
-    { name: "Johnson", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
-    { name: "Enrique", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
-    { name: "Max", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"] },
-    { name: "Camilla", plant: 1, url: require("../assets/friends/jordan.png"), activities: ["Coffee", "Hiking"]},
-    { name: "Jacob", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
-    { name: "Simone", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
-    { name: "Helena", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
-    { name: "Tom", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]}
+    { name: "Callie", plant: 2, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Bar-hopping"]},
+    { name: "Mihir", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Bar-hopping"]},
+    { name: "Blake", plant: 5, url: require("../assets/friends/jacob.png"), activities: ["Tennis", "Bar-hopping"]},
+    { name: "Jasmine", plant: 9, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Bar-hopping", "Coffee"]},
+    { name: "Tiff", plant: 6, url: require("../assets/friends/sophia.png"), activities: ["Coffee"]},
+    { name: "Chris", plant: 2, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
+    { name: "Johnson", plant: 2, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
+    { name: "Enrique", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
+    { name: "Max", plant: 7, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"] },
+    { name: "Camilla", plant: 6, url: require("../assets/friends/jordan.png"), activities: ["Coffee", "Hiking"]},
+    { name: "Jacob", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
+    { name: "Simone", plant: 4, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
+    { name: "Helena", plant: 2, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
+    { name: "Tom", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]}
 ]
 
 const ProfileInfo = {
@@ -187,6 +198,11 @@ const steps = {
         step:4,
         title: "Friends",
         progress: "85%"
+    },
+    CONFIRM: {
+        step:5,
+        title: "Confirm",
+        progress: "100%"
     }
 }
 
@@ -203,5 +219,6 @@ export {
     AUTOMATIC_ID,
     INITIAL_PREFERENCES,
     steps,
-    ProfileInfo
+    ProfileInfo,
+    plantToImage
 }

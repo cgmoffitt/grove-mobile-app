@@ -9,6 +9,7 @@ const setActivities = (activities, dispatch) => {
 }
 
 const addActivity = (activity, dispatch) => {
+    console.log("in redux")
     dispatch({ type: 'ADD_ACTIVITY', activity: activity })
 }
 

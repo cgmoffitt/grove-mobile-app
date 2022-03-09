@@ -7,7 +7,7 @@ export default ToggleTabs = ({listToggled, toggleView }) => {
 
     return (
         <View
-            style={[{ width: "100%", height: 100 }, commonStyles.flexCenter]}
+            style={[{ width: "100%", height: 60 }, commonStyles.flexCenter]}
         >
             <Pressable
                 style={styles.toggle}

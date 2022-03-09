@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Text, ScrollView } from "react-native";
 import commonStyles from "../styles/commonStyles"
 import { DARK_GREEN } from "../constants/themes";
 import { steps } from "../constants/defaultData"
@@ -7,33 +7,56 @@ import { steps } from "../constants/defaultData"
 import ActionButton from "../components/utils/ActionButton";
 import ActivityCard from "../components/plant-activity/ActivityCard";
 import ProgressBar from "../components/plant-activity/ProgressBar";
+import { DEFAULT_ACTIVITIES } from "../constants/defaultData";
 
 
 const Activities = ({
-
+    selected,
+    onChooseActivity
 }) => {
     const recentActivities = [0, 0, 0, 0,]
 
     return (
-        <View style={styles.activities}>
-            {recentActivities.map((_, i) => <ActivityCard cardStyle={styles.activityCard} />)}
-        </View>
+        <ScrollView contentContainerStyle={styles.activities}>
+            {DEFAULT_ACTIVITIES.map((activity, i) =>
+                <ActivityCard
+                    activity={activity}
+                    cardStyle={styles.activityCard}
+                    selected={selected}
+                    onChooseActivity={onChooseActivity}
+                />
+            )}
+        </ScrollView>
     )
 }
 
 const PlantActivityB = ({
     navigation
 }) => {
+
+    const [selected, setSelected] = useState("")
+
+    const onChooseActivity = (activity) => {
+        if (selected === activity.title) {
+            setSelected("")
+        } else {
+            setSelected(activity.title)
+        }
+    }
+
     return (
         <View style={[commonStyles.backgroundCreme, styles.screen]}>
-            <ProgressBar curStep={steps.ACTIVITY} />
+            <ProgressBar curStep={steps.ACTIVITY} showLabels={true} />
             <Text style={styles.textHeader}>Select an activity</Text>
-            <Activities />
+            <Activities
+                selected={selected}
+                onChooseActivity={onChooseActivity}
+            />
             <ActionButton
                 active={true}
                 main={"Next"}
                 style={styles.nextButton}
-                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYC)}
+                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYC, {activity: selected})}
             />
         </View>
     );
@@ -48,10 +71,12 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "center",
         width: "100%",
-        flexWrap: "wrap"
+        height: "50%",
+        flexWrap: "wrap",
     },
     activityCard: {
-        marginHorizontal: 20
+        marginHorizontal: 10,
+        padding:10
     },
     nextButton: {
         paddingVertical: 8,

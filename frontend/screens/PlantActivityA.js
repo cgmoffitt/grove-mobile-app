@@ -6,30 +6,39 @@ import { DARK_GREEN } from "../constants/themes";
 import ActionButton from "../components/utils/ActionButton";
 import ActivityCard from "../components/plant-activity/ActivityCard";
 import routes from "../constants/routes";
+import { ALL_ACTIVITIES } from "../constants/defaultData";
 
 
 const RecentActivities = ({
+  onChooseActivity
 }) => {
-  const recentActivities = [0,0,0]
+  const recentActivities = ALL_ACTIVITIES.slice(0, 3)
 
-  return(
+  return (
     <View>
-      {recentActivities.map((_,i) => <ActivityCard />)}
+      {recentActivities.map((activity, i) => <ActivityCard activity={activity} key={i} onChooseActivity={onChooseActivity} />)}
     </View>
-  ) 
+  )
 }
 
 const PlantActivityA = ({
   navigation
 }) => {
+
+  const onChooseActivity = (activity) => {
+    navigation.navigate(routes.PLANT_ACTIVITYD, {activity: activity.title, location: activity.location})
+  }
+
   return (
     <View style={[commonStyles.backgroundCreme, styles.screen]}>
       <Text style={styles.textHeader}>Plant a recent activity</Text>
-      <RecentActivities/>
-      <ActionButton 
-        active={true} 
-        main={"Plant a new activity"} 
-        style={styles.plantNew} 
+      <RecentActivities 
+        onChooseActivity={onChooseActivity}
+      />
+      <ActionButton
+        active={true}
+        main={"Plant a new activity"}
+        style={styles.plantNew}
         onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYB)}
       />
     </View>

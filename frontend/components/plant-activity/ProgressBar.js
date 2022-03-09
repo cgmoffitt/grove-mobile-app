@@ -20,13 +20,14 @@ const ProgressBar = ({
     activity,
     location,
     date,
-    friends
+    friends,
+    showLabels
 }) => {
 
     const styles = createProgressStyles(curStep.progress)
 
     return (
-        <View style={styles.container}>
+        <View style={[showLabels ? styles.containerLarge : styles.containerSmall]}>
             <View style={styles.icons}>
                 <Image source={PLANT_ACTIVITY_IMG_SOURCES.plant1} style={[styles.icon, { left: "10%" }]} />
                 <Image source={PLANT_ACTIVITY_IMG_SOURCES.plant2} style={[styles.icon, { left: "35%" }]} />
@@ -38,7 +39,7 @@ const ProgressBar = ({
                 <View style={styles.progressBar} />
                 <View style={styles.thumb}></View>
             </View>
-            <View style={styles.labels}>
+            {showLabels && <View style={styles.labels}>
                 <View>
                     <Text style={[styles.label, curStep.step >= steps.ACTIVITY.step ? styles.activeLabel : {}]}>{steps.ACTIVITY.title}</Text>
                     {activity && <Text style={styles.input}>{activity}</Text>}
@@ -55,15 +56,20 @@ const ProgressBar = ({
                     <Text style={[styles.label, curStep.step >= steps.FRIENDS.step ? styles.activeLabel : {}]}>{steps.FRIENDS.title}</Text>
                     {friends && <Text style={styles.input}>{friends}</Text>}
                 </View>
-            </View>
+            </View>}
         </View>
-
     )
 }
 
 const createProgressStyles = (progress) => StyleSheet.create({
-    container: {
+    containerLarge: {
         height: 125,
+        width: "100%",
+        justifyContent: "flex-end",
+        alignItems: "center"
+    },
+    containerSmall: {
+        height: 100,
         width: "100%",
         justifyContent: "flex-end",
         alignItems: "center"

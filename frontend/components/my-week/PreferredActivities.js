@@ -12,7 +12,7 @@ const AddActivitiesModal = ({
     updatePreferredActivities
 }) => {
 
-    const items = DEFAULT_ACTIVITIES.map(activity => ({ label: activity.name, value: activity.name }))
+    const items = DEFAULT_ACTIVITIES.map(activity => ({ label: activity.title, value: activity.title }))
 
     return (
         <MultipleSelectModal
@@ -34,7 +34,7 @@ const ActivityChip = ({
     return (
         <TouchableOpacity
             key={activity.name}
-            style={styles.chip}
+            style={commonStyles.darkGreenChip}
             onPress={() => removeActivity(activity)}
         >
             <Text style={styles.activityText}>
@@ -93,12 +93,6 @@ export default PreferredActivities = ({
 }
 
 const styles = StyleSheet.create({
-    chip: {
-        backgroundColor: DARK_GREEN,
-        marginLeft: 5,
-        borderRadius: 20,
-        padding: 10
-    },
     textHeader: {
         fontFamily: "OpenSans",
         fontSize: 18,

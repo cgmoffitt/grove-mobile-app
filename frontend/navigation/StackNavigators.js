@@ -9,6 +9,7 @@ import PlantActivityB from "../screens/PlantActivityB";
 import PlantActivityC from "../screens/PlantActivityC";
 import PlantActivityD from "../screens/PlantActivityD";
 import PlantActivityE from "../screens/PlantActivityE";
+import PlantActivityF from "../screens/PlantActivityF";
 import Friends from "../screens/Friends";
 import MeThisWeek from "../screens/MeThisWeek"
 import Hangouts from "../screens/Hangouts";
@@ -85,6 +86,7 @@ const HomeStackNavigator = () => {
       <Stack.Screen name={routes.PLANT_ACTIVITYC} component={PlantActivityC} options={configHeaderOptions("Plant Activity")} />
       <Stack.Screen name={routes.PLANT_ACTIVITYD} component={PlantActivityD} options={configHeaderOptions("Plant Activity")} />
       <Stack.Screen name={routes.PLANT_ACTIVITYE} component={PlantActivityE} options={configHeaderOptions("Plant Activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYF} component={PlantActivityF} options={configHeaderOptions("Plant Activity")} />
     </Stack.Navigator>
   );
 }

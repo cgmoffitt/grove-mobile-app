@@ -11,6 +11,7 @@ export default routes = {
     PLANT_ACTIVITYC: "PlantActivityC",
     PLANT_ACTIVITYD: "PlantActivityD",
     PLANT_ACTIVITYE: "PlantActivityE",
+    PLANT_ACTIVITYF: "PlantActivityF",
     HOME_TAB: "TabHome",
     HANGOUTS_TAB: "TabHangouts",
     FRIENDS_TAB: "TabFriends",

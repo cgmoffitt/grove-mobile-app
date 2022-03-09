@@ -2,9 +2,10 @@ import React from "react";
 import { Pressable, Text, StyleSheet, Image, View } from "react-native";
 import { DARK_GREEN, CREME_WHITE, shadows } from "../../constants/themes";
 import { MaterialIcons } from '@expo/vector-icons';
-
+import { plantToImage } from "../../constants/defaultData";
 const FriendCard = ({
   name,
+  plantLevel,
   onPressMethod,
   size,
   removable
@@ -14,7 +15,7 @@ const FriendCard = ({
     <View style={[styles.cardSpace, size === "LARGE" ? styles.cardLarge : styles.cardSmall]}>
       <Pressable style={styles.card} onPress={onPressMethod}>
         {removable && <MaterialIcons name="remove-circle-outline" size={16} color="black" style={styles.removeIcon} />}
-        <Image style={size === "Large" ? styles.plantLarge : styles.plantSmall} source={require("../../assets/images/plants/plant2.png")}></Image>
+        <Image style={size === "Large" ? styles.plantLarge : styles.plantSmall} source={plantToImage[plantLevel]}></Image>
         <Text style={[styles.cardText, size === "LARGE" ? styles.textLarge : styles.textSmall]}>{name}</Text>
       </Pressable>
     </View>
@@ -24,7 +25,8 @@ const FriendCard = ({
 const styles = StyleSheet.create({
   card: {
     backgroundColor: CREME_WHITE,
-    padding: '5%',
+    height: 125,
+    width: 100,
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -41,9 +43,10 @@ const styles = StyleSheet.create({
   cardSmall: {
     width: 80,
     height: 100,
+    padding: '10%'
   },
   cardSpace: {
-    padding: '2%'
+    padding: '4%'
   },
   cardText: {
     color: DARK_GREEN,
@@ -58,12 +61,12 @@ const styles = StyleSheet.create({
     fontSize: 14
   },
   plantLarge: {
-    width: 90,
-    height: 90
+    width: 100,
+    height: 100
   },
   plantSmall: {
-    width: 45,
-    height: 45
+    width: 90,
+    height: 90
   },
   removeIcon: {
     position: "absolute", 
