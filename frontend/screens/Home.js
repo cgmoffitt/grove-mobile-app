@@ -36,9 +36,9 @@ const Home = ({
     <View style={[commonStyles.center, commonStyles.backgroundCreme, { justifyContent: "flex-end" }]}>
       {
         (pendingActivities.length == 0 || upcomingActivities.length == 0) ?
-          <Image style={[styles.plantLogo, upcomingActivities.length > 0 ? styles.fixMargin : {}]} source={require("../assets/images/plants/plant2.png")}></Image>
+          <Image style={[styles.plantLogo, upcomingActivities.length > 0 ? styles.fixMargin : {}]} source={require("../assets/plants/grove_updated2.png")}></Image>
           :
-          <Image style={styles.plantLogoSmall} source={require("../assets/images/plants/plant2.png")}></Image>
+          <Image style={styles.plantLogoSmall} source={require("../assets/plants/grove_updated2.png")}></Image>
       }
 
       <ActivitiesCarousel
@@ -58,7 +58,7 @@ const Home = ({
 };
 
 const windowWidth = Dimensions.get('window').width;
-const logoWidth = windowWidth * 0.8;
+const logoWidth = windowWidth;
 
 const styles = StyleSheet.create({
   plantLogo: {

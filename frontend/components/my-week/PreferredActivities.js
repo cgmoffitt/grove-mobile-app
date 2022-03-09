@@ -71,7 +71,8 @@ export default PreferredActivities = ({
                 />
             </Modal>
 
-            <Text style={[styles.textHeader, { marginBottom: 10 }]}>Activities I'd particular enjoy...</Text>
+            <Text style={[styles.textHeader, { marginBottom: 10 }]}>Activities I'd particularly enjoy...</Text>
+            <View style={styles.thinLine}></View>
             <View style={styles.activitiesSection}>
                 {preferredActivities.length === 0 && <Text style={styles.textRegular}>Add an activity:</Text>}
                 {preferredActivities.map((activity, index) =>
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     },
     plusMinusContainer: {
         backgroundColor: "white",
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: DARK_GREEN,
         borderRadius: 10,
         width: 30,
@@ -133,4 +134,13 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginRight: 5
     },
+    bold: {
+        fontFamily: "OpenSansBold",
+    },
+    thinLine: {
+        borderBottomWidth: 1,
+        borderBottomColor: "#E6E6E6",
+        width: "100%",
+        marginBottom: 10
+      },
 });

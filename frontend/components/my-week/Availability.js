@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import commonStyles from "../../styles/commonStyles"
-import { CREME_WHITE, DARK_GREEN, LIGHT_GREEN, LIGHT_RED } from '../../constants/themes'
+import { CREME_WHITE, DARK_GREEN, LIGHT_GREEN, LIGHT_RED, TEXT_GRAY } from '../../constants/themes'
 
 const DAY_MAP = {
     1: "Mon",
@@ -72,6 +72,10 @@ export default AvailabilityCard = ({
             <Text style={[styles.headerText, {marginBottom: 15}]}>
                 My Availability
             </Text>
+            <Text style={[styles.headerText, {marginBottom: 15, fontSize: 15, fontFamily: "OpenSansItalic", color: "black"}]}>
+                Click and drag to select your availability.
+            </Text>
+            
             <View>
                 {availability.map((_, row) =>
 
@@ -112,6 +116,6 @@ const styles = StyleSheet.create({
         backgroundColor: LIGHT_GREEN
     },
     unavailable: {
-        backgroundColor: LIGHT_RED
+        backgroundColor: "#D3D3D3"
     }
 })

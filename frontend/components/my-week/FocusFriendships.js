@@ -43,16 +43,14 @@ export default FocusFriendships = ({
 
     return (
         <View
-            style={[commonStyles.cremeCard, { marginTop: 30, width: "90%" }]}
-        >
+            style={[commonStyles.cremeCard, { marginTop: 30, width: "90%" }]}>
             <Modal
                 animationType={'fade'}
                 transparent={true}
                 visible={addFriendModalVisible}
                 onRequestClose={() => {
                     setAddFriendModalVisible(!addFriendModalVisible);
-                }}
-            >
+                }}>
                 <AddFriendModal
                     closeModal={closeModal}
                     focusFriends={focusFriends}
@@ -67,11 +65,12 @@ export default FocusFriendships = ({
             <View style={[styles.focusRow]}>
                 {focusFriends.map(friend =>
                     <FriendCard
-                        key={friend.name}
                         name={friend.name}
+                        plantLevel={friend.plant}
                         onPressMethod={() => { }}
                         removable={true}
                         onPressMethod={() => removeFriend(friend)}
+                        size={"Small"}
                     />
                 )}
                 <TouchableOpacity
@@ -108,7 +107,7 @@ const styles = StyleSheet.create({
     },
     plusMinusContainer: {
         backgroundColor: "white",
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: DARK_GREEN,
         borderRadius: 10,
         width: 30,
@@ -120,7 +119,7 @@ const styles = StyleSheet.create({
     },
     focusRow: {
         flexDirection: "row",
-        width: "100%"
+        width: "100%",
     },
     textRegular: {
         fontFamily: "OpenSans",

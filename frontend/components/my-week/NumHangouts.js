@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     },
     plusMinusContainer: {
         backgroundColor: "white",
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: DARK_GREEN,
         borderRadius: 10,
         width: 30,

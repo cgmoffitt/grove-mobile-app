@@ -73,7 +73,7 @@ const Hangouts = ({
                 headers={ACTIVITY_HEADERS}
                 selected={selectedActivityType}
             />
-            <ImageBackground source={require("../assets/images/backgrounds/Me-This-Week.png")} resizeMode="cover" style={styles.content}>
+            <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.content}>
                 <ActivitiesCard 
                     activities={selectedActivities} 
                     selected={selectedActivityType} 
