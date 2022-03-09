@@ -1,11 +1,18 @@
-import { React, useState } from "react";
-import { View, StyleSheet, Image, ImageBackground, TextInput, Text, Pressable, Modal } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet, Image, ImageBackground, TextInput, Text, Pressable, Modal, TouchableWithoutFeedback, Keyboard } from "react-native";
 import commonStyles from "../styles/commonStyles";
 import Banner from "../components/utils/Banner.js";
 import ActionButton from "../components/utils/ActionButton.js";
 import InfoBar from "../components/utils/InfoBar";
 import { shadows, TEXT_GRAY, DARK_GREEN } from "../constants/themes.js";
 
+const DismissKeyboard = ({ children }) => (
+    <TouchableWithoutFeedback
+        onPress={() => Keyboard.dismiss()}
+    >
+        {children}
+    </TouchableWithoutFeedback>
+);
 
 const WriteCaption = ({
     route, navigation
@@ -24,27 +31,36 @@ const WriteCaption = ({
         }, 3000)
     }
 
+
+
     return (
         <View style={styles.center}>
             <Banner event="Coffee at 52nd St. Cafe" date="15th January 2022, 1pm" />
-            <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
+            <SuccessModal
+                modalVisible={successModalVisible}
+                onClose={() => setSuccessModalVisible(false)}
+                prompt={successPrompt}
+            />
 
-                {<View style={[commonStyles.cremeCard, styles.photosCard]}>
-                    <Image style={styles.cardImage} source={photo.url}></Image>
-                    <Text style={styles.notesTitle}>Notes</Text>
-                    <Pressable style={styles.input} onPress={() => setPressed(true)}>
+            <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
+                <DismissKeyboard>
+                    <View style={[commonStyles.cremeCard, styles.photosCard]}>
+                        <Image style={styles.cardImage} source={photo}></Image>
+                        <TextInput
+                            style={[styles.input, styles.inputText]}
+                            multiline={true}
+                            placeholder="Write a caption here!"
+                        />
+                        {/* <Pressable style={styles.input} onPress={() => setPressed(true)}>
                         <Text style={styles.inputText}>{(pressed) ? photo.caption : "Add your caption here"}</Text>
-                    </Pressable>
-                    <SuccessModal
-                        modalVisible={successModalVisible}
-                        onClose={() => setSuccessModalVisible(false)}
-                        prompt={successPrompt}
-                    />
-                <ActionButton main="Save" active={true} onPressMethod={() => openSuccessModal("Caption was successfully saved.")} />
-                    <InfoBar infoMessage="This is for your personal collection and will not be viewed by anyone else." />
-                </View>
-                }
+                    </Pressable> */}
+
+                        <ActionButton main="Save" active={true} onPressMethod={() => openSuccessModal("Caption was successfully saved.")} />
+                        <InfoBar infoMessage="This is for your personal collection and will not be viewed by anyone else." />
+                    </View>
+                </DismissKeyboard>
             </ImageBackground>
+
         </View>
 
     );
@@ -68,8 +84,8 @@ const styles = StyleSheet.create({
     photosCard: {
         width: '90%',
         padding: '5%',
-        marginTop: '5%',
-        height: '90%'
+        height: '80%',
+        justifyContent: "flex-start"
     },
     cardWrapper: {
         paddingTop: '0%',
@@ -94,16 +110,15 @@ const styles = StyleSheet.create({
         shadowOffset: shadows.shadowOffset,
     },
     input: {
-        height: 40,
-        margin: 12,
+        margin: 10,
         borderWidth: 1,
-        padding: '1%',
         width: '90%',
-        height: 100,
+        height: 60,
         justifyContent: 'flex-start',
+        alignItems: "flex-start",
         borderRadius: 10,
         borderColor: TEXT_GRAY,
-        fontFamily: "OpenSans",
+        fontFamily: "OpenSans"
     },
     notesTitle: {
         fontFamily: "OpenSans",
@@ -113,8 +128,8 @@ const styles = StyleSheet.create({
     },
     inputText: {
         fontFamily: "OpenSans",
-        padding: '1%'
-
+        padding: '5%',
+        fontSize: 18
     }
 });
 
