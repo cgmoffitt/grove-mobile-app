@@ -1,6 +1,7 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Text, Image } from "react-native"
 
 import Home from "../screens/Home";
 import PlantActivityA from "../screens/PlantActivityA";
@@ -56,7 +57,17 @@ const HomeStackNavigator = () => {
       <Stack.Screen 
         name={routes.HOME} 
         component={Home} 
-        options={{ headerShown: false, title: "home" }} />
+        options={{ 
+          headerShown: true, 
+          title: "", 
+          headerStyle: {
+            backgroundColor: CREME_WHITE
+          },
+          headerLeft: () => (
+            <Image style={{width: 40, height: 40, borderRadius: 20, marginLeft: 20}} source={require("../assets/hangouts/nirali_selfie.png")} />
+          ),
+        }} 
+        />
       <Stack.Screen name={routes.PLANT_ACTIVITYA} component={PlantActivityA} options={configHeaderOptions("Plant Activity")} />
       <Stack.Screen name={routes.PLANT_ACTIVITYB} component={PlantActivityB} options={configHeaderOptions("Plant Activity")} />
       <Stack.Screen name={routes.PLANT_ACTIVITYC} component={PlantActivityC} options={configHeaderOptions("Plant Activity")} />
