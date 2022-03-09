@@ -10,10 +10,10 @@ const defaultActivity = {
 }
 
 const DEFAULT_ACTIVITIES = [
-    { name: defaultActivity.HIKING },
-    { name: defaultActivity.TENNIS },
-    { name: defaultActivity.COFFEE },
-    { name: defaultActivity.BAR_HOPPING }
+    { title: defaultActivity.HIKING },
+    { title: defaultActivity.TENNIS },
+    { title: defaultActivity.COFFEE },
+    { title: defaultActivity.BAR_HOPPING }
 ]
 
 const ALL_ACTIVITIES = [
@@ -180,6 +180,11 @@ const steps = {
         step:4,
         title: "Friends",
         progress: "85%"
+    },
+    CONFIRM: {
+        step:5,
+        title: "Confirm",
+        progress: "100%"
     }
 }
 

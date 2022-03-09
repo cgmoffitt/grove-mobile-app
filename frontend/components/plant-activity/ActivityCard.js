@@ -3,30 +3,46 @@ import { View, StyleSheet, Text, Image, TouchableOpacity } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import { DARK_GREEN } from "../../constants/themes";
 import { ZoomIn } from "react-native-reanimated";
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 
 
 const ActivityCard = ({
-    cardStyle
+    cardStyle,
+    activity,
+    selected,
+    onChooseActivity
 }) => {
     const ACTIVITY_IMG_SOURCES = {
-        tennis: require("../../assets/images/activity-icons/tennis.png"),
-        coffee: require("../../assets/images/activity-icons/coffee.png"),
-        hiking: require("../../assets/images/activity-icons/hiking.png"),
-        ["bar hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
+        Tennis: require("../../assets/images/activity-icons/tennis.png"),
+        Coffee: require("../../assets/images/activity-icons/coffee.png"),
+        Hiking: require("../../assets/images/activity-icons/hiking.png"),
+        ["Bar Hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
     }
 
     return (
-        <TouchableOpacity>
-            <View style={[styles.activityCard, commonStyles.shadow, cardStyle]}>
-                <Image
-                    source={ACTIVITY_IMG_SOURCES.tennis}
-                    style={styles.activityImg}
-                />
-                <Text style={styles.activityTitle}>Tennis</Text>
-                <Text style={styles.activityLocation}>EVGR Courts</Text>
-            </View>
-        </TouchableOpacity>
+        <View
+            style={[cardStyle]}
+        >
+            <TouchableOpacity
+                onPress={() => onChooseActivity(activity)}
+            >
+                <View style={[styles.activityCard, commonStyles.shadow]}>
+                    <Image
+                        source={ACTIVITY_IMG_SOURCES[activity.title]}
+                        style={styles.activityImg}
+                    />
+                    {activity.title && <Text style={styles.activityTitle}>{activity.title}</Text>}
+                    {activity.location && <Text style={styles.activityLocation}>{activity.location}</Text>}
+                    {selected === activity.title &&
+                        <View style={styles.check}>
+                            <Icon name="check" color="white" size={20} />
+                        </View>
+                    }
+                </View>
+            </TouchableOpacity>
+        </View>
+
 
     )
 }
@@ -54,6 +70,17 @@ const styles = StyleSheet.create({
     activityLocation: {
         fontFamily: "OpenSansItalic",
         fontSize: 14
+    },
+    check: {
+        width: 30,
+        height: 30,
+        backgroundColor: DARK_GREEN,
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: 15,
+        position: "absolute",
+        left: -10,
+        top: -10,
     }
 });
 

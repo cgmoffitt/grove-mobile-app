@@ -48,7 +48,8 @@ const SearchBar = ({
 }
 
 const PlantActivityC = ({
-    navigation
+    navigation,
+    route
 }) => {
 
     const carouselWidth = Dimensions.get('screen').width;
@@ -56,6 +57,7 @@ const PlantActivityC = ({
 
     const [curNearbyIndex, setCurNearbyIndex] = useState(0)
     const [selectedIndex, setSelectedIndex] = useState(-1)
+    const { activity } = route.params
 
     const nearbyLocations = [
         {
@@ -93,7 +95,8 @@ const PlantActivityC = ({
         <View style={[commonStyles.backgroundCreme, styles.screen]}>
             <ProgressBar
                 curStep={steps.LOCATION}
-                activity="Tennis"
+                activity={activity}
+                showLabels={true}
             />
             <Text style={styles.textHeader}>Select a location</Text>
             <View style={styles.map}>
@@ -137,7 +140,7 @@ const PlantActivityC = ({
                 active={true}
                 main={"Next"}
                 style={styles.nextButton}
-                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYD)}
+                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYD, {activity: activity, location: nearbyLocations[selectedIndex].name})}
             />
         </View>
     );
@@ -152,7 +155,7 @@ const styles = StyleSheet.create({
     },
     map: {
         width: "80%",
-        height: "65%",
+        height: "60%",
         marginTop: 5,
     },
     nextButton: {

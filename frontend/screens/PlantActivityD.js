@@ -30,23 +30,34 @@ const customDateStylesCallback = () => {
 }
 
 const PlantActivityD = ({
-    navigation
+    navigation,
+    route
 }) => {
 
     const calendarWidth = Dimensions.get("screen").width * 0.7
 
-    const [date, setDate] = useState(new Date());
+    const [startTime, setStartTime] = useState(new Date());
+    const [endTime, setEndTime] = useState(new Date())
+    const [date, setDate] = useState(null)
+
+    const {activity, location} = route.params
+
+    const updateDate = (date) => {
+        setDate(date)
+    }
 
     return (
         <View style={[commonStyles.backgroundCreme, styles.screen]}>
             <ProgressBar
                 curStep={steps.DATE}
-                activity="Tennis"
-                location="EVGR Courts"
+                activity={activity}
+                location={location}
+                showLabels={true}
             />
             <Text style={styles.textHeader}>Select a date and time</Text>
             <View style={[styles.calendarContainer, commonStyles.shadow]}>
                 <CalendarPicker
+                    onDateChange={updateDate}
                     width={calendarWidth}
                     selectedDayStyle={{ backgroundColor: DARK_GREEN, color: DARK_GREEN }}
                     selectedDayColor={DARK_GREEN}
@@ -72,7 +83,8 @@ const PlantActivityD = ({
                         testID="dateTimePicker"
                         style={{ width: 110 }}
                         mode={"time"}
-                        value={date}
+                        value={startTime}
+                        onChange={(e, time) => setStartTime(time)}
                         display="default"
                     />
                 </View>
@@ -82,7 +94,8 @@ const PlantActivityD = ({
                         testID="dateTimePicker"
                         style={{ width: 110 }}
                         mode={"time"}
-                        value={date}
+                        value={endTime}
+                        onChange={(e, time) => setEndTime(time)}
                         display="default"
                     />
                 </View>
@@ -91,7 +104,7 @@ const PlantActivityD = ({
                 active={true}
                 main={"Next"}
                 style={styles.nextButton}
-                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYE)}
+                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYE, {activity: activity, location: location, date: date, time: [startTime, endTime] })}
             />
         </View>
     );

@@ -77,6 +77,7 @@ const NearbyLocations = ({
                         index={index}
                         selectedIndex={selectedIndex}
                         setSelectedIndex={setSelectedIndex}
+                        key={index}
                     />
                 )}
             </Carousel>

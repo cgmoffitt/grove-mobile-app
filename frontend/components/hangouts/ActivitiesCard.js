@@ -45,18 +45,11 @@ export default ActivitiesCard = ({
                 styles.card
             ]}
         >
-            <Modal animationType="fade"
-                transparent={true}
-                visible={successModalVisible}
-                onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
-                    setSuccessModalVisible(!successModalVisible);
-                }}>
-                <SuccessModal
-                    setModalVisible={setSuccessModalVisible}
-                    prompt={successPrompt}
-                />
-            </Modal>
+            <SuccessModal
+                modalVisible={successModalVisible}
+                prompt={successPrompt}
+                onClose={() => setSuccessModalVisible(false)}
+            />
             {activities.length == 0
                 &&
                 <NoActivities selected={selected} />

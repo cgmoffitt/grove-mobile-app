@@ -26,7 +26,7 @@ const wizardOfOzGenerateActivity = (dispatch) => {
     id: 10,
     title: defaultActivity.HIKING,
     friend: "Blake",
-    date: new Date('March 8, 2022 18:00:00'),
+    date: new Date('March 9, 2022 18:00:00'),
     confirmed: false,
     plantedId: AUTOMATIC_ID,
     reflected: false,
@@ -46,7 +46,7 @@ const PreferredDistanceCard = ({
       <PreferredDistance
         preferredDistance={preferredDistance}
         setPreferredDistance={setPreferredDistance}
-       />
+      />
     </View>
   )
 }
@@ -135,7 +135,7 @@ const MeThisWeek = ({
   /*Preferred Activities State*/
   const [preferredActivities, setPreferredActivities] = useState(preferences.preferredActivities)
   const updatePreferredActivities = (selected) => {
-    const nextPreferredActivities = selected.map(activityItem => DEFAULT_ACTIVITIES.find(activity => activity.name === activityItem.value))
+    const nextPreferredActivities = selected.map(activityItem => DEFAULT_ACTIVITIES.find(activity => activity.title === activityItem.value))
     setPreferredActivities(nextPreferredActivities)
   }
   const removeActivity = activity => {
@@ -156,18 +156,11 @@ const MeThisWeek = ({
       style={[commonStyles.full]}
     >
       <ScrollView style={commonStyles.full} contentContainerStyle={styles.background}>
-        <Modal animationType="fade"
-          transparent={true}
-          visible={successModalVisible}
-          onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setSuccessModalVisible(!successModalVisible);
-          }}>
-          <SuccessModal
-            setModalVisible={setSuccessModalVisible}
-            prompt={"We will use these preferences to generate personalized hangouts for you this week."}
-          />
-        </Modal>
+        <SuccessModal
+          modalVisible={successModalVisible}
+          onClose={() => setSuccessModalVisible(false)}
+          prompt={"We will use these preferences to generate personalized hangouts for you this week."}
+        />
         <InfoCard />
         <NumHangouts
           incrementNumHangouts={incrementNumHangouts}
@@ -184,11 +177,11 @@ const MeThisWeek = ({
           updatePreferredActivities={updatePreferredActivities}
           removeActivity={removeActivity}
         />
-        <PreferredDistanceCard 
+        <PreferredDistanceCard
           preferredDistance={preferredDistance}
           setPreferredDistance={setPreferredDistance}
         />
-        <Availability 
+        <Availability
           availability={availability}
           setAvailability={setAvailability}
         />

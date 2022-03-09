@@ -11,7 +11,11 @@ import { friends } from "../constants/defaultData";
 
 
 
-const PlantActivityE = () => {
+const PlantActivityE = ({
+    route,
+    navigation
+}) => {
+    const {activity, location, date, time} = route.params
 
     friends.sort((a, b) => {
         return a.name.localeCompare(b.name)
@@ -30,9 +34,10 @@ const PlantActivityE = () => {
         <View style={[commonStyles.backgroundCreme, styles.screen]}>
             <ProgressBar
                 curStep={steps.FRIENDS}
-                activity="Tennis"
-                location="EVGR Courts"
-                date="Mon, March 3"
+                activity={activity}
+                location={location}
+                date={new Date(date).toDateString()}
+                showLabels={true}
             />
             <Text style={styles.textHeader}>Select friends to send this activity to</Text>
             <View style={[styles.dropDownContainer, commonStyles.shadow]}>
@@ -63,6 +68,7 @@ const PlantActivityE = () => {
                 <View style={styles.selectedFriends}>
                     {friendsToReceive.map(friend =>
                         <TouchableOpacity 
+                            key={friend}
                             style={commonStyles.darkGreenChip}
                             onPress={() => removeFriend(friend)}
                         >
@@ -70,13 +76,12 @@ const PlantActivityE = () => {
                         </TouchableOpacity>
                     )}
                 </View>
-
             </View>
-
             <ActionButton
                 active={true}
                 main={"Next"}
                 style={styles.nextButton}
+                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYF, {activity: activity, location: location, date: date, friends: friendsToReceive, time: time})}
             />
         </View>
     );
@@ -86,15 +91,6 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         alignItems: "center"
-    },
-    activities: {
-        flexDirection: "row",
-        justifyContent: "center",
-        width: "100%",
-        flexWrap: "wrap"
-    },
-    activityCard: {
-        marginHorizontal: 20
     },
     nextButton: {
         paddingVertical: 8,
@@ -106,7 +102,7 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSansItalic",
         fontSize: 22,
         color: DARK_GREEN,
-        marginVertical: 30
+        marginVertical: 20
     },
     textItalic: {
         fontFamily: "OpenSans",
@@ -126,9 +122,9 @@ const styles = StyleSheet.create({
         fontSize: 16
     },
     selectedSection: {
-        width: "100%",
+        width: "80%",
         marginTop:20,
-        paddingHorizontal: 20
+        paddingHorizontal: 0
     },
     selectedFriends: {
         width: "100%",

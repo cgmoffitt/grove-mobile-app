@@ -12,7 +12,7 @@ const AddActivitiesModal = ({
     updatePreferredActivities
 }) => {
 
-    const items = DEFAULT_ACTIVITIES.map(activity => ({ label: activity.name, value: activity.name }))
+    const items = DEFAULT_ACTIVITIES.map(activity => ({ label: activity.title, value: activity.title }))
 
     return (
         <MultipleSelectModal
