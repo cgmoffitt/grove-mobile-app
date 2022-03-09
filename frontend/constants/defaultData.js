@@ -131,6 +131,13 @@ const friends = [
     { name: "Tom", plant: 1, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]}
 ]
 
+const ProfileInfo = {
+    name: "Amelia",
+    email: "amelia@email.com",
+    url: require("../assets/profile/amelia_profile.jpeg"), 
+    activities: ["Coffee", "Hiking"]
+}
+
 const DEFAULT_FOCUS_FRIENDS = [
     { name: "Callie", plant: 1 },
     { name: "Mihir", plant: 1 }
@@ -195,5 +202,6 @@ export {
     SOMEONE_ELSE_ID,
     AUTOMATIC_ID,
     INITIAL_PREFERENCES,
-    steps
+    steps,
+    ProfileInfo
 }
