@@ -7,11 +7,11 @@ import routes from "../../constants/routes";
 
 const ReflectButton = ({
     navigation,
-    friend
+    activity
 }) => {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate(routes.REFLECT, {friend: friend})}
+            onPress={() => navigation.navigate(routes.REFLECT, {activityId: activity.id})}
         >
             <View
                 style={styles.reflectButton}
@@ -23,11 +23,11 @@ const ReflectButton = ({
 }
 const ViewButton = ({
     navigation,
-    friend
+    activity
 }) => {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate(routes.REFLECT, {friend: friend})}
+            onPress={() => navigation.navigate(routes.REFLECT, {activityId: activity.id})}
         >
             <View
                 style={styles.viewButton}
@@ -177,9 +177,9 @@ export default ActivityItem = ({
                     ?
                     !activity.reflected
                         ?
-                        <ReflectButton friend={activity.friend} navigation={navigation} />
+                        <ReflectButton activity={activity} navigation={navigation} />
                         :
-                        <ViewButton friend={activity.friend} navigation={navigation} />
+                        <ViewButton activity={activity} navigation={navigation} />
                     :
                     <TouchableOpacity
                         onPress={() => setModalVisible(true)}

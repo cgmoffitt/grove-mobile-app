@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Image, ImageBackground, FlatList, Pressable, Text } from "react-native";
 import commonStyles from "../styles/commonStyles";
 import Banner from "../components/utils/Banner.js";
@@ -6,13 +6,30 @@ import ActionButton from "../components/utils/ActionButton.js";
 import InfoBar from "../components/utils/InfoBar";
 import { shadows, DARK_GREEN } from "../constants/themes.js";
 import * as ImagePicker from 'expo-image-picker'
+import { addMemory } from "../redux/utils";
+import { useDispatch, connect } from "react-redux";
 
 const UploadMemory = ({
-    route, navigation
+    route, 
+    navigation,
+    activities
 }) => {
-    const { hangout } = route.params;
-    const [hasPhotos, setHasPhotos] = useState(hangout.baseImagesAdded);
+    const dispatch = useDispatch()
+    const { activity } = route.params;
+    const [hangout, setHangout] = useState(null)
+    const [loaded, setLoaded] = useState(false)
+
+    const [hasPhotos, setHasPhotos] = useState(activity.memories ? true : false);
     const [photoLinks, setPhotoLinks] = useState([]);
+
+    useEffect(() => {
+        let mounted = true
+        if (mounted){
+          setHangout(activities.find(thisActivity => thisActivity.id === activity.id))
+          setLoaded(true)
+        }
+      },[activities])
+
 
     const pickImage = async () => {
         // No permissions request is necessary for launching the image library
@@ -25,6 +42,7 @@ const UploadMemory = ({
 
         if (!result.cancelled) {
             addPhoto(result.uri)
+            addMemory(hangout.id, {uri: result.uri, caption: ""}, dispatch)
         }
     };
 
@@ -33,10 +51,9 @@ const UploadMemory = ({
         setPhotoLinks(prev => [...prev, {uri: uri, caption: ""}])
     }
 
-    const renderItem = (item, index) => {
+    const renderItem = (item, index, activityId) => {
         return (
             <View style={styles.cardLayout}>
-
                 <Pressable
                     style={[styles.button, styles.buttonClose]}
                     onPress={() => {
@@ -47,17 +64,20 @@ const UploadMemory = ({
                 >
                     <Text style={styles.textStyle}>x</Text>
                 </Pressable>
-                <Pressable onPress={() => navigation.navigate("WriteCaption", { photo: { index: index, uri: item.uri, caption: item.caption } })}>
+                <Pressable onPress={() => navigation.navigate("WriteCaption", { photo: { index: index, uri: item.uri, caption: item.caption, activityId: activityId } })}>
                     <Image style={styles.cardImage} source={item}></Image>
                 </Pressable>
-
             </View>
         )
     }
 
+    if (!loaded){
+        return <View></View>
+    }
+
     return (
         <View style={styles.center}>
-            <Banner event="Coffee at 52nd St. Cafe" date="15th January 2022, 1pm" />
+            <Banner event={hangout.title + " at " + hangout.location} date={hangout.date.toDateString()} />
             <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
 
                 {(!hasPhotos)
@@ -81,8 +101,8 @@ const UploadMemory = ({
                     : <View style={[commonStyles.cremeCard, styles.photosCard]}>
 
                         <FlatList
-                            data={photoLinks}
-                            renderItem={({ item, index }) => renderItem(item, index)}
+                            data={hangout.memories}
+                            renderItem={({ item, index }) => renderItem(item, index, hangout.id)}
                             numColumns={2}
                             keyExtractor={(item, index) => index.toString()}
                         />
@@ -176,4 +196,8 @@ const styles = StyleSheet.create({
     },
 });
 
-export default UploadMemory;
+const mapStateToProps = state => ({
+    activities: state.activities
+})
+
+export default connect(mapStateToProps)(UploadMemory);
