@@ -5,30 +5,8 @@ import { DARK_GREEN } from "../constants/themes";
 import { steps } from "../constants/defaultData"
 
 import ActionButton from "../components/utils/ActionButton";
-import ActivityCard from "../components/plant-activity/ActivityCard";
 import ProgressBar from "../components/plant-activity/ProgressBar";
-import { DEFAULT_ACTIVITIES } from "../constants/defaultData";
-
-
-const Activities = ({
-    selected,
-    onChooseActivity
-}) => {
-    const recentActivities = [0, 0, 0, 0,]
-
-    return (
-        <ScrollView contentContainerStyle={styles.activities}>
-            {DEFAULT_ACTIVITIES.map((activity, i) =>
-                <ActivityCard
-                    activity={activity}
-                    cardStyle={styles.activityCard}
-                    selected={selected}
-                    onChooseActivity={onChooseActivity}
-                />
-            )}
-        </ScrollView>
-    )
-}
+import Activities from "../components/plant-activity/Activities";
 
 const PlantActivityB = ({
     navigation
