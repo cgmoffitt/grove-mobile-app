@@ -31,7 +31,7 @@ export default HeaderTabs = ({
                     >
                         <Text
                             style={[
-                                styles.openSansNormal
+                                header == selected ? styles.openSansBold : styles.openSansNormal
                             ]}
                         >
                             {header}
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     },
     selected: {
         borderBottomWidth: 2, 
-        borderBottomColor: DARK_GREEN
+        borderBottomColor: DARK_GREEN,
     },
     openSansNormal: {
         fontFamily: "OpenSans",
