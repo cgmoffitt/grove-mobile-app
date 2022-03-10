@@ -146,7 +146,8 @@ const ProfileInfo = {
     name: "Amelia",
     email: "amelia@email.com",
     url: require("../assets/profile/amelia_profile.jpeg"), 
-    activities: ["Coffee", "Hiking"]
+    activities: ["Coffee", "Hiking"],
+    number: "123456789"
 }
 
 const DEFAULT_FOCUS_FRIENDS = [

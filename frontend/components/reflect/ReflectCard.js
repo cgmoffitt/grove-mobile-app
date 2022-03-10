@@ -46,10 +46,9 @@ const InfoCard = (props, {
           <ReflectBar title="Activity"/>
           <ViewButton></ViewButton>
           <SuccessModal
-                        modalVisible={successModalVisible}
-                        onClose={() => setSuccessModalVisible(false)}
-                        prompt={successPrompt}
-                    />
+                modalVisible={successModalVisible}
+                onClose={() => setSuccessModalVisible(false)}
+                prompt={successPrompt}/>
 
       </View>
     );
