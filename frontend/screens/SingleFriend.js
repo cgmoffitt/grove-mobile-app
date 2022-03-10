@@ -52,9 +52,6 @@ const SingleFriend = ({route, navigation}) => {
     </View>
 )
 
-
-
-
   return (
     <View style={[commonStyles.center, commonStyles.backgroundCreme]}>
     <View style={{justifyContent: "flex-end", width: '95%', paddingTop: '5%'}}>
