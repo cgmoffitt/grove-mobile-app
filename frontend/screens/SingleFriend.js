@@ -57,14 +57,8 @@ const SingleFriend = ({route, navigation}) => {
 
   return (
     <View style={[commonStyles.center, commonStyles.backgroundCreme]}>
-    <View style={styles.headingParent}>
-      <View style={styles.headingChild}>
-        <Image style={styles.profilePhoto} source={props.url}></Image>
-      </View>
-      <View style={styles.headingChild}>
-        <View style={styles.headingSubparent}>
-        <View style={styles.headingSubchild}>
-        <View style={[styles.headingParentUtils, {paddingBottom: '10%'}]}>
+    <View style={{justifyContent: "flex-end", width: '95%', paddingTop: '5%'}}>
+        <View style={[styles.headingParentUtils]}>
           <View style={[styles.headingChildUtils]}>
               <Image style={styles.upperIcon} source={require("../assets/single_friend/speech-bubble.png")}></Image>
             </View>
@@ -72,6 +66,16 @@ const SingleFriend = ({route, navigation}) => {
               <Image style={styles.upperIcon} source={require("../assets/single_friend/warning.png")}></Image>
             </View>
         </View>
+        </View>
+    <View>
+    <View style={styles.headingParent}>
+      <View style={styles.headingChild}>
+        <Image style={styles.profilePhoto} source={props.url}></Image>
+      </View>
+      <View style={styles.headingChild}>
+        <View style={styles.headingSubparent}>
+        <View style={styles.headingSubchild}>
+        
 
         </View>
           <View style={styles.headingSubchild}>
@@ -99,7 +103,9 @@ const SingleFriend = ({route, navigation}) => {
             </View>
           </View>
         </View>
+        </View>
       </View>
+
     </View>
       <View style={styles.mainFriendCard}>
       <ActionButton main={"📷  Memories with " + props.name}
@@ -122,7 +128,7 @@ const SingleFriend = ({route, navigation}) => {
                 onColor= {DARK_GREEN}
                 offColor= {TEXT_GRAY}
                 label={"Alert me for their planted activities"}
-                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15}}
+                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15, width: 200}}
                 size="medium"
                 onToggle={() => setAlertIsOn(!alertIsOn)}
               />
@@ -134,7 +140,7 @@ const SingleFriend = ({route, navigation}) => {
                 onColor= {DARK_GREEN}
                 offColor= {TEXT_GRAY}
                 label={"Make " + props.name + " a top priority friend      "}
-                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15}}
+                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15, width: 200}}
                 size="medium"
                 onToggle={() => setPriorityIsOn(!priorityIsOn)}
               />
@@ -258,7 +264,7 @@ const styles = StyleSheet.create({
     fontFamily: "OpenSans",
     fontSize: 16,
     paddingBottom:'3%',
-    color: "black"
+    color: "black",
   },
   sliderContainer: {
     width: "100%",
@@ -291,15 +297,15 @@ const styles = StyleSheet.create({
   headingParentUtils:{
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
   },
   headingChildUtils:{
     display: "flex",
     flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    paddingLeft:'5%'
+    justifyContent: "flex-end",
+    alignItems: "flex-end",
+    paddingHorizontal: '2%'
   },
 });
 
