@@ -8,7 +8,41 @@
 
  import initialState from './initialState';
 
+ const confirmActivity = (activities, activityToUpdate) => {
+    return activities.map(activity => {
+        if (activity.id === activityToUpdate){
+            return {
+                ...activity,
+                confirmed: true
+            }
+        } else {
+            return activity
+        }
+    })
+ }
+
+ const updateMemory = (activities, activityToUpdate, memory) => {
+    return activities.map(activity => {
+        if (activity.id === activityToUpdate){
+            let memories = activity.memories ? activity.memories : []
+            if (memories.findIndex(thisMemory => thisMemory.uri === memory.uri) !== -1){
+                memories = memories.map(thisMemory => thisMemory.uri === memory.uri ? memory : thisMemory)
+            } else {
+                memories.push(memory)
+            }
+            return {
+                ...activity,
+                memories: memories
+            }
+        } else {
+            return activity
+        }
+    })
+ }
+
  export default function reducer(state = initialState, action = {}) {
+
+
      switch (action.type) {
  
          /* Actions that change the unread counts in the notification bubbles */
@@ -30,18 +64,13 @@
                 activities: nextActivities
             }
         case 'CONFIRM_ACTIVITY':
-            let updatedActivities = state.activities
-            const activityToUpdate = action.activityId
-            updatedActivities = updatedActivities.map(activity => {
-                if (activity.id === activityToUpdate){
-                    return {
-                        ...activity,
-                        confirmed: true
-                    }
-                } else {
-                    return activity
-                }
-            })
+            const confirmedActivities = confirmActivity(state.activities, action.activityId)
+            return {
+                ...state,
+                activities: confirmedActivities
+            }
+        case 'ADD_MEMORY':
+            const updatedActivities = updateMemory(state.activities, action.activityId, action.memory)
             return {
                 ...state,
                 activities: updatedActivities

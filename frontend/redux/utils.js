@@ -17,10 +17,15 @@ const confirmActivity = (activityId, dispatch) => {
     dispatch({ type: 'CONFIRM_ACTIVITY', activityId: activityId})
 }
 
+const addMemory = (activityId, memory, dispatch) => {
+    dispatch({ type: 'ADD_MEMORY', activityId: activityId, memory: memory})
+}
+
 
 export {
     setActivityType,
     setActivities,
     addActivity,
-    confirmActivity
+    confirmActivity,
+    addMemory
 }

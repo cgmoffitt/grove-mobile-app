@@ -5,6 +5,9 @@ import Banner from "../components/utils/Banner.js";
 import ActionButton from "../components/utils/ActionButton.js";
 import InfoBar from "../components/utils/InfoBar";
 import { shadows, TEXT_GRAY, DARK_GREEN } from "../constants/themes.js";
+import { addMemory } from "../redux/utils";
+import { useDispatch } from "react-redux";
+import routes from "../constants/routes";
 
 const DismissKeyboard = ({ children }) => (
     <TouchableWithoutFeedback
@@ -17,9 +20,9 @@ const DismissKeyboard = ({ children }) => (
 const WriteCaption = ({
     route, navigation
 }) => {
+    const dispatch = useDispatch()
     const { photo } = route.params;
-
-    const [text, onChangeText] = useState("Add your caption here!");
+    const [text, onChangeText] = useState(null);
     const [pressed, setPressed] = useState(false);
     const [successModalVisible, setSuccessModalVisible] = useState(false)
     const [successPrompt, setSuccessPrompt] = useState("")
@@ -28,10 +31,9 @@ const WriteCaption = ({
         setSuccessPrompt(prompt)
         setTimeout(() => {
             setSuccessModalVisible(false)
-        }, 3000)
+            navigation.navigate(routes.REFLECT, {activityId: photo.activityId})
+        }, 2000)
     }
-
-
 
     return (
         <View style={styles.center}>
@@ -47,6 +49,8 @@ const WriteCaption = ({
                     <View style={[commonStyles.cremeCard, styles.photosCard]}>
                         <Image style={styles.cardImage} source={photo}></Image>
                         <TextInput
+                            text={text}
+                            onChangeText={onChangeText}
                             style={[styles.input, styles.inputText]}
                             multiline={true}
                             placeholder="Write a caption here!"
@@ -55,7 +59,10 @@ const WriteCaption = ({
                         <Text style={styles.inputText}>{(pressed) ? photo.caption : "Add your caption here"}</Text>
                     </Pressable> */}
 
-                        <ActionButton main="Save" active={true} onPressMethod={() => openSuccessModal("Caption was successfully saved.")} />
+                        <ActionButton main="Save" active={true} onPressMethod={() => {
+                            addMemory(photo.activityId, {uri:photo.uri, caption: text}, dispatch)
+                            openSuccessModal("Caption was successfully saved.")
+                        }} />
                         <InfoBar infoMessage="This is for your personal collection and will not be viewed by anyone else." />
                     </View>
                 </DismissKeyboard>
