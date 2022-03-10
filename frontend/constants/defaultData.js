@@ -33,7 +33,7 @@ const ALL_ACTIVITIES = [
         id: 1,
         title: defaultActivity.TENNIS,
         friend: "Mihir",
-        date: new Date('March 8, 2022 18:00:00'),
+        date: new Date('March 11, 2022 18:00:00'),
         confirmed: true,
         plantedId: AUTOMATIC_ID,
         reflected: false,
@@ -43,7 +43,7 @@ const ALL_ACTIVITIES = [
         id: 2,
         title: defaultActivity.COFFEE,
         friend: "Jasmine",
-        date: new Date('March 9, 2022 18:00:00'),
+        date: new Date('March 12, 2022 18:00:00'),
         confirmed: true,
         plantedId: SOMEONE_ELSE_ID,
         reflected: false,
@@ -53,7 +53,7 @@ const ALL_ACTIVITIES = [
         id: 3,
         title: defaultActivity.HIKING,
         friend: "Coleman",
-        date: new Date('March 10, 2022 18:00:00'),
+        date: new Date('March 13, 2022 18:00:00'),
         confirmed: true,
         plantedId: MY_ID,
         reflected: false,
@@ -97,21 +97,21 @@ const ALL_ACTIVITIES = [
         id: 7,
         title: defaultActivity.COFFEE,
         friend: "Callie",
-        date: new Date('March 1, 2022 18:00:00'),
+        date: new Date('March 3, 2022 18:00:00'),
         confirmed: true,
         plantedId: AUTOMATIC_ID,
         reflected: false,
-        location: "EVGR Courts"
+        location: "Verve Coffee"
     },
     {
         id: 8,
         title: defaultActivity.TENNIS,
         friend: "Jasmine",
-        date: new Date('March 1, 2022 18:00:00'),
+        date: new Date('March 2, 2022 18:00:00'),
         confirmed: true,
         plantedId: AUTOMATIC_ID,
         reflected: true,
-        location: "Coho"
+        location: "EVGR Courts"
     },
     {
         id: 9,

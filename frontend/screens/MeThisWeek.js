@@ -27,7 +27,7 @@ const wizardOfOzGenerateActivity = (dispatch) => {
     id: 10,
     title: defaultActivity.HIKING,
     friend: "Blake",
-    date: new Date('March 9, 2022 18:00:00'),
+    date: new Date('March 12, 2022 18:00:00'),
     confirmed: false,
     plantedId: AUTOMATIC_ID,
     reflected: false,
