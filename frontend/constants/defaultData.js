@@ -6,7 +6,7 @@ const defaultActivity = {
     HIKING: "Hiking",
     TENNIS: "Tennis",
     COFFEE: "Coffee",
-    BAR_HOPPING: "Bar Hopping"
+    BAR_HOPPING: "Bar-hopping"
 }
 
 const DEFAULT_ACTIVITIES = [

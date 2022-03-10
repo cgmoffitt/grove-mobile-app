@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable, Modal } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import { LIGHT_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, DARK_GREEN } from "../../constants/themes"
+import { ACTIVITY_IMG_SOURCES } from "../../constants/defaultData";
 
 const ReflectButton = ({
     navigation
@@ -90,13 +91,6 @@ export default InfoModal = ({
     editMethod,
     setModalVisible
 }) => {
-
-    const ACTIVITY_IMG_SOURCES = {
-        tennis: require("../../assets/images/activity-icons/tennis.png"),
-        coffee: require("../../assets/images/activity-icons/coffee.png"),
-        hiking: require("../../assets/images/activity-icons/hiking.png"),
-        ["Bar-hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
-    }
 
     return (
 

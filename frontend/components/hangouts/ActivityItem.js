@@ -121,7 +121,7 @@ export default ActivityItem = ({
     editMethod,
     openSuccessModal
 }) => {
-
+    
     const [modalVisible, setModalVisible] = useState(false);
     return (
         <View>

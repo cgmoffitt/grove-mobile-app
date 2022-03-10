@@ -28,7 +28,7 @@ const TimePicker = ({
                     display="default"
                 />
             </View>
-            <View style={styles.timeRow}>
+            <View style={[styles.timeRow, {marginTop: 10}]}>
                 <Text style={styles.timePrompt}>End Time</Text>
                 <DateTimePicker
                     testID="dateTimePicker"
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         borderRadius: 20,
         width: "80%",
-        height: "15%",
+        height: 95,
         padding: 10,
         justifyContent: "space-evenly",
         alignItems: "center"
