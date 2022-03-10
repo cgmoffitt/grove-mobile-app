@@ -50,8 +50,8 @@ const Reflect = ({
 
   return (
     <View style={styles.center}>
-      <Banner event={hangout.title + " at " + hangout.location} date={hangout.date.toDateString()} />
-      <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
+      <Banner event={hangout.title + " at " + hangout.location} date={hangout.date.toLocaleString('default', { weekday: 'short' }) + " " + hangout.date.getDate() + " "+ hangout.date.toLocaleString('default', { month: 'long' })} />
+      <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
         <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!" />
 
         <View style={[commonStyles.cremeCard, styles.photosCard]}>

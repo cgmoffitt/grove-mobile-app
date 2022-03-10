@@ -44,7 +44,7 @@ const WriteCaption = ({
                 prompt={successPrompt}
             />
 
-            <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
+            <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
                 <DismissKeyboard>
                     <View style={[commonStyles.cremeCard, styles.photosCard]}>
                         <Image style={styles.cardImage} source={photo}></Image>

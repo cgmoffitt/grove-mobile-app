@@ -4,7 +4,7 @@ import commonStyles from "../styles/commonStyles";
 import Banner from "../components/utils/Banner.js";
 import ActionButton from "../components/utils/ActionButton.js";
 import InfoBar from "../components/utils/InfoBar";
-import { shadows, DARK_GREEN } from "../constants/themes.js";
+import { shadows, DARK_GREEN, TEXT_GRAY } from "../constants/themes.js";
 import * as ImagePicker from 'expo-image-picker'
 import { addMemory } from "../redux/utils";
 import { useDispatch, connect } from "react-redux";
@@ -77,8 +77,8 @@ const UploadMemory = ({
 
     return (
         <View style={styles.center}>
-            <Banner event={hangout.title + " at " + hangout.location} date={hangout.date.toDateString()} />
-            <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
+            <Banner event={hangout.title + " at " + hangout.location} date={activity.date.toLocaleString('default', { weekday: 'short' }) + " " + activity.date.getDate() + " "+ activity.date.toLocaleString('default', { month: 'long' })} />
+            <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
 
                 {(!hasPhotos)
                     ? <View style={[commonStyles.cremeCard, styles.photosCard]}>
@@ -106,12 +106,14 @@ const UploadMemory = ({
                             numColumns={2}
                             keyExtractor={(item, index) => index.toString()}
                         />
+                        <View style={styles.photoButton}>
+                            <ActionButton
+                                main="Browse Photos"
+                                onPressMethod={pickImage}
+                                active={true}
+                            />
+                        </View>
 
-                        <ActionButton
-                            main="Browse Photos"
-                            onPressMethod={pickImage}
-                            active={true}
-                        />
                         <View style={styles.photoButton}>
                             <ActionButton
                                 main="Take a Photo"
@@ -119,7 +121,7 @@ const UploadMemory = ({
                                 active={true}
                             />
                         </View>
-                        <InfoBar infoMessage="This is for your personal collection and will not be viewed by anyone else. Tap on a photo to add caption." />
+                        <InfoBar infoMessage="Tap on a photo to add caption! This is for your personal collection and will not be viewed by anyone else." />
                     </View>
                 }
             </ImageBackground>
@@ -156,7 +158,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         width: '100%',
-        paddingVertical: '2%'
+        paddingVertical: '3%'
     },
     cardImage: {
         width: 120,
@@ -179,7 +181,7 @@ const styles = StyleSheet.create({
         height: 30
     },
     buttonClose: {
-        backgroundColor: DARK_GREEN,
+        backgroundColor: TEXT_GRAY,
         position: "absolute",
         margin: 2,
         width: 28,
