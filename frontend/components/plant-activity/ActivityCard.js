@@ -4,6 +4,7 @@ import commonStyles from "../../styles/commonStyles"
 import { DARK_GREEN } from "../../constants/themes";
 import { ZoomIn } from "react-native-reanimated";
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import { ACTIVITY_IMG_SOURCES } from "../../constants/defaultData";
 
 
 
@@ -13,12 +14,6 @@ const ActivityCard = ({
     selected,
     onChooseActivity
 }) => {
-    const ACTIVITY_IMG_SOURCES = {
-        Tennis: require("../../assets/images/activity-icons/tennis.png"),
-        Coffee: require("../../assets/images/activity-icons/coffee.png"),
-        Hiking: require("../../assets/images/activity-icons/hiking.png"),
-        ["Bar-hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
-    }
 
     return (
         <View
@@ -29,7 +24,7 @@ const ActivityCard = ({
             >
                 <View style={[styles.activityCard, commonStyles.shadow]}>
                     <Image
-                        source={ACTIVITY_IMG_SOURCES[activity.title]}
+                        source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}
                         style={styles.activityImg}
                     />
                     {activity.title && <Text style={styles.activityTitle}>{activity.title}</Text>}

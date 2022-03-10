@@ -27,7 +27,7 @@ const wizardOfOzGenerateActivity = (dispatch) => {
     id: 10,
     title: defaultActivity.HIKING,
     friend: "Blake",
-    date: new Date('March 9, 2022 18:00:00'),
+    date: new Date('March 12, 2022 18:00:00'),
     confirmed: false,
     plantedId: AUTOMATIC_ID,
     reflected: false,
@@ -42,7 +42,7 @@ const PreferredDistanceCard = ({
 }) => {
   return (
     <View
-      style={[commonStyles.cremeCard, { marginTop: 30, width: "90%" }]}
+      style={[commonStyles.cremeCard, { marginTop: 30, width: "95%" }]}
     >
       <PreferredDistance
         preferredDistance={preferredDistance}
@@ -59,7 +59,7 @@ const PreferredActivitiesCard = ({
 }) => {
   return (
     <View
-      style={[commonStyles.cremeCard, { marginTop: 30, width: "90%" }]}
+      style={[commonStyles.cremeCard, { marginTop: 30, width: "95%" }]}
     >
       <PreferredActivities
         preferredActivities={preferredActivities}
@@ -75,7 +75,7 @@ const InfoCard = ({
 }) => {
   return (
     <View
-      style={[commonStyles.cremeCard, { marginTop: 30, flexDirection: "row", width: "90%", height: 80, justifyContent: "center", alignItems: "center", paddingHorizontal: 20 }]}
+      style={[commonStyles.cremeCard, { marginTop: 30, flexDirection: "row", width: "95%", height: 80, justifyContent: "center", alignItems: "center", paddingHorizontal: 20 }]}
     >
       <Image
         style={{ width: 30, resizeMode: "contain" }}
@@ -162,7 +162,10 @@ const MeThisWeek = ({
           onClose={() => setSuccessModalVisible(false)}
           prompt={"We will use these preferences to generate personalized hangouts for you this week."}
         />
-        <InfoBar infoMessage="We will use these preferences to generate personalized hangouts for you this week."/>
+        <InfoBar 
+          infoMessage="We will use these preferences to generate personalized hangouts for you this week."
+          cardStyle={{width: "95%"}}
+        />
         <NumHangouts
           incrementNumHangouts={incrementNumHangouts}
           decrementNumHangouts={decrementNumHangouts}

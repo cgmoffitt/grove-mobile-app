@@ -48,7 +48,7 @@ export default EditActivityModal = ({
 const styles = StyleSheet.create({
     editModal: {
         width: "90%",
-        height: "60%",
+        height: "65%",
         marginBottom: 60,
         paddingTop: 20,
         justifyContent: "flex-start"

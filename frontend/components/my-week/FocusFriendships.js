@@ -43,7 +43,7 @@ export default FocusFriendships = ({
 
     return (
         <View
-            style={[commonStyles.cremeCard, { marginTop: 30, width: "90%" }]}>
+            style={[commonStyles.cremeCard, { marginTop: 30, width: "95%" }]}>
             <Modal
                 animationType={'fade'}
                 transparent={true}

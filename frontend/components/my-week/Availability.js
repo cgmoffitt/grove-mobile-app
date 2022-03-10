@@ -67,7 +67,7 @@ export default AvailabilityCard = ({
 
     return (
         <View
-            style={[commonStyles.cremeCard, { marginVertical: 30, paddingVertical:15, width: "90%" }]}
+            style={[commonStyles.cremeCard, { marginVertical: 30, paddingVertical:15, width: "95%" }]}
         >
             <Text style={[styles.headerText, {marginBottom: 15}]}>
                 My Availability
