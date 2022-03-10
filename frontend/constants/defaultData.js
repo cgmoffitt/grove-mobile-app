@@ -173,7 +173,7 @@ const INITIAL_AVAILABILITY = new Array(16).fill(0).map(() => new Array(8).fill(f
 const INITIAL_PREFERENCES = {
     numHangouts: 1,
     focusFriends: DEFAULT_FOCUS_FRIENDS,
-    preferredActivities: [{ name: "Hiking" }, { name: "Tennis" }],
+    preferredActivities: [{ title: "Hiking" }, { title: "Tennis" }],
     preferredDistance: 0.5,
     availability: INITIAL_AVAILABILITY
 }

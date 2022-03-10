@@ -13,14 +13,15 @@ const AddActivitiesModal = ({
 }) => {
 
     const items = DEFAULT_ACTIVITIES.map(activity => ({ label: activity.title, value: activity.title }))
-
     return (
         <MultipleSelectModal
             closeModal={closeModal}
             title="Select activities"
-            value={preferredActivities.map(activity => activity.name)}
+            value={preferredActivities.map(activity => activity.title)}
             items={items}
-            onSelectItem={(selected) => updatePreferredActivities(selected)}
+            onSelectItem={(selected) => {
+                updatePreferredActivities(selected)
+            }}
             placeholder="Select up to 3 friends"
             multipleText={`${preferredActivities.length} activities selected`}
         />
@@ -38,7 +39,7 @@ const ActivityChip = ({
             onPress={() => removeActivity(activity)}
         >
             <Text style={styles.activityText}>
-                {activity.name}
+                {activity.title}
             </Text>
         </TouchableOpacity>
     )
