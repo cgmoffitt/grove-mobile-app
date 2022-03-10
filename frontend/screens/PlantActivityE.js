@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import commonStyles from "../styles/commonStyles"
-import { DARK_GREEN } from "../constants/themes";
+import { DARK_GREEN, TEXT_GRAY } from "../constants/themes";
 import { steps } from "../constants/defaultData"
 
 import ActionButton from "../components/utils/ActionButton";
@@ -56,8 +56,8 @@ const PlantActivityE = ({
                     ArrowDownIconComponent={() => <View></View>}
                     ArrowUpIconComponent={() => <View></View>}
                     searchable={true}
-                    searchPlaceholder="Search for a friend..."
-                    searchPlaceholderTextColor={DARK_GREEN}
+                    searchPlaceholder="Search..."
+                    searchPlaceholderTextColor={TEXT_GRAY}
                     searchTextInputStyle={styles.textItalic}
                     searchContainerStyle={{ height: 50, }}
                     searchTextInputStyle={{ borderWidth: 0 }}
@@ -78,7 +78,7 @@ const PlantActivityE = ({
                 </View>
             </View>
             <ActionButton
-                active={true}
+                active={friendsToReceive.length > 0}
                 main={"Next"}
                 style={styles.nextButton}
                 onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYF, {activity: activity, location: location, date: date, friends: friendsToReceive, time: time})}
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     },
     textHeader: {
         fontFamily: "OpenSansItalic",
-        fontSize: 22,
+        fontSize: 20,
         color: DARK_GREEN,
         marginVertical: 20
     },

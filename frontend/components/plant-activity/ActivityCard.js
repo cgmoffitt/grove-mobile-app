@@ -17,7 +17,7 @@ const ActivityCard = ({
         Tennis: require("../../assets/images/activity-icons/tennis.png"),
         Coffee: require("../../assets/images/activity-icons/coffee.png"),
         Hiking: require("../../assets/images/activity-icons/hiking.png"),
-        ["Bar Hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
+        ["Bar-hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
     }
 
     return (
@@ -58,14 +58,14 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     activityImg: {
-        width: 30,
-        height: 30,
+        width: 35,
+        height: 35,
         resizeMode: "contain",
-        marginBottom: 10
+        marginVertical: 10
     },
     activityTitle: {
         fontFamily: "OpenSans",
-        fontSize: 14,
+        fontSize: 16,
     },
     activityLocation: {
         fontFamily: "OpenSansItalic",

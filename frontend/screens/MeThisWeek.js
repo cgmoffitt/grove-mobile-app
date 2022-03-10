@@ -103,9 +103,9 @@ const MeThisWeek = ({
     wizardOfOzGenerateActivity(dispatch)
     schedulePushNotification()
     setSuccessModalVisible(true)
-    setTimeout(() => {
-      setSuccessModalVisible(false)
-    }, 3000)
+    // setTimeout(() => {
+    //   setSuccessModalVisible(false)
+    // }, 3000)
     setNeedsUpdate(false)
   }
 

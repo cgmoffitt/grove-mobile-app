@@ -58,7 +58,7 @@ const Home = ({
 };
 
 const windowWidth = Dimensions.get('window').width;
-const logoWidth = windowWidth;
+const logoWidth = windowWidth * (7/8);
 
 const styles = StyleSheet.create({
   plantLogo: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     height: logoWidth,
   },
   fixMargin: {
-    marginBottom: -200
+    marginBottom: -150
   },
   plantLogoSmall: {
     width: logoWidth / 3,

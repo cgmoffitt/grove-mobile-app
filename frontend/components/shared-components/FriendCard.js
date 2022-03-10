@@ -11,7 +11,6 @@ const FriendCard = ({
   removable
 }) => {
   //Will need to dynamically change the level of the plant based on how much a friendship is growing
-  console.log("plant level: ", plantLevel)
   return (
     <View style={[styles.cardSpace, size === "LARGE" ? styles.cardLarge : styles.cardSmall, {margin: 10}]}>
       <Pressable style={[styles.card, size=== "LARGE" ? styles.cardLargeTotal : styles.cardSmallTotal]} onPress={onPressMethod}>

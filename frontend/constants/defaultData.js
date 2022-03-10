@@ -37,7 +37,7 @@ const ALL_ACTIVITIES = [
         confirmed: true,
         plantedId: AUTOMATIC_ID,
         reflected: false,
-        location: "Lagunita Tennis Courts",
+        location: "EVGR Courts",
     },
     {
         id: 2,
@@ -68,7 +68,7 @@ const ALL_ACTIVITIES = [
         confirmed: false,
         plantedId: MY_ID,
         reflected: false,
-        location: "Lagunita Tennis Courts"
+        location: "EVGR Courts"
     },
     {
         id: 5,
@@ -101,7 +101,7 @@ const ALL_ACTIVITIES = [
         confirmed: true,
         plantedId: AUTOMATIC_ID,
         reflected: false,
-        location: "Lagunita Tennis Courts"
+        location: "EVGR Courts"
     },
     {
         id: 8,
@@ -236,6 +236,13 @@ const NEARBY_LOCATIONS = [
     }
 ]
 
+const ACTIVITY_IMG_SOURCES = {
+    tennis: require("../assets/images/activity-icons/tennis.png"),
+    coffee: require("../assets/images/activity-icons/coffee.png"),
+    hiking: require("../assets/images/activity-icons/hiking.png"),
+    ["bar-hopping"]: require("../assets/images/activity-icons/bar-hopping.png")
+}
+
 export {
     ALL_ACTIVITIES,
     friends,
@@ -251,5 +258,6 @@ export {
     steps,
     ProfileInfo,
     plantToImage,
-    NEARBY_LOCATIONS
+    NEARBY_LOCATIONS,
+    ACTIVITY_IMG_SOURCES
 }

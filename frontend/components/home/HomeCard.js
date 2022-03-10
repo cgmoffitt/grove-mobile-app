@@ -9,10 +9,12 @@ import {
     DARK_GREEN,
     LIGHT_GREEN,
     GREEN,
-    TEXT_GRAY
+    TEXT_GRAY,
+    YELLOW_GREEN
 } from "../../constants/themes";
 import {
-    activityHeader
+    activityHeader,
+    ACTIVITY_IMG_SOURCES
 } from "../../constants/defaultData"
 import {
     confirmActivity
@@ -33,7 +35,10 @@ const HomeCard = ({
         <View style={{ width: "100%", alignItems: "center" }}>
             <View style={type == activityHeader.PENDING ? styles.pendingCard : styles.upcomingCard}>
                 <Text style={styles.headerText}>{type} Hangout</Text>
-                <Text style={styles.activity}>{activity.title} with {activity.friend}</Text>
+                <View style={{flexDirection: "row", alignItems:"center", paddingVertical:1}}>
+                    <Image style={{ width: 35, height: 35 }} resizeMode={"contain"} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
+                    <Text style={styles.activity}>{activity.title} with {activity.friend}</Text>
+                </View>
                 <Text style={styles.date}>{activity.date.toDateString()}</Text>
                 <Text style={styles.location}>{activity.location}</Text>
                 {type == activityHeader.PENDING &&
@@ -66,7 +71,7 @@ const styles = StyleSheet.create({
         padding: 25
     },
     upcomingCard: {
-        backgroundColor: LIGHT_GREEN,
+        backgroundColor: YELLOW_GREEN,
         width: "90%",
         borderRadius: 10,
         padding: 25
@@ -79,7 +84,8 @@ const styles = StyleSheet.create({
     },
     activity: {
         fontFamily: "OpenSans",
-        fontSize: 20
+        fontSize: 20,
+        marginLeft:5
     },
     date: {
         fontFamily: "OpenSans",

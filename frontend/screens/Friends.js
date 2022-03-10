@@ -45,7 +45,9 @@ const Friends = ({
                     renderItem={({item, index}) => renderItem(item, index)}
                     numColumns={3}
                     keyExtractor={(item, index) => index.toString()}
-                    style={{width: '90%'}}
+                    style={{width: '100%'}}
+                    contentContainerStyle={{alignItems: "center"}}
+                    showsVerticalScrollIndicator={false}
                 />
             </ImageBackground>
         </View>

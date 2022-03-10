@@ -20,6 +20,7 @@ export {
     DARK_GREEN,
     CREME_WHITE,
     VIBRANT_GREEN,
+    YELLOW_GREEN,
     GREEN,
     TEXT_GRAY,
     LIGHT_GREEN,

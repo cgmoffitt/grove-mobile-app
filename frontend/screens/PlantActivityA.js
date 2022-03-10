@@ -31,7 +31,7 @@ const PlantActivityA = ({
 
   return (
     <View style={[commonStyles.backgroundCreme, styles.screen]}>
-      <Text style={styles.textHeader}>Plant a recent activity</Text>
+      <Text style={styles.textHeader}>Quick Plant: Your recent activities</Text>
       <RecentActivities 
         onChooseActivity={onChooseActivity}
       />
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   plantNew: {
     paddingVertical: 8,
     position: "absolute",
-    bottom: 20
+    bottom: 30
   },
   textHeader: {
     fontFamily: "OpenSansItalic",
