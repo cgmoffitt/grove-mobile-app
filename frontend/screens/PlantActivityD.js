@@ -15,8 +15,8 @@ const PlantActivityD = ({
 }) => {
     const { activity, location } = route.params
 
-    const [startTime, setStartTime] = useState(new Date());
-    const [endTime, setEndTime] = useState(new Date())
+    const [startTime, setStartTime] = useState(new Date("January 1, 2022 18:00"));
+    const [endTime, setEndTime] = useState(new Date("January 1, 2022 19:00"))
 
 
     const [date, setDate] = useState(null)
@@ -33,6 +33,7 @@ const PlantActivityD = ({
                 showLabels={true}
             />
             <Text style={styles.textHeader}>Select a date and time</Text>
+
             <DatePicker
                 updateDate={updateDate}
             />
@@ -42,8 +43,10 @@ const PlantActivityD = ({
                 endTime={endTime}
                 setEndTime={setEndTime}
             />
+
+
             <ActionButton
-                active={true}
+                active={date !== null}
                 main={"Next"}
                 style={styles.nextButton}
                 onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYE, { activity: activity, location: location, date: date, time: [startTime, endTime] })}

@@ -31,7 +31,7 @@ const PlantActivityB = ({
                 onChooseActivity={onChooseActivity}
             />
             <ActionButton
-                active={true}
+                active={selected !== ""}
                 main={"Next"}
                 style={styles.nextButton}
                 onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYC, {activity: selected})}
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     nextButton: {
         paddingVertical: 8,
         position: "absolute",
-        bottom: 20,
+        bottom: 30,
         width: "50%"
     },
     textHeader: {

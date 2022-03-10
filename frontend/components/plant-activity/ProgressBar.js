@@ -30,9 +30,9 @@ const ProgressBar = ({
         <View style={[showLabels ? styles.containerLarge : styles.containerSmall]}>
             <View style={styles.icons}>
                 <Image source={PLANT_ACTIVITY_IMG_SOURCES.plant1} style={[styles.icon, { left: "10%" }]} />
-                <Image source={PLANT_ACTIVITY_IMG_SOURCES.plant2} style={[styles.icon, { left: "35%" }]} />
-                <Image source={PLANT_ACTIVITY_IMG_SOURCES.plant3} style={[styles.icon, { left: "62%" }]} />
-                <Image source={PLANT_ACTIVITY_IMG_SOURCES.plant4} style={[styles.icon, { left: "90%" }]} />
+                <Image source={PLANT_ACTIVITY_IMG_SOURCES.plant2} style={[styles.icon, { left: "33%", height: 90, width: 90 }]} />
+                <Image source={PLANT_ACTIVITY_IMG_SOURCES.plant3} style={[styles.icon, { left: "60%" }]} />
+                <Image source={PLANT_ACTIVITY_IMG_SOURCES.plant4} style={[styles.icon, { left: "86%" }]} />
             </View>
             <View style={styles.barContainer}>
                 <View style={styles.barBackground} />
@@ -80,8 +80,8 @@ const createProgressStyles = (progress) => StyleSheet.create({
     },
     icon: {
         position: "absolute",
-        width: 65,
-        height: 65,
+        width: 75,
+        height: 75,
         bottom: 0,
         marginLeft: -25,
         resizeMode: "contain"

@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     },
     activities: {
         flexDirection: "row",
-        justifyContent: "center",
         width: "100%",
         height: "50%",
         flexWrap: "wrap",

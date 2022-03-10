@@ -16,6 +16,7 @@ const ActionButton = ({
           style
         ]} 
         onPress={onPressMethod}
+        disabled={!active}
       >
         <Text style={styles.buttonText}>{main}</Text>
       </TouchableOpacity>

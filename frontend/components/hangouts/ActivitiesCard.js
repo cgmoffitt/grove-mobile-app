@@ -66,7 +66,7 @@ export default ActivitiesCard = ({
                     editMethod={editMethod}
                     openSuccessModal={openSuccessModal}
                 />
-                <View style={styles.thinLine}></View>
+                {i < activities.length - 1 && <View style={styles.thinLine}></View>}
                 </View>
             )}
         </View>

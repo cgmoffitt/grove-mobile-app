@@ -67,13 +67,13 @@ export default AvailabilityCard = ({
 
     return (
         <View
-            style={[commonStyles.cremeCard, { marginVertical: 30, width: "90%" }]}
+            style={[commonStyles.cremeCard, { marginVertical: 30, paddingVertical:15, width: "90%" }]}
         >
             <Text style={[styles.headerText, {marginBottom: 15}]}>
                 My Availability
             </Text>
             <Text style={[styles.headerText, {marginBottom: 15, fontSize: 15, fontFamily: "OpenSansItalic", color: "black"}]}>
-                Click and drag to select your availability.
+                Click on the time slots that you are free.
             </Text>
             
             <View>
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     },
     square: {
         width: 38,
-        height: 20,
+        height: 28,
         margin: 1
     },
     available: {

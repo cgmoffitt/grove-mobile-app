@@ -95,7 +95,7 @@ export default InfoModal = ({
         tennis: require("../../assets/images/activity-icons/tennis.png"),
         coffee: require("../../assets/images/activity-icons/coffee.png"),
         hiking: require("../../assets/images/activity-icons/hiking.png"),
-        ["bar hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
+        ["Bar-hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
     }
 
     return (

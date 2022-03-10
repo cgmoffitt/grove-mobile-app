@@ -20,12 +20,12 @@ const AddFriendModal = ({
     return (
         <MultipleSelectModal
             closeModal={closeModal}
-            title="Select up to 3 friends to focus on this week!"
+            title="Select up to 3 friends to focus on this week"
             value={focusFriends.map(friend => friend.name)}
             items={items}
             onSelectItem={(selected) => updateFocusFriends(selected)}
             placeholder="Select up to 3 friends"
-            multipleText={`${focusFriends.length} / 3 people selected`}
+            multipleText={`${focusFriends.length} friends selected`}
         />
     )
 }

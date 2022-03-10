@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Pressable, Modal, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, Pressable, Modal, TouchableOpacity, Image } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import { CREME_WHITE, DARK_GREEN, LIGHT_GREEN } from "../../constants/themes";
+import XButton from "./XButton";
 
 
 
@@ -9,7 +10,7 @@ export default SuccessModal = ({
     modalVisible,
     prompt,
     onClose,
-    button,
+    specialButton,
     onButtonPress
 }) => {
     return (
@@ -22,20 +23,26 @@ export default SuccessModal = ({
             }}>
             <View style={[commonStyles.center, { backgroundColor: 'rgba(0,0,0,0.7)' }]}>
                 <View style={styles.modalView}>
-                    <Text style={[styles.modalHeaderText, { alignSelf: "center" }]}>Success!</Text>
+                    <View style={{alignSelf: "center", flexDirection: "row", marginBottom:10, marginLeft:-30}}>
+                        <Image style={{width: 30, height: 30, marginHorizontal:10}} source={require("../../assets/images/plant-activity/plant.png")} />
+                        <Text style={[styles.modalHeaderText]}>Success!</Text>
+                    </View>
+
                     <Text style={styles.modalText}>{prompt}</Text>
-                    <Pressable
-                        style={[styles.button, styles.buttonClose]}
-                        onPress={() => onClose()}
-                    >
-                        <Text style={styles.textStyle}>x </Text>
-                    </Pressable>
-                    {button &&
+                    {specialButton && <XButton onClose={onClose} />}
+                    {specialButton ?
                         <TouchableOpacity
                             style={styles.specialButton}
                             onPress={onButtonPress}
                         >
-                            <Text style={styles.textStyle}>{button}</Text>
+                            <Text style={styles.textStyle}>{specialButton}</Text>
+                        </TouchableOpacity>
+                        :
+                        <TouchableOpacity
+                            style={styles.specialButton}
+                            onPress={onClose}
+                        >
+                            <Text style={styles.textStyle}>Got it!</Text>
                         </TouchableOpacity>
                     }
                 </View>
@@ -62,7 +69,7 @@ const styles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: LIGHT_GREEN,
+        backgroundColor: CREME_WHITE,
         borderRadius: 20,
         padding: 35,
         minWidth: '85%',
@@ -91,8 +98,9 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         color: "white",
-        fontWeight: "bold",
-        textAlign: "center"
+        fontFamily: "OpenSans",
+        textAlign: "center",
+        fontSize: 18
     },
     modalHeaderText: {
         textAlign: "center",
@@ -108,7 +116,8 @@ const styles = StyleSheet.create({
     },
     specialButton: {
         backgroundColor: DARK_GREEN,
-        padding: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 30,
         borderRadius: 10,
         marginTop: 20,
         alignSelf: "center"

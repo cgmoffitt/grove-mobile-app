@@ -4,6 +4,7 @@ import commonStyles from "../../styles/commonStyles"
 import { LIGHT_GREEN, DARK_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, GREEN } from "../../constants/themes"
 import InfoModal from "./InfoModal";
 import routes from "../../constants/routes";
+import { ACTIVITY_IMG_SOURCES } from "../../constants/defaultData";
 
 const ReflectButton = ({
     navigation,
@@ -121,12 +122,6 @@ export default ActivityItem = ({
     openSuccessModal
 }) => {
 
-    const ACTIVITY_IMG_SOURCES = {
-        tennis: require("../../assets/images/activity-icons/tennis.png"),
-        coffee: require("../../assets/images/activity-icons/coffee.png"),
-        hiking: require("../../assets/images/activity-icons/hiking.png"),
-        ["bar hopping"]: require("../../assets/images/activity-icons/bar-hopping.png")
-    }
     const [modalVisible, setModalVisible] = useState(false);
     return (
         <View>
@@ -210,7 +205,7 @@ export default ActivityItem = ({
 
 const styles = StyleSheet.create({
     activityItem: {
-        width: "95%",
+        width: "100%",
         height: 50,
         flexDirection: "row",
         alignItems: "center",
@@ -259,7 +254,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
     },
     reflectText: {
-        fontFamily: "OpenSansBold",
+        fontFamily: "OpenSans",
         color: "white",
         textAlign: "center",
         fontSize: 14
@@ -291,7 +286,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-evenly",
         alignItems: "center",
-        paddingVertical: '5%'
     },
     buttonChild: {
         display: "flex",

@@ -17,7 +17,7 @@ const AddActivitiesModal = ({
     return (
         <MultipleSelectModal
             closeModal={closeModal}
-            title="Select activities!"
+            title="Select activities"
             value={preferredActivities.map(activity => activity.name)}
             items={items}
             onSelectItem={(selected) => updatePreferredActivities(selected)}

@@ -30,7 +30,7 @@ const ConfirmCard = ({
                     openEditModal(title)
                 }}
             >
-                <Image style={[{ width: 35, height: 35 }, commonStyles.shadow]} source={require("../assets/images/plant-activity/pen.png")} />
+                <Image style={[{ width: 28, height: 28, marginTop: 10 }]} source={require("../assets/images/plant-activity/pen.png")} />
             </TouchableOpacity>
 
         </View>
@@ -55,12 +55,14 @@ const PlantActivityF = ({
     const getTimeString = () => {
         const startTime = new Date(finalStartTime)
         const endTime = new Date(finalEndTime)
-        const startHour = startTime.getHours() % 12 === 0 ? 12 : startTime.getHours()
-        const endHour = endTime.getHours() % 12  === 0 ? 12 : endTime.getHours()
+        const startAmpm = startTime.getHours() > 11 ? "pm" : "am"
+        const endAmpm = endTime.getHours() > 11 ? "pm" : "am"
+        const startHour = (startTime.getHours() % 12 === 0 ? 12 : startTime.getHours() % 12) 
+        const endHour = (endTime.getHours() % 12  === 0 ? 12 : endTime.getHours() % 12)
         const startMinute = startTime.getMinutes() < 10 ? "0" + startTime.getMinutes() : startTime.getMinutes()
         const endMinute = endTime.getMinutes() < 10 ? "0" + endTime.getMinutes() : endTime.getMinutes()
 
-        return startHour + ":" + startMinute + "-" + endHour + ":" + endMinute
+        return startHour + ":" + startMinute + startAmpm + "-" + endHour + ":" + endMinute + endAmpm
     }
 
     const [successModalVisible, setSuccessModalVisible] = useState(false)
@@ -114,7 +116,7 @@ const PlantActivityF = ({
                     setSuccessModalVisible(false)
                     navigation.popToTop()
                 }}
-                button={"Go to hangouts"}
+                specialButton={"Go to hangouts"}
                 onButtonPress={() => {
                     setSuccessModalVisible(false)
                     navigation.popToTop()
@@ -158,7 +160,7 @@ const PlantActivityF = ({
                 <ConfirmCard title={"Location"} selection={finalLocation} openEditModal={openEditModal} />
                 <ConfirmCard title={"Date"} selection={new Date(finalDate).toDateString()} openEditModal={openEditModal} />
                 <ConfirmCard title={"Time"} selection={getTimeString()} openEditModal={openEditModal} />
-                <ConfirmCard title={"Send To"} selection={friends[0]} openEditModal={openEditModal} />
+                <ConfirmCard title={"Send to"} selection={friends[0]} openEditModal={openEditModal} />
             </View>
             <ActionButton
                 active={true}

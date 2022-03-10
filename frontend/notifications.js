@@ -38,7 +38,7 @@ async function schedulePushNotification() {
     await Notifications.scheduleNotificationAsync({
         content: {
             title: "New Pending Event",
-            body: 'Hike with Black on Saturday!',
+            body: 'Hike with Blake on Saturday!',
             data: {route: routes.HANGOUTS_TAB} ,
         },
         trigger: { seconds: 3 },

@@ -17,7 +17,7 @@ export default MultipleSelectModal = ({
     return (
         <View style={[commonStyles.center, { backgroundColor: 'rgba(0,0,0,0.7)' }]}>
             <View
-                style={[commonStyles.cremeCard, { marginBottom: 120 }]}
+                style={[commonStyles.cremeCard, { marginBottom: 120, paddingVertical: 20 }]}
             >
                 <Text style={[styles.headerText, { marginBottom: 10 }]}>{title}</Text>
                 <DropDownPicker
@@ -40,8 +40,10 @@ export default MultipleSelectModal = ({
                 />
                 <TouchableOpacity
                     onPress={closeModal}
+                    style={styles.specialButton}
+
                 >
-                    <Text style={[styles.textBold, {width: 50, height:30}]}>Close</Text>
+                    <Text style={[styles.textBold, { width: 50, height: 30 }]}>Done</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -55,11 +57,21 @@ const styles = StyleSheet.create({
     },
     textBold: {
         fontFamily: "OpenSansBold",
-        fontSize: 16
+        fontSize: 16,
+        color: "white"
     },
     headerText: {
         fontFamily: "OpenSansBold",
         color: DARK_GREEN,
-        fontSize: 18
-      },
+        fontSize: 20
+    },
+    specialButton: {
+        backgroundColor: DARK_GREEN,
+        paddingTop: 10,
+        paddingBottom: 5,
+        paddingHorizontal: 30,
+        borderRadius: 10,
+        marginTop: 20,
+        alignSelf: "center"
+    }
 });

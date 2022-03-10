@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, TextInput, Dimensions } from "react-native";
 import commonStyles from "../../styles/commonStyles"
-import { DARK_GREEN } from "../../constants/themes";
+import { DARK_GREEN, TEXT_GRAY } from "../../constants/themes";
 import { NEARBY_LOCATIONS } from "../../constants/defaultData"
+import Icon from 'react-native-vector-icons/Ionicons'
 
 
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
@@ -28,27 +29,21 @@ const SearchBar = ({
 
 }) => {
     return (
-        <View style={{ position: 'absolute', top: 0, width: '100%' }}>
+        <View style={styles.searchBar}>
+            <Icon name="search" size={20} color={"#333333"} />
             <TextInput
-                style={{
-                    color: '#000',
-                    backgroundColor: '#FFF',
-                    height: 45,
-                    paddingHorizontal: 10,
-                    fontSize: 20,
-                    fontFamily: "OpenSansItalic"
-                }}
+                style={styles.searchInput}
                 placeholder={'Search'}
-                placeholderTextColor={DARK_GREEN}
+                placeholderTextColor={TEXT_GRAY}
             />
         </View>
     )
 }
 
 const LocationsMap = ({
-    curNearbyIndex, 
+    curNearbyIndex,
     setCurNearbyIndex,
-    selectedIndex, 
+    selectedIndex,
     setSelectedIndex,
     containerStyle,
     locationCardContainerStyle
@@ -115,6 +110,23 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSansItalic",
         fontSize: 22,
         color: DARK_GREEN,
+    },
+    searchBar: {
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        flexDirection: "row",
+        backgroundColor: "white",
+        alignItems: "center",
+        paddingHorizontal: 5
+    },
+    searchInput: {
+        color: '#000',
+        backgroundColor: '#FFF',
+        height: 45,
+        paddingHorizontal: 10,
+        fontSize: 20,
+        fontFamily: "OpenSans"
     }
 });
 

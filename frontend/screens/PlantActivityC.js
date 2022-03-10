@@ -71,7 +71,7 @@ const PlantActivityC = ({
                 setSelectedIndex={setSelectedIndex}
             />
             <ActionButton
-                active={true}
+                active={selectedIndex !== -1}
                 main={"Next"}
                 style={styles.nextButton}
                 onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYD, {activity: activity, location: NEARBY_LOCATIONS[selectedIndex].name})}

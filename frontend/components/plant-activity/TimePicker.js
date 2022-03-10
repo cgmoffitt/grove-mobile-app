@@ -44,38 +44,9 @@ const TimePicker = ({
 };
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        alignItems: "center"
-    },
-    nextButton: {
-        paddingVertical: 8,
-        position: "absolute",
-        bottom: 20,
-        width: "50%"
-    },
-    textHeader: {
-        fontFamily: "OpenSansItalic",
-        fontSize: 22,
-        color: DARK_GREEN,
-        marginTop: 15,
-        marginBottom: 15
-    },
-    calendarContainer: {
-        backgroundColor: "white",
-        width: "80%",
-        height: "40%",
-        paddingTop: 20,
-        borderRadius: 20
-    },
-    boldCalendarText: {
-        fontFamily: "OpenSansBold",
-        fontSize: 14,
-        textDecorationLine: "underline"
-    },
     timeContainer: {
+        marginVertical: 15,
         backgroundColor: "white",
-        marginTop: 20,
         borderRadius: 20,
         width: "80%",
         height: "15%",
