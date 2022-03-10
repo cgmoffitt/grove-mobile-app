@@ -1,5 +1,5 @@
 import { React, useState } from "react";
-import { View, StyleSheet, Text, Image, ImageBackground, FlatList, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, Image, ImageBackground, FlatList, TouchableOpacity, TextInput } from "react-native";
 import MyAutoTags from "../components/utils/MyAutoTags.js";
 import { CREME_WHITE, DARK_GREEN, VIBRANT_GREEN, TEXT_GRAY } from "../constants/themes.js";
 import commonStyles from "../styles/commonStyles.js";
@@ -10,6 +10,8 @@ import { ProfileInfo } from "../constants/defaultData.js";
 
 
 const MyProfile = ({navigation}) => {
+
+  const [text, onChangeText] = useState(null);
   const renderItem = (item, index) => (
     <View style={styles.chipChild}> 
       <ActivityChipNonInteractive activity={item}/>
@@ -21,12 +23,12 @@ const MyProfile = ({navigation}) => {
     }) => {
       return (
           <TouchableOpacity
-              onPress={() => navigation.navigate("Reflect")}
+              onPress={() => console.log("Settings")}
           >
               <View
                   style={styles.viewButton}
               >
-                  <Text style={styles.reflectText}>Settings</Text>
+                  <Text style={styles.reflectText}>Update Password & Settings</Text>
               </View>
           </TouchableOpacity>
       )
@@ -89,10 +91,33 @@ const MyProfile = ({navigation}) => {
         style={[commonStyles.full, styles.mainFriendBackground]}
         >
         <View style={[commonStyles.cremeCard, styles.cremeCard]}>
-          <Text>Email</Text>
-          <Text>Phone Number</Text>
-          <Text>Notifications</Text>
-          <Text>Password</Text>
+          <View style={styles.inputParent}>
+            <View style={styles.inputChild}>
+              <Text style={styles.fieldText}>Email</Text>
+            </View>
+            <View style={styles.inputChild}>
+              <Text style={styles.fieldTextEntry}>{ProfileInfo.email}</Text>
+            </View>
+          </View>
+          
+          
+          {/*<TextInput text={"amelia.a.woodward@gmail.com"}
+                      onChangeText={onChangeText}
+                      style={[styles.input, styles.inputText]}
+                      multiline={false}
+                      placeholder="Write a caption here!"/> */}
+          <View style={styles.inputParent}>
+            <View style={styles.inputChild}>
+              <Text style={styles.fieldText}>Phone Number</Text>
+            </View>
+            <View style={styles.inputChild}>
+              <Text style={styles.fieldTextEntry}>{ProfileInfo.number}</Text>
+            </View>
+
+          </View>
+          
+
+          <ViewButton />
          
           <View style={styles.thinLine}></View>
         
@@ -114,8 +139,9 @@ const MyProfile = ({navigation}) => {
   
   const styles = StyleSheet.create({
     profilePhoto:{
-      width:150,
-      height:150,
+      width:170,
+      height:170,
+      marginLeft: '2%',
       borderRadius: 100,
       borderStyle: "solid",
       borderWidth: 10,
@@ -124,14 +150,14 @@ const MyProfile = ({navigation}) => {
     headingParent:{
       display: "flex",
       flexDirection: "row",
-      justifyContent: "space-evenly",
-      alignItems: "center"
+      justifyContent: "flex-start",
+      alignItems: "flex-start"
     },
     headingChild: {
       display: "flex",
       flexDirection: "row",
-      justifyContent: "center",
-      alignItems: "center",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
       padding: '5%'
     },
     headingTitle:{
@@ -147,14 +173,14 @@ const MyProfile = ({navigation}) => {
     headingSubparent:{
       display: "flex",
       flexDirection: "column",
-      justifyContent: "space-evenly",
+      justifyContent: "flex-start",
       alignItems: "flex-start"
     },
     headingSubchild:{
       display: "flex",
       flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
       padding: '2%'
     },
     chip: {
@@ -179,7 +205,7 @@ const MyProfile = ({navigation}) => {
       display: "flex",
       flexDirection: "row",
       justifyContent: "flex-start",
-      alignItems: "center",
+      alignItems: "flex-start",
     },
     mainFriendCard:{
       width: '90%',
@@ -251,7 +277,7 @@ const MyProfile = ({navigation}) => {
     },
     viewButton: {
       backgroundColor: "black",
-      width: 130,
+      width: '100%',
       padding: '4%',
       borderRadius: 5,
       marginLeft: 5,
@@ -265,6 +291,33 @@ const MyProfile = ({navigation}) => {
     },
     backdrop:{
       marginBottom: '2%',
+    },
+    fieldText: {
+      color: DARK_GREEN,
+      fontFamily: "OpenSansBold",
+      fontSize: 18
+    },
+    fieldTextEntry:{
+      color: "black",
+      fontFamily: "OpenSans",
+      fontSize: 18
+
+    },
+    inputParent: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+      width: '85%',
+      height: '30%'
+    },
+    inputChild: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "flex-start",
+      padding: 5,
+      marginRight: 4
     }
     });
   

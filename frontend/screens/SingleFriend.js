@@ -52,9 +52,6 @@ const SingleFriend = ({route, navigation}) => {
     </View>
 )
 
-
-
-
   return (
     <View style={[commonStyles.center, commonStyles.backgroundCreme]}>
     <View style={styles.headingParent}>
