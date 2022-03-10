@@ -128,7 +128,7 @@ const SingleFriend = ({route, navigation}) => {
                 onColor= {DARK_GREEN}
                 offColor= {TEXT_GRAY}
                 label={"Alert me for their planted activities"}
-                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15}}
+                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15, width: 200}}
                 size="medium"
                 onToggle={() => setAlertIsOn(!alertIsOn)}
               />
@@ -140,7 +140,7 @@ const SingleFriend = ({route, navigation}) => {
                 onColor= {DARK_GREEN}
                 offColor= {TEXT_GRAY}
                 label={"Make " + props.name + " a top priority friend      "}
-                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15}}
+                labelStyle={{ color: "black", fontFamily:"OpenSans", fontSize: 15, width: 200}}
                 size="medium"
                 onToggle={() => setPriorityIsOn(!priorityIsOn)}
               />
@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
     fontFamily: "OpenSans",
     fontSize: 16,
     paddingBottom:'3%',
-    color: "black"
+    color: "black",
   },
   sliderContainer: {
     width: "100%",
