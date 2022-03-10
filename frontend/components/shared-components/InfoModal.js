@@ -1,8 +1,9 @@
 import { React, useState } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable, Modal } from "react-native";
 import commonStyles from "../../styles/commonStyles"
-import { LIGHT_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, DARK_GREEN } from "../../constants/themes"
+import { LIGHT_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, DARK_GREEN, CREME_WHITE } from "../../constants/themes"
 import { ACTIVITY_IMG_SOURCES } from "../../constants/defaultData";
+import XButton from "../utils/XButton";
 
 const ReflectButton = ({
     navigation
@@ -135,13 +136,9 @@ export default InfoModal = ({
                             ? <AcceptOrDecline acceptMethod={acceptMethod} declineMethod={declineMethod} navigation={navigation} />
                             : <View style={{ paddingTop: '5%' }} ><ReflectButton navigation={navigation} /></View>
                     }
-
-                    <Pressable
-                        style={[styles.button, styles.buttonClose]}
-                        onPress={() => setModalVisible(false)}
-                    >
-                        <Text style={styles.textStyle}>x </Text>
-                    </Pressable>
+                    <XButton    
+                        onClose={() => setModalVisible(false)}
+                    />
                 </View>
             </View>
         </Modal>
@@ -251,7 +248,7 @@ const styles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: LIGHT_GREEN,
+        backgroundColor: CREME_WHITE,
         borderRadius: 20,
         padding: 35,
         minWidth: '85%',
