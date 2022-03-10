@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Image, Dimensions, Pressable, Text, TouchableOpacity } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import {
@@ -20,6 +20,7 @@ import {
     confirmActivity
 } from "../../redux/utils"
 import { useDispatch, connect } from "react-redux";
+import InfoModal from "../shared-components/InfoModal";
 
 const HomeCard = ({
     activity,
@@ -30,12 +31,23 @@ const HomeCard = ({
     const acceptMethod = (activity) => {
         confirmActivity(activity.id, dispatch)
     }
+    const [infoModalVisible, setInfoModalVisible] = useState(false);
 
     return (
         <View style={{ width: "100%", alignItems: "center" }}>
+            <InfoModal
+                // navigation={navigation}
+                activity={activity}
+                selected={activity.confirmed ? activityHeader.UPCOMING : activityHeader.PENDING}
+                // acceptMethod={acceptMethod}
+                // declineMethod={declineMethod}
+                // editMethod={editMethod}
+                setModalVisible={setInfoModalVisible}
+                modalVisible={infoModalVisible}
+            />
             <View style={type == activityHeader.PENDING ? styles.pendingCard : styles.upcomingCard}>
                 <Text style={styles.headerText}>{type} Hangout</Text>
-                <View style={{flexDirection: "row", alignItems:"center", paddingVertical:1}}>
+                <View style={{ flexDirection: "row", alignItems: "center", paddingVertical: 1 }}>
                     <Image style={{ width: 35, height: 35 }} resizeMode={"contain"} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
                     <Text style={styles.activity}>{activity.title} with {activity.friend}</Text>
                 </View>
@@ -56,6 +68,15 @@ const HomeCard = ({
                             </View>
                         </TouchableOpacity>
                     </View>}
+                <TouchableOpacity
+                    onPress={() => setInfoModalVisible(true)}
+                    style={{ position: "absolute", top: 10, right: 10 }}
+                >
+                    <Image
+                        source={require("../../assets/icons/info.png")}
+                        style={styles.infoButton}
+                    />
+                </TouchableOpacity>
             </View>
         </View>
 
@@ -85,7 +106,7 @@ const styles = StyleSheet.create({
     activity: {
         fontFamily: "OpenSans",
         fontSize: 20,
-        marginLeft:5
+        marginLeft: 5
     },
     date: {
         fontFamily: "OpenSans",
@@ -123,7 +144,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: "center",
         color: "white"
-    }
+    },
+    infoButton: {
+        width: 30,
+        height: 30,
+        resizeMode: "contain",
+        marginBottom: 20
+    },
 
 
 });

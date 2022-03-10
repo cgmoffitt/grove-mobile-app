@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable, Modal } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import { LIGHT_GREEN, DARK_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, GREEN } from "../../constants/themes"
-import InfoModal from "./InfoModal";
+import InfoModal from "../shared-components/InfoModal";
 import routes from "../../constants/routes";
 import { ACTIVITY_IMG_SOURCES } from "../../constants/defaultData";
 
@@ -12,7 +12,7 @@ const ReflectButton = ({
 }) => {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate(routes.REFLECT, {activityId: activity.id})}
+            onPress={() => navigation.navigate(routes.REFLECT, { activityId: activity.id })}
         >
             <View
                 style={styles.reflectButton}
@@ -28,7 +28,7 @@ const ViewButton = ({
 }) => {
     return (
         <TouchableOpacity
-            onPress={() => navigation.navigate(routes.REFLECT, {activityId: activity.id})}
+            onPress={() => navigation.navigate(routes.REFLECT, { activityId: activity.id })}
         >
             <View
                 style={styles.viewButton}
@@ -121,51 +121,44 @@ export default ActivityItem = ({
     editMethod,
     openSuccessModal
 }) => {
-    
+
     const [modalVisible, setModalVisible] = useState(false);
     return (
         <View>
-            <Modal animationType="fade"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
-                    setModalVisible(!modalVisible);
-                }}>
-                <InfoModal
-                    navigation={navigation}
-                    activity={activity}
-                    selected={selected}
-                    acceptMethod={acceptMethod}
-                    declineMethod={declineMethod}
-                    editMethod={editMethod}
-                    setModalVisible={setModalVisible}
-                />
-            </Modal>
+            <InfoModal
+                navigation={navigation}
+                activity={activity}
+                selected={selected}
+                acceptMethod={acceptMethod}
+                declineMethod={declineMethod}
+                editMethod={editMethod}
+                setModalVisible={setModalVisible}
+                modalVisible={modalVisible}
+            />
 
             <View
                 style={[styles.activityItem]}
             >
                 <View style={[styles.img, styles.activityChild]}>
-                        <Image style={{ width: 35 }} resizeMode={"contain"} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
-                    </View>
+                    <Image style={{ width: 35, height: 35 }} resizeMode={"contain"} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
+                </View>
                 <View
-                    style={{ flex: 2, flexDirection: "column", justifyContent: "flex-start"}}
-                >   
-                    
-                    <View style={styles.activityChild}> 
+                    style={{ flex: 2.5, flexDirection: "column", justifyContent: "flex-start" }}
+                >
+
+                    <View style={styles.activityChild}>
                         <Text style={styles.titleText}>
                             {activity.friend &&
-                                <Text style={[styles.titleText, {fontFamily:"OpenSansBold"}]}>
+                                <Text style={[styles.titleText, { fontFamily: "OpenSansBold" }]}>
                                     {activity.friend} •{" "}
                                 </Text>
                             }
                             {activity.title}
                         </Text>
                         <Text style={styles.dateText}>
-                            {activity.date.toLocaleString('default', { weekday: 'short' }) + " " + activity.date.getDate() + " "+ activity.date.toLocaleString('default', { month: 'long' })}
+                            {activity.date.toLocaleString('default', { weekday: 'short' }) + " " + activity.date.getDate() + " " + activity.date.toLocaleString('default', { month: 'long' })}
                         </Text>
-                        
+
                     </View>
                 </View>
                 {selected === "Past"
@@ -198,7 +191,7 @@ export default ActivityItem = ({
                 />
                 : <View></View>
             }
-            
+
         </View>
     )
 }
@@ -242,22 +235,24 @@ const styles = StyleSheet.create({
     },
     reflectButton: {
         backgroundColor: GREEN,
-        width: 69,
+        width: 75,
         borderRadius: 5,
         paddingHorizontal: 10,
+        paddingVertical: 3
     },
     viewButton: {
         backgroundColor: "black",
-        width: 69,
+        width: 75,
         borderRadius: 5,
         marginLeft: 5,
         paddingHorizontal: 10,
+        paddingVertical: 3
     },
     reflectText: {
         fontFamily: "OpenSans",
         color: "white",
         textAlign: "center",
-        fontSize: 14
+        fontSize: 16
     },
     acceptButton: {
         backgroundColor: GREEN,
@@ -301,5 +296,5 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 22
     },
-   
+
 });

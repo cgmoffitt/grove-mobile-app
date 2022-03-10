@@ -82,6 +82,14 @@ const EditButton = ({
     )
 }
 
+const getTimeString = (date) => {
+    const time = new Date(date)
+    const ampm = time.getHours() > 11 ? "pm" : "am"
+    const hour = (time.getHours() % 12 === 0 ? 12 : time.getHours() % 12) 
+    const minute = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes()
+    return hour + ":" + minute + ampm
+}
+
 export default InfoModal = ({
     navigation,
     activity,
@@ -89,45 +97,55 @@ export default InfoModal = ({
     acceptMethod,
     declineMethod,
     editMethod,
-    setModalVisible
+    setModalVisible,
+    modalVisible
 }) => {
 
     return (
 
-        <View style={[commonStyles.center, { backgroundColor: 'rgba(0,0,0,0.7)' }]}>
-            <View style={styles.modalView}>
-                <Text style={styles.modalText}>{selected} Hangout</Text>
-                <View style={styles.activityParent}>
-                    <View style={styles.activityChild}>
-                        <Image style={{ width: 45, height: 45, padding: '5%' }} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
+        <Modal animationType="fade"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                setModalVisible(!modalVisible);
+            }}>
+            <View style={[commonStyles.center, { backgroundColor: 'rgba(0,0,0,0.7)' }]}>
+                <View style={styles.modalView}>
+                    <Text style={styles.modalText}>{selected} Hangout</Text>
+                    <View style={styles.activityParent}>
+                        <View style={styles.activityChild}>
+                            <Image style={{ width: 45, height: 45, padding: '5%' }} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
+                        </View>
+                        <View style={styles.activityChild}>
+                            <Text style={styles.activityText}>
+                                {activity.title}
+                                {activity.friend &&
+                                    <Text style={styles.activityText}>
+                                        {" "}with{" "}{activity.friend}
+                                    </Text>
+                                } </Text>
+                        </View>
                     </View>
-                    <View style={styles.activityChild}>
-                        <Text style={styles.activityText}>
-                            {activity.title}
-                            {activity.friend &&
-                                <Text style={styles.activityText}>
-                                    {" "}with{" "}{activity.friend}
-                                </Text>
-                            } </Text>
-                    </View>
-                </View>
-                <Text style={styles.activitySubtext}>When: {activity.date.toDateString()}</Text>
-                <Text style={styles.activitySubtext}>Where: {activity.location}</Text>
-                {(selected === "Upcoming" || selected === "Planted")
-                    ? <View style={{ paddingTop: '5%' }}><EditButton editMethod={editMethod} navigation={navigation} /></View>
-                    : (selected === "Pending" && !activity.accepted)
-                        ? <AcceptOrDecline acceptMethod={acceptMethod} declineMethod={declineMethod} navigation={navigation} />
-                        : <View style={{ paddingTop: '5%' }} ><ReflectButton navigation={navigation} /></View>
-                }
+                    <Text style={styles.activitySubtext}>When: {activity.date.toDateString() + ", " + getTimeString(activity.date)}</Text>
+                    <Text style={styles.activitySubtext}>Where: {activity.location}</Text>
+                    {(selected === "Upcoming" || selected === "Planted")
+                        ? <View style={{ paddingTop: '5%' }}><EditButton editMethod={editMethod} navigation={navigation} /></View>
+                        : (selected === "Pending" && !activity.accepted)
+                            ? <AcceptOrDecline acceptMethod={acceptMethod} declineMethod={declineMethod} navigation={navigation} />
+                            : <View style={{ paddingTop: '5%' }} ><ReflectButton navigation={navigation} /></View>
+                    }
 
-                <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(false)}
-                >
-                    <Text style={styles.textStyle}>x </Text>
-                </Pressable>
+                    <Pressable
+                        style={[styles.button, styles.buttonClose]}
+                        onPress={() => setModalVisible(false)}
+                    >
+                        <Text style={styles.textStyle}>x </Text>
+                    </Pressable>
+                </View>
             </View>
-        </View>
+        </Modal>
+
     )
 }
 

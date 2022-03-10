@@ -2,7 +2,6 @@ import { React, useState } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable, Modal } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import { LIGHT_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, DARK_GREEN } from "../../constants/themes"
-import InfoModal from "./InfoModal";
 import ActivityItem from "./ActivityItem";
 
 const NoActivities = ({
