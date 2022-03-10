@@ -57,7 +57,7 @@ const UploadMemory = ({
 
     return (
         <View style={styles.center}>
-            <Banner event="Coffee at 52nd St. Cafe" date="15th January 2022, 1pm" />
+            <Banner event="Coffee at 52nd St. Cafe" date="Sat 15 January, 1pm" />
             <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
 
                 {(!hasPhotos)
@@ -99,7 +99,7 @@ const UploadMemory = ({
                                 active={true}
                             />
                         </View>
-                        <InfoBar infoMessage="This is for your personal collection and will not be viewed by anyone else. Tap on a photo to add caption." />
+                        <InfoBar infoMessage="Tap on a photo to add caption! This is for your personal collection and will not be viewed by anyone else." />
                     </View>
                 }
             </ImageBackground>

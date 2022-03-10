@@ -1,5 +1,5 @@
 const DARK_GREEN = "#00463C"
-const LIGHT_GREEN = "#8CBA7A"
+const LIGHT_GREEN = "#A8BC7C"
 const GREEN = "#378345"
 const CREME_WHITE = "#F4F3E7"
 const VIBRANT_GREEN = "#619641"

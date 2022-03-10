@@ -30,34 +30,20 @@ const Reflect = ({
   const hangout = {
     event: {
       name: "Coffee at 52nd St. Cafe",
-<<<<<<< HEAD
       date: "Sat 15 January, 1pm",
       memories: [{url: require("../assets/hangouts/nirali_selfie.png"), caption: "Got coffee with Callie at the cutest cafe!"}, 
       {url: require("../assets/hangouts/nirali_coffee.png"), caption: "Look at the beautiful latte art!"}]
-=======
-      date: "15th January 2022, 1pm",
-      memories: [{ url: require("../assets/hangouts/nirali_selfie.png"), caption: "Got coffee with Callie at the cutest cafe!" },
-      { url: require("../assets/hangouts/nirali_coffee.png"), caption: "Look at the beautiful latte art!" }]
->>>>>>> edc798af9e4150af9c1cf1380168abe52ae8ad93
     }
   }
 
   const [photosUploaded, setPhotosUploaded] = useState(false);
   return (
     <View style={styles.center}>
-<<<<<<< HEAD
     <Banner event={hangout.event.name} date={hangout.event.date}/>
       <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
         
         <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!"/>
         
-=======
-      <Banner event={hangout.event.name} date={hangout.event.date} />
-      <ImageBackground source={require("../assets/images/backgrounds/grove_friends.png")} resizeMode="cover" style={styles.image}>
-
-        <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!" />
-
->>>>>>> edc798af9e4150af9c1cf1380168abe52ae8ad93
         <View style={[commonStyles.cremeCard, styles.photosCard]}>
           {(!photosUploaded)
             ? <ActionButton
