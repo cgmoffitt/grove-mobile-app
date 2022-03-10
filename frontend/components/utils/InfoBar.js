@@ -4,17 +4,19 @@ import { DARK_GREEN, CREME_WHITE, VIBRANT_GREEN, shadows} from "../../constants/
 import commonStyles from "../../styles/commonStyles";
 import { Icon } from 'react-native-elements';
 
-const InfoBar = (props, {
-     navigation
+const InfoBar = ({
+     navigation,
+     cardStyle,
+     infoMessage
 }) => {
     return(
-      <View style={[commonStyles.cremeCard, styles.infoCard]}>
+      <View style={[commonStyles.cremeCard, styles.infoCard, cardStyle]}>
         <View style={styles.infoParent}>
             <View style={styles.infoChild}>
                 <Icon name='info' type="feather" />
             </View>
             <View style={[styles.infoChild, styles.infoTextBox]}>
-                <Text style={styles.infoText}>{props.infoMessage}</Text>
+                <Text style={styles.infoText}>{infoMessage}</Text>
             </View>
 
         </View>
