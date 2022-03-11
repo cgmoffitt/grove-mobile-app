@@ -3,16 +3,19 @@ import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable, Modal } fro
 import commonStyles from "../../styles/commonStyles"
 import { LIGHT_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, DARK_GREEN } from "../../constants/themes"
 import ActivityItem from "./ActivityItem";
+import { activityHeader } from "../../constants/defaultData";
 
 const NoActivities = ({
     selected
 }) => {
+    console.log("Selected: ", selected)
+    console.log(activityHeader.PENDING)
     return (
         <View style={styles.activityItem}>
             <Text
                 style={styles.noActivities}
             >
-                No {selected.toLowerCase()} hangouts. Check back later!
+                No {selected.toLowerCase()} hangouts. { selected === activityHeader.PENDING ? "Check back later!" : "" }
             </Text>
         </View>
     )
