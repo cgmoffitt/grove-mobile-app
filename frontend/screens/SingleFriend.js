@@ -81,7 +81,7 @@ const SingleFriend = ({ route, navigation }) => {
               <View style={styles.headingSubchild}>
                 <View style={styles.headingParentTitle}>
                   <View style={[styles.headingChildTitle]}>
-                    <Image style={{ width: 50, height: 40 }} source={plantToImage[friend.plant]}></Image>
+                    <Image style={{ width: 50, height: 40, resizeMode: "contain" }} source={plantToImage[friend.plant]}></Image>
                   </View>
                   <View style={styles.headingChildTitle}>
                     <Text style={styles.headingTitle}>{props.name}</Text>
