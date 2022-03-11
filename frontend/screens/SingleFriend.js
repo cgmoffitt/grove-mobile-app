@@ -7,6 +7,7 @@ import ActionButton from "../components/utils/ActionButton.js";
 import { Slider } from '@miblanchard/react-native-slider';
 import ToggleSwitch from 'toggle-switch-react-native';
 import routes from "../constants/routes.js";
+import { plantToImage, friends } from "../constants/defaultData.js";
 
 const ActivityChipNonInteractive = ({
   activity
@@ -46,6 +47,7 @@ const SingleFriend = ({ route, navigation }) => {
   const [alertIsOn, setAlertIsOn] = useState(false);
   const [priorityIsOn, setPriorityIsOn] = useState(false);
   const { props } = route.params;
+  const friend = friends.find(friend => friend.name === props.name)
 
   const renderItem = (item, index) => (
     <View style={styles.chipChild}>
@@ -79,7 +81,7 @@ const SingleFriend = ({ route, navigation }) => {
               <View style={styles.headingSubchild}>
                 <View style={styles.headingParentTitle}>
                   <View style={[styles.headingChildTitle]}>
-                    <Image style={{ width: 50, height: 40 }} source={require("../assets/images/plants/plant2.png")}></Image>
+                    <Image style={{ width: 50, height: 40 }} source={plantToImage[friend.plant]}></Image>
                   </View>
                   <View style={styles.headingChildTitle}>
                     <Text style={styles.headingTitle}>{props.name}</Text>

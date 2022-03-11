@@ -86,7 +86,18 @@ const Reflect = ({
               >
                 {hangout.memories.map((item, index) =>
                   <View style={styles.carouselCard}>
-                    <Image style={styles.cardImage} source={item}></Image>
+                    <View>
+                      <Image style={styles.cardImage} source={item}></Image>
+                      <TouchableOpacity
+                        style={styles.captionIcon}
+                        onPress={() => navigation.navigate("WriteCaption", { activity: hangout, photo: { index: index, uri: item.uri, caption: item.caption, activityId: activityId } })}
+                      >
+                        <Image
+                          source={require("../assets/images/plant-activity/pen.png")}
+                          style={styles.captionIconImage}
+                        />
+                      </TouchableOpacity>
+                    </View>
                     <Text style={styles.carouselText}>{item.caption}</Text>
                   </View>)}
               </Carousel>
@@ -174,6 +185,21 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "OpenSansBold",
     fontSize: 30
+  },
+  captionIcon: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    backgroundColor: "white",
+    position: "absolute",
+    right: 5,
+    bottom: 5,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  captionIconImage: {
+    width: 16,
+    height: 16
   },
 });
 

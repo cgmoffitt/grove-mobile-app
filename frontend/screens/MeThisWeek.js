@@ -102,9 +102,11 @@ const MeThisWeek = ({
     if (numHangouts === 0) {
       return
     }
+    setNeedsUpdate(true)
     setNumHangouts(numHangouts - 1)
   }
   const incrementNumHangouts = () => {
+    setNeedsUpdate(true)
     setNumHangouts(numHangouts + 1)
   }
 
@@ -114,10 +116,12 @@ const MeThisWeek = ({
     if (selected.length < 4) {
       const nextFocusFriends = selected.map(friendItem => friends.find(friend => friend.name === friendItem.value))
       setFocusFriends(nextFocusFriends)
+      setNeedsUpdate(true)
     }
   }
   const removeFriend = (friend) => {
     setFocusFriends(prev => prev.filter(prevFriend => friend !== prevFriend))
+    setNeedsUpdate(true)
   }
 
   /*Preferred Activities State*/
@@ -125,9 +129,11 @@ const MeThisWeek = ({
   const updatePreferredActivities = (selected) => {
     const nextPreferredActivities = selected.map(activityItem => DEFAULT_ACTIVITIES.find(activity => activity.title === activityItem.value))
     setPreferredActivities(nextPreferredActivities)
+    setNeedsUpdate(true)
   }
   const removeActivity = activity => {
     setPreferredActivities((prev) => prev.filter(prevActivity => prevActivity !== activity));
+    setNeedsUpdate(true)
   }
 
   /**Prefered Distance State */

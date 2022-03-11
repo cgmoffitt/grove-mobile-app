@@ -132,10 +132,10 @@ const MyProfile = ({ navigation }) => {
           active={true}
           renderIcon={() => <Image style={{width: 30, height:30, marginRight: 10}} source={require("../assets/single_friend/camera.png")} />}
         />
-        <ActionButton main={"Update 'Me This Week'"}
+        {/* <ActionButton main={"Update 'Me This Week'"}
           style={[styles.memoriesButton, { fontSize: 10 }]}
           onPressMethod={() => navigation.navigate(routes.MY_WEEK_TAB)}
-          active={true} />
+          active={true} /> */}
 
       </View>
     </View>);
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     width: '85%',
-    height: '30%'
+    height: '16%'
   },
   inputChild: {
     display: "flex",

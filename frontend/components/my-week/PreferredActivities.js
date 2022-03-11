@@ -22,7 +22,7 @@ const AddActivitiesModal = ({
             onSelectItem={(selected) => {
                 updatePreferredActivities(selected)
             }}
-            placeholder="Select up to 3 friends"
+            placeholder="Select activities"
             multipleText={`${preferredActivities.length} activities selected`}
         />
     )
