@@ -138,7 +138,6 @@ const MeThisWeek = ({
 
   /**Wizard of oz for generating activity */
   const wizardOfOzGenerateActivity = (dispatch) => {
-    console.log("Adding activity")
     const activityTitle = preferredActivities[0].title
     const friend = focusFriends[0].name
 

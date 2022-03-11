@@ -27,6 +27,7 @@ export default EditActivityModal = ({
             onClose={onClose}
             onSave={() => onSave(editSelected)}
             title={"Edit Activity"}
+            saveActive={selected !== ""}
         >
             <Activities
                 selected={editSelected}

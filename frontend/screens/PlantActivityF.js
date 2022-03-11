@@ -13,6 +13,7 @@ import SuccessModal from "../components/utils/SuccessModal";
 import EditActivityModal from "../components/plant-activity/EditActivityModal";
 import EditLocationModal from "../components/plant-activity/EditLocationModal";
 import EditDateTimeModal from "../components/plant-activity/EditDateTimeModal";
+import EditSendToModal from "../components/plant-activity/EditSendToModal";
 import { getStandardDate } from "../util-functions";
 
 const ConfirmCard = ({
@@ -58,8 +59,8 @@ const PlantActivityF = ({
         const endTime = new Date(finalEndTime)
         const startAmpm = startTime.getHours() > 11 ? "pm" : "am"
         const endAmpm = endTime.getHours() > 11 ? "pm" : "am"
-        const startHour = (startTime.getHours() % 12 === 0 ? 12 : startTime.getHours() % 12) 
-        const endHour = (endTime.getHours() % 12  === 0 ? 12 : endTime.getHours() % 12)
+        const startHour = (startTime.getHours() % 12 === 0 ? 12 : startTime.getHours() % 12)
+        const endHour = (endTime.getHours() % 12 === 0 ? 12 : endTime.getHours() % 12)
         const startMinute = startTime.getMinutes() < 10 ? "0" + startTime.getMinutes() : startTime.getMinutes()
         const endMinute = endTime.getMinutes() < 10 ? "0" + endTime.getMinutes() : endTime.getMinutes()
 
@@ -79,6 +80,15 @@ const PlantActivityF = ({
     /**Edit Time Modal State + Functions */
     const [editDateOpen, setEditDateOpen] = useState(false)
 
+    /**Edit Send To Modal State + functions */
+    const [editSendToOpen, setEditSendToOpen] = useState(false)
+    const [editFriendsToReceive, setEditFriendsToReceive] = useState(finalFriends)
+    const removeFriend = (friend) => {
+        const indexToRemove = editFriendsToReceive.findIndex(thisFriend => thisFriend === friend)
+        const nextFriends = editFriendsToReceive.splice(0,indexToRemove).concat(editFriendsToReceive.splice(indexToRemove + 1))
+        setEditFriendsToReceive(nextFriends)
+    }
+
     const openEditModal = (type) => {
         switch (type) {
             case "Activity":
@@ -90,6 +100,8 @@ const PlantActivityF = ({
                 setEditDateOpen(true)
             case "Time":
                 setEditDateOpen(true)
+            case "Send to":
+                setEditSendToOpen(true)
         }
     }
 
@@ -154,6 +166,17 @@ const PlantActivityF = ({
                 startTime={finalStartTime}
                 endTime={finalEndTime}
             />
+            <EditSendToModal
+                modalVisible={editSendToOpen}
+                onClose={() => setEditSendToOpen(false)}
+                onSave={(friends) => {
+                    setFinalFriends(friends)
+                    setEditSendToOpen(false)
+                }}
+                friendsToReceive={editFriendsToReceive}
+                setFriendsToReceive={setEditFriendsToReceive}
+                removeFriend={removeFriend}
+            />
             <ProgressBar curStep={steps.CONFIRM} showLabels={false} />
             <Text style={styles.textHeader}>Confirm and plant your hangout!</Text>
             <View style={[styles.confirmContainer, commonStyles.shadow]}>
@@ -161,7 +184,7 @@ const PlantActivityF = ({
                 <ConfirmCard title={"Location"} selection={finalLocation} openEditModal={openEditModal} />
                 <ConfirmCard title={"Date"} selection={getStandardDate(new Date(finalDate))} openEditModal={openEditModal} />
                 <ConfirmCard title={"Time"} selection={getTimeString()} openEditModal={openEditModal} />
-                <ConfirmCard title={"Send to"} selection={friends[0]} openEditModal={openEditModal} />
+                <ConfirmCard title={"Send to"} selection={finalFriends.length > 1 ? finalFriends[0] + ` and ${finalFriends.length - 1} others` : finalFriends[0]} openEditModal={openEditModal} />
             </View>
             <ActionButton
                 active={true}

@@ -22,6 +22,7 @@ export default EditLocationModal = ({
             onClose={onClose}
             onSave={() => onSave()}
             title={"Edit Location"}
+            saveActive={selectedIndex !== -1}
         >
             <LocationsMap
                 curNearbyIndex={curNearbyIndex}

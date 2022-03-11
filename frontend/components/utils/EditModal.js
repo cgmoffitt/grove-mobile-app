@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, Pressable, Modal, TouchableOpacity } from "react-native";
 import commonStyles from "../../styles/commonStyles"
-import { CREME_WHITE, DARK_GREEN, LIGHT_GREEN } from "../../constants/themes";
+import { CREME_WHITE, DARK_GREEN, LIGHT_GREEN, TEXT_GRAY } from "../../constants/themes";
 import XButton from "./XButton";
 
 
@@ -10,7 +10,8 @@ export default EditActivityModal = ({
     onClose,
     onSave,
     title,
-    children
+    children,
+    saveActive
 }) => {
 
 
@@ -35,7 +36,8 @@ export default EditActivityModal = ({
 
                     <TouchableOpacity
                         onPress={onSave}
-                        style={styles.saveButton}
+                        style={[styles.saveButton, saveActive ? styles.active : styles.inactive]}
+                        disabled={!saveActive}
                     >
                         <Text style={[styles.textBold, styles.textStyle, { width: 50, height: 30 }]}>Save</Text>
                     </TouchableOpacity>
@@ -95,4 +97,10 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         textAlign: "center"
     },
+    active: {
+        backgroundColor: DARK_GREEN
+    }, 
+    inactive: {
+        backgroundColor: TEXT_GRAY
+    }
 });

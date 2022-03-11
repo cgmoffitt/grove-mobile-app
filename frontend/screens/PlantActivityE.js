@@ -6,9 +6,8 @@ import { steps } from "../constants/defaultData"
 
 import ActionButton from "../components/utils/ActionButton";
 import ProgressBar from "../components/plant-activity/ProgressBar";
-import DropDownPicker from 'react-native-dropdown-picker';
-import { friends } from "../constants/defaultData";
 import { getStandardDate } from "../util-functions";
+import SelectFriends from "../components/plant-activity/SelectFriends";
 
 
 
@@ -18,10 +17,6 @@ const PlantActivityE = ({
 }) => {
     const {activity, location, date, time} = route.params
 
-    friends.sort((a, b) => {
-        return a.name.localeCompare(b.name)
-    })
-    const items = [{ label: "All friends", value: "All friends" }].concat(friends.map(friend => ({ label: friend.name, value: friend.name })))
     const [friendsToReceive, setFriendsToReceive] = useState([])
 
     const removeFriend = (friend) => {
@@ -41,43 +36,11 @@ const PlantActivityE = ({
                 showLabels={true}
             />
             <Text style={styles.textHeader}>Select friends to send this activity to</Text>
-            <View style={[styles.dropDownContainer, commonStyles.shadow]}>
-                <DropDownPicker
-                    value={friendsToReceive}
-                    items={items}
-                    setValue={setFriendsToReceive}
-                    onPress={() => console.log("pressed")}
-                    // multipleText={multipleText}
-                    open={true}
-                    setOpen={() => { }}
-                    textStyle={styles.textItalic}
-                    style={{ display: "none" }}
-                    dropDownContainerStyle={{ borderWidth: 0 }}
-                    multiple={true}
-                    ArrowDownIconComponent={() => <View></View>}
-                    ArrowUpIconComponent={() => <View></View>}
-                    searchable={true}
-                    searchPlaceholder="Search..."
-                    searchPlaceholderTextColor={TEXT_GRAY}
-                    searchTextInputStyle={styles.textItalic}
-                    searchContainerStyle={{ height: 50, }}
-                    searchTextInputStyle={{ borderWidth: 0 }}
-                />
-            </View>
-            <View style={styles.selectedSection}>
-                <Text style={styles.selectedHeader}>Selected:</Text>
-                <View style={styles.selectedFriends}>
-                    {friendsToReceive.map(friend =>
-                        <TouchableOpacity 
-                            key={friend}
-                            style={commonStyles.darkGreenChip}
-                            onPress={() => removeFriend(friend)}
-                        >
-                            <Text style={styles.selectedText}>{friend}</Text>
-                        </TouchableOpacity>
-                    )}
-                </View>
-            </View>
+            <SelectFriends  
+                friendsToReceive={friendsToReceive}
+                setFriendsToReceive={setFriendsToReceive}
+                removeFriend={removeFriend}
+            />
             <ActionButton
                 active={friendsToReceive.length > 0}
                 main={"Next"}

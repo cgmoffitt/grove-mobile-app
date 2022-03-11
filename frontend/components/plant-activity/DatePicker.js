@@ -34,7 +34,6 @@ const DatePicker = ({
 
     const calendarWidth = Dimensions.get("screen").width * 0.7
     const now = new Date()
-    console.log("Date: ", date)
 
 
     return (
