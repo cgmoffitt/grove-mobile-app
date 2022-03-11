@@ -184,7 +184,11 @@ const PlantActivityF = ({
             <Text style={styles.textHeader}>Confirm and plant your hangout!</Text>
             <View style={[styles.confirmContainer, commonStyles.shadow]}>
                 <ConfirmCard title={"Activity"} selection={finalActivity} openEditModal={openEditModal} />
-                <ConfirmCard title={"Location"} selection={finalLocation} openEditModal={openEditModal} />
+                <ConfirmCard title={"Location"} selection={finalLocation} openEditModal={() => {
+                    if (finalLocation === "Verve Coffee" || finalLocation === "Casa Blanka" || finalLocation === "Pizza Royal"){
+                        openEditModal("Location")
+                    }
+                }} />
                 <ConfirmCard title={"Date"} selection={getStandardDate(new Date(finalDate))} openEditModal={openEditModal} />
                 <ConfirmCard title={"Time"} selection={getTimeString()} openEditModal={openEditModal} />
                 <ConfirmCard title={"Send to"} selection={finalFriends.length > 1 ? finalFriends[0] + ` and ${finalFriends.length - 1} others` : finalFriends[0]} openEditModal={openEditModal} />
