@@ -35,6 +35,7 @@ const ReflectCard = ({
                     openSuccessModal("Your reflection was successfully saved.")
                     setActivityReflected(activity.id, dispatch)
                 }}
+                disabled={!reflectedA || !reflectedB}
             >
                 <View style={[
                     styles.viewButton,
