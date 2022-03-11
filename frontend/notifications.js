@@ -36,8 +36,8 @@ async function registerForPushNotificationsAsync() {
 async function schedulePushNotification() {
     await Notifications.scheduleNotificationAsync({
         content: {
-            title: "New Pending Event",
-            body: 'Hike with Blake on Saturday!',
+            title: "New Pending Hangout",
+            body: 'Click to see a new pending hangout from grove!',
             data: {route: routes.HANGOUTS_TAB} ,
         },
         trigger: { seconds: 3 },

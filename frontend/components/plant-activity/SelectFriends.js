@@ -28,7 +28,6 @@ const SelectFriends = ({
                     value={friendsToReceive}
                     items={items}
                     setValue={setFriendsToReceive}
-                    onPress={() => console.log("pressed")}
                     // multipleText={multipleText}
                     open={true}
                     setOpen={() => { }}
