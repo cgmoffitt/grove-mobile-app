@@ -17,10 +17,12 @@ import {
     ACTIVITY_IMG_SOURCES
 } from "../../constants/defaultData"
 import {
-    confirmActivity
+    confirmActivity,
+    deleteActivity
 } from "../../redux/utils"
 import { useDispatch, connect } from "react-redux";
 import InfoModal from "../shared-components/InfoModal";
+import { getStandardDate } from "../../util-functions";
 
 const HomeCard = ({
     activity,
@@ -31,6 +33,10 @@ const HomeCard = ({
     const acceptMethod = (activity) => {
         confirmActivity(activity.id, dispatch)
     }
+    const deleteMethod = (activity) => {
+        deleteActivity(activity.id, dispatch)
+    }
+
     const [infoModalVisible, setInfoModalVisible] = useState(false);
 
     return (
@@ -51,11 +57,13 @@ const HomeCard = ({
                     <Image style={{ width: 35, height: 35 }} resizeMode={"contain"} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
                     <Text style={styles.activity}>{activity.title} with {activity.friend}</Text>
                 </View>
-                <Text style={styles.date}>{activity.date.toLocaleString('default', { weekday: 'short' }) + ", " + activity.date.toLocaleString('default', { month: 'long' }) + " " + activity.date.getDate()}</Text>
+                <Text style={styles.date}>{getStandardDate(activity.date)}</Text>
                 <Text style={styles.location}>{activity.location}</Text>
                 {type == activityHeader.PENDING &&
                     <View style={styles.buttons}>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress={() => deleteMethod(activity)}
+                        >
                             <View style={[styles.rejectButton, commonStyles.shadow]}>
                                 <Text style={styles.rejectText}>Maybe Later</Text>
                             </View>
@@ -129,7 +137,7 @@ const styles = StyleSheet.create({
     },
     rejectText: {
         fontFamily: "OpenSans",
-        fontSize: 16,
+        fontSize: 18,
         textAlign: "center",
         color: TEXT_GRAY
     },
@@ -141,7 +149,7 @@ const styles = StyleSheet.create({
     },
     acceptText: {
         fontFamily: "OpenSans",
-        fontSize: 16,
+        fontSize: 18,
         textAlign: "center",
         color: "white"
     },

@@ -14,31 +14,25 @@ const ActivityCard = ({
     selected,
     onChooseActivity
 }) => {
+    console.log(cardStyle)
 
     return (
-        <View
-            style={[cardStyle]}
+        <TouchableOpacity
+            onPress={() => onChooseActivity(activity)}
+            style={[styles.activityCard, commonStyles.shadow].concat(cardStyle)}
         >
-            <TouchableOpacity
-                onPress={() => onChooseActivity(activity)}
-            >
-                <View style={[styles.activityCard, commonStyles.shadow]}>
-                    <Image
-                        source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}
-                        style={styles.activityImg}
-                    />
-                    {activity.title && <Text style={styles.activityTitle}>{activity.title}</Text>}
-                    {activity.location && <Text style={styles.activityLocation}>{activity.location}</Text>}
-                    {selected === activity.title &&
-                        <View style={styles.check}>
-                            <Icon name="check" color="white" size={20} />
-                        </View>
-                    }
+            <Image
+                source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}
+                style={styles.activityImg}
+            />
+            {activity.title && <Text style={styles.activityTitle}>{activity.title}</Text>}
+            {activity.location && <Text style={styles.activityLocation}>{activity.location}</Text>}
+            {selected === activity.title &&
+                <View style={styles.check}>
+                    <Icon name="check" color="white" size={20} />
                 </View>
-            </TouchableOpacity>
-        </View>
-
-
+            }
+        </TouchableOpacity>
     )
 }
 

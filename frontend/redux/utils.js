@@ -17,8 +17,20 @@ const confirmActivity = (activityId, dispatch) => {
     dispatch({ type: 'CONFIRM_ACTIVITY', activityId: activityId})
 }
 
+const setActivityReflected = (activityId, dispatch) => {
+    dispatch({ type: 'SET_REFLECTED', activityId: activityId})
+}
+
+const deleteActivity = (activityId, dispatch) => {
+    dispatch({ type: 'DELETE_ACTIVITY', activityId: activityId})
+}
+
 const addMemory = (activityId, memory, dispatch) => {
     dispatch({ type: 'ADD_MEMORY', activityId: activityId, memory: memory})
+}
+
+const deleteMemory = (activityId, memory, dispatch) => {
+    dispatch({ type: 'DELETE_MEMORY', activityId: activityId, memory: memory})
 }
 
 
@@ -27,5 +39,8 @@ export {
     setActivities,
     addActivity,
     confirmActivity,
-    addMemory
+    addMemory,
+    deleteMemory,
+    deleteActivity,
+    setActivityReflected
 }

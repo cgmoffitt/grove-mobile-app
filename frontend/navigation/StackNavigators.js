@@ -13,6 +13,7 @@ import PlantActivityF from "../screens/PlantActivityF";
 import Friends from "../screens/Friends";
 import MeThisWeek from "../screens/MeThisWeek"
 import Hangouts from "../screens/Hangouts";
+import FriendHangouts from "../screens/FriendHangouts";
 import Reflect from "../screens/Reflect";
 import SingleFriend from "../screens/SingleFriend";
 import UploadMemory from "../screens/UploadMemory";
@@ -144,9 +145,9 @@ const FriendsStackNavigator = () => {
         options={configHeaderOptions("Upload a Memory")}
       />
       <Stack.Screen
-        name={routes.HANGOUTS}
-        component={Hangouts}
-        options={configHeaderOptions("Hangouts")}
+        name={routes.FRIEND_HANGOUTS}
+        component={FriendHangouts}
+        options={configHeaderOptions("hangouts")}
       />
     </Stack.Navigator>
   );

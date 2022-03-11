@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, Text, Button, ImageBackground, Dimensions, Pressable, Image } from "react-native";
+import { View, StyleSheet, Text, Button, ImageBackground, Dimensions, TouchableOpacity, Image } from "react-native";
 import ReflectCard from "../components/reflect/ReflectCard";
 import commonStyles from "../styles/commonStyles";
 import ActionButton from "../components/utils/ActionButton";
@@ -9,6 +9,7 @@ import { TabRouter } from "@react-navigation/native";
 import Carousel from 'react-native-banner-carousel';
 import { TEXT_GRAY, DARK_GREEN, VIBRANT_GREEN } from "../constants/themes";
 import { connect } from "react-redux";
+import { getStandardDate } from "../util-functions";
 
 
 const Reflect = ({
@@ -19,7 +20,6 @@ const Reflect = ({
   const { activityId } = route.params
   const [hangout, setHangout] = useState(null)
   const [loaded, setLoaded] = useState(false)
-  console.log("Hangout: ", hangout)
 
   useEffect(() => {
     let mounted = true
@@ -30,10 +30,9 @@ const Reflect = ({
   }, [activities])
 
   React.useLayoutEffect(() => {
-    console.log("Id: ", activityId)
     const thisHangout = activities.find(activity => activity.id === activityId)
     navigation.setOptions({
-      title: `Hangout with ${thisHangout.friend}`,
+      title: `hangout with ${thisHangout.friend}`,
     });
   }, [navigation]);
 
@@ -50,12 +49,16 @@ const Reflect = ({
 
   return (
     <View style={styles.center}>
-      <Banner event={hangout.title + " at " + hangout.location} date={hangout.date.toLocaleString('default', { weekday: 'short' }) + ", " + hangout.date.toLocaleString('default', { month: 'long' }) + " " + hangout.date.getDate()} />
+      <Banner event={hangout.title + " at " + hangout.location} date={getStandardDate(hangout.date)} />
       <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
-        <ReflectCard header="How was the hangout?" subheader="This reflection is just for you!" />
+        <ReflectCard
+          header="How was the hangout?"
+          subheader="This reflection is just for you!"
+          activity={hangout}
+        />
 
         <View style={[commonStyles.cremeCard, styles.photosCard]}>
-          {(!hangout.memories)
+          {(!hangout.memories || hangout.memories.length === 0)
             ? <ActionButton
               main="Add to Scrapbook"
               onPressMethod={() => navigation.navigate("UploadMemory",
@@ -65,29 +68,29 @@ const Reflect = ({
               active={true}
             />
             :
-            <View>
-              <Pressable
+            <View style={[styles.container]}>
+              <TouchableOpacity
                 style={[styles.buttonAdd]}
                 onPress={() => navigation.navigate("UploadMemory", {
                   activity: hangout
                 })}
               >
                 <Text style={styles.textStyle}>+</Text>
-              </Pressable>
-              <View style={[styles.container, styles.upcomingHeight]}>
-                <Carousel
-                  autoplay={true}
-                  showsPageIndicator={true}
-                  pageSize={windowWidth}
-                  useNativeDriver={false}
-                >
-                  {hangout.memories.map((item, index) =>
-                    <View style={styles.carouselCard}>
-                      <Image style={styles.cardImage} source={item}></Image>
-                      <Text style={styles.carouselText}>{item.caption}</Text>
-                    </View>)}
-                </Carousel>
-              </View>
+              </TouchableOpacity>
+
+              <Carousel
+                autoplay={true}
+                showsPageIndicator={true}
+                pageSize={windowWidth}
+                useNativeDriver={false}
+              >
+                {hangout.memories.map((item, index) =>
+                  <View style={styles.carouselCard}>
+                    <Image style={styles.cardImage} source={item}></Image>
+                    <Text style={styles.carouselText}>{item.caption}</Text>
+                  </View>)}
+              </Carousel>
+
             </View>
 
           }
@@ -113,9 +116,9 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   photosCard: {
-    width: '90%',
+    width: '95%',
     marginTop: '5%',
-    height: '30%',
+    height: '32%',
     paddingVertical: 0
   },
   cardWrapper: {
@@ -133,7 +136,7 @@ const styles = StyleSheet.create({
   },
   container: {
     width: "100%",
-    height: 280,
+    height: "100%",
     justifyContent: "center",
     alignItems: "center",
     marginVertical: 0
@@ -143,7 +146,7 @@ const styles = StyleSheet.create({
   },
   carouselText: {
     fontFamily: "OpenSans",
-    color: TEXT_GRAY,
+    color: "black",
     fontSize: 16,
     padding: '1%',
     textAlign: "center"
@@ -162,7 +165,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     position: "absolute",
     top: -10,
-    left: 5
+    left: -20,
+    zIndex: 10
   },
   textStyle: {
     color: "white",

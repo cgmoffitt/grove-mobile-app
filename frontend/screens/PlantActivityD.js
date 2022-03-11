@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+import { View, StyleSheet, Text, Dimensions, Alert } from "react-native";
 import commonStyles from "../styles/commonStyles"
 import { DARK_GREEN, TEXT_GRAY } from "../constants/themes";
 import { steps } from "../constants/defaultData"
@@ -36,6 +36,7 @@ const PlantActivityD = ({
 
             <DatePicker
                 updateDate={updateDate}
+                date={date}
             />
             <TimePicker
                 startTime={startTime}
@@ -49,7 +50,17 @@ const PlantActivityD = ({
                 active={date !== null}
                 main={"Next"}
                 style={styles.nextButton}
-                onPressMethod={() => navigation.navigate(routes.PLANT_ACTIVITYE, { activity: activity, location: location, date: date, time: [startTime, endTime] })}
+                onPressMethod={() => {
+                    if (endTime < startTime){
+                        Alert.alert("Oops! Please choose an end time after your start time.")
+                        return
+                    }
+                    if (date < new Date ()){
+                        Alert.alert("Oops! Please select a date that is not in the past.")
+                        return
+                    }
+                    navigation.navigate(routes.PLANT_ACTIVITYE, { activity: activity, location: location, date: date, time: [startTime, endTime] })
+                }}
             />
         </View>
     );
@@ -70,8 +81,8 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSansItalic",
         fontSize: 22,
         color: DARK_GREEN,
-        marginTop: 15,
-        marginBottom: 15
+        marginTop: 10,
+        marginBottom: 10
     },
     calendarContainer: {
         backgroundColor: "white",

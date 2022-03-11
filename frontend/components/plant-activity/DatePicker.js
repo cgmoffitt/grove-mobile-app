@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet, Text, Dimensions, Alert } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import { DARK_GREEN, TEXT_GRAY } from "../../constants/themes";
 
@@ -25,19 +25,29 @@ const customDateStylesCallback = () => {
     };
 }
 
+
 const DatePicker = ({
+    date,
     updateDate,
     containerStyle
 }) => {
 
     const calendarWidth = Dimensions.get("screen").width * 0.7
+    const now = new Date()
+    console.log("Date: ", date)
+
 
     return (
         <View style={[styles.calendarContainer, commonStyles.shadow, containerStyle]}>
             <CalendarPicker
-                onDateChange={updateDate}
+                onDateChange={(date) => {
+                    if (date < now) {
+                        Alert.alert("Oops! Please select a date that is not in the past.")
+                    } 
+                    updateDate(date)
+                }}
                 width={calendarWidth}
-                selectedDayStyle={{ backgroundColor: DARK_GREEN, color: DARK_GREEN }}
+                selectedDayStyle={{backgroundColor: DARK_GREEN}}
                 selectedDayColor={DARK_GREEN}
                 selectedDayTextColor={"white"}
                 todayBackgroundColor={TEXT_GRAY}
@@ -116,6 +126,12 @@ const styles = StyleSheet.create({
     timeText: {
         fontFamily: "OpenSans",
         fontSize: 18
+    },
+    valid: {
+        backgroundColor: DARK_GREEN
+    },
+    invalid: {
+        backgroundColor: "red"
     }
 });
 

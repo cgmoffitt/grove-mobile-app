@@ -22,3 +22,7 @@ export const filterPast = (activity) => {
     const curDate = new Date()
     return activity.date < curDate && activity.confirmed
 }
+
+export const getStandardDate = (date) => {
+    return date.toLocaleString('default', { weekday: 'short' }) + ", " + date.toLocaleString('default', { month: 'long' }) + " " + date.getDate()
+}

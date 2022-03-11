@@ -14,27 +14,13 @@ import { schedulePushNotification } from "../notifications";
 import { addActivity } from "../redux/utils";
 import { useDispatch, connect } from "react-redux";
 import InfoBar from "../components/utils/InfoBar.js";
+import routes from "../constants/routes";
 
 import {
   DEFAULT_FOCUS_FRIENDS,
   friends,
   DEFAULT_ACTIVITIES
 } from "../constants/defaultData"
-
-const wizardOfOzGenerateActivity = (dispatch) => {
-  console.log("Adding activity")
-  const ACTIVITY_TO_ADD = {
-    id: 10,
-    title: defaultActivity.HIKING,
-    friend: "Blake",
-    date: new Date('March 12, 2022 18:00:00'),
-    confirmed: false,
-    plantedId: AUTOMATIC_ID,
-    reflected: false,
-    location: "Marin Trail"
-  }
-  addActivity(ACTIVITY_TO_ADD, dispatch)
-}
 
 const PreferredDistanceCard = ({
   preferredDistance,
@@ -92,7 +78,8 @@ const InfoCard = ({
 
 
 const MeThisWeek = ({
-  preferences
+  preferences,
+  navigation
 }) => {
 
   const [successModalVisible, setSuccessModalVisible] = useState(false)
@@ -149,6 +136,38 @@ const MeThisWeek = ({
   /**Availability State */
   const [availability, setAvailability] = useState(preferences.availability)
 
+  /**Wizard of oz for generating activity */
+  const wizardOfOzGenerateActivity = (dispatch) => {
+    console.log("Adding activity")
+    const activityTitle = preferredActivities[0].title
+    const friend = focusFriends[0].name
+
+    const getLocationFromActivity = (activity) => {
+      switch (activity){
+        case defaultActivity.BAR_HOPPING:
+          return "Nolas"
+        case defaultActivity.COFFEE:
+          return "Verve Coffee"
+        case defaultActivity.HIKING:
+          return "Marin Trail"
+        case defaultActivity.TENNIS:
+          return "EVGR Courts"
+      }
+    }
+    
+    const activityToAdd = {
+      id: 10,
+      title: activityTitle,
+      friend: friend,
+      date: new Date('March 12, 2022 18:00:00'),
+      confirmed: false,
+      plantedId: AUTOMATIC_ID,
+      reflected: false,
+      location: getLocationFromActivity(activityTitle)
+    }
+
+    addActivity(activityToAdd, dispatch)
+  }
 
   return (
     <ImageBackground
@@ -159,7 +178,10 @@ const MeThisWeek = ({
       <ScrollView style={commonStyles.full} contentContainerStyle={styles.background}>
         <SuccessModal
           modalVisible={successModalVisible}
-          onClose={() => setSuccessModalVisible(false)}
+          onClose={() => {
+            setSuccessModalVisible(false)
+            navigation.navigate(routes.HOME_TAB)
+          }}
           prompt={"We will use these preferences to generate personalized hangouts for you this week."}
         />
         <InfoBar 
@@ -192,7 +214,7 @@ const MeThisWeek = ({
         <ActionButton
           main={needsUpdate ? "Update Preferences" : "Updated"}
           style={{ marginBottom: 30 }}
-          active={needsUpdate}
+          active={needsUpdate && focusFriends.length > 0 && preferredActivities.length > 0}
           onPressMethod={updatePreferences}
         />
         {/* <Accordions /> */}

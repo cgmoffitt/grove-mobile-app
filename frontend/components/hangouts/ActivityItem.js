@@ -1,10 +1,11 @@
 import { React, useState } from "react";
 import { View, StyleSheet, Text, Image, TouchableOpacity, Pressable, Modal } from "react-native";
 import commonStyles from "../../styles/commonStyles"
-import { LIGHT_GREEN, DARK_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, GREEN } from "../../constants/themes"
+import { LIGHT_GREEN, DARK_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, GREEN, TEXT_GRAY } from "../../constants/themes"
 import InfoModal from "../shared-components/InfoModal";
 import routes from "../../constants/routes";
 import { ACTIVITY_IMG_SOURCES } from "../../constants/defaultData";
+import { getStandardDate } from "../../util-functions";
 
 const ReflectButton = ({
     navigation,
@@ -89,7 +90,7 @@ const AcceptOrDecline = ({
             <View style={styles.buttonChild}>
                 <AcceptButton acceptMethod={() => {
                     acceptMethod()
-                    openSuccessModal(`You've successfully accepted a hangout with ${activity.friend} for ${activity.date.toDateString()}`)
+                    openSuccessModal(`You've successfully accepted a hangout with ${activity.friend} for ${getStandardDate(activity.date)}`)
                 }} navigation={navigation} />
             </View>
         </View>
@@ -156,7 +157,7 @@ export default ActivityItem = ({
                             {activity.title}
                         </Text>
                         <Text style={styles.dateText}>
-                            {activity.date.toLocaleString('default', { weekday: 'short' }) + ", " + activity.date.toLocaleString('default', { month: 'long' }) + " " + activity.date.getDate() }
+                            {getStandardDate(activity.date)}
                         </Text>
 
                     </View>
@@ -184,7 +185,7 @@ export default ActivityItem = ({
             {(selected === "Pending" && !activity.accepted)
                 ? <AcceptOrDecline
                     acceptMethod={() => acceptMethod(activity)}
-                    declineMethod={declineMethod}
+                    declineMethod={() => declineMethod(activity)}
                     navigation={navigation}
                     activity={activity}
                     openSuccessModal={openSuccessModal}
@@ -252,7 +253,7 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSans",
         color: "white",
         textAlign: "center",
-        fontSize: 16
+        fontSize: 18
     },
     acceptButton: {
         backgroundColor: GREEN,

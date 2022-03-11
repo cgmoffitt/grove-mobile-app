@@ -31,9 +31,8 @@ export default EditActivityModal = ({
             <Activities
                 selected={editSelected}
                 onChooseActivity={onChooseActivity}
-                containerStyle={{marginTop:20}}
+                containerStyle={{marginTop:40}}
             />
         </EditModal>
-
     )
 }

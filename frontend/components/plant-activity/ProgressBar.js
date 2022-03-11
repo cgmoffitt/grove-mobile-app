@@ -63,7 +63,7 @@ const ProgressBar = ({
 
 const createProgressStyles = (progress) => StyleSheet.create({
     containerLarge: {
-        height: 125,
+        height: 135,
         width: "100%",
         justifyContent: "flex-end",
         alignItems: "center"

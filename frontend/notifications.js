@@ -34,7 +34,6 @@ async function registerForPushNotificationsAsync() {
 }
 
 async function schedulePushNotification() {
-    console.log("Scheduling a notification")
     await Notifications.scheduleNotificationAsync({
         content: {
             title: "New Pending Event",

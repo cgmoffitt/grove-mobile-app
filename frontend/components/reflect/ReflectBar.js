@@ -1,10 +1,11 @@
 import { React, useState } from "react";
-import { Pressable, Text, StyleSheet, View, Image} from "react-native";
-import { DARK_GREEN, CREME_WHITE, VIBRANT_GREEN, shadows} from "../../constants/themes";
+import { Pressable, Text, StyleSheet, View, Image } from "react-native";
+import { DARK_GREEN, CREME_WHITE, VIBRANT_GREEN, shadows } from "../../constants/themes";
 import commonStyles from "../../styles/commonStyles";
 
-const ReflectBar = (props, {
-     navigation
+const ReflectBar = ({
+    title,
+    setReflected
 }) => {
 
     const [bigSmile, setBigSmile] = useState(false);
@@ -12,21 +13,41 @@ const ReflectBar = (props, {
     const [straightFace, setStraightFace] = useState(false);
 
 
-    return(
+    return (
         <View>
-            <Text style={styles.title}>{props.title}</Text>
+            <Text style={styles.title}>{title}</Text>
             <View style={styles.reflectParent}>
-                <Pressable style={styles.reflectChild} onPress={() => {setBigSmile(!bigSmile), setMediumSmile(false), setStraightFace(false)}}>
+                <Pressable
+                    style={styles.reflectChild}
+                    onPress={() => {
+                        setReflected(true)
+                        setBigSmile(!bigSmile)
+                        setMediumSmile(false)
+                        setStraightFace(false)
+                    }}>
                     <Image style={bigSmile ? styles.reflectIconBold : styles.reflectIcon} source={require("../../assets/reflection/bigsmile.png")}></Image>
                 </Pressable>
-                <Pressable style={styles.reflectChild} onPress={() => {setBigSmile(false), setMediumSmile(!mediumSmile), setStraightFace(false)}}>
+                <Pressable
+                    style={styles.reflectChild}
+                    onPress={() => {
+                        setReflected(true)
+                        setBigSmile(false)
+                        setMediumSmile(!mediumSmile)
+                        setStraightFace(false)
+                    }}>
                     <Image style={mediumSmile ? styles.reflectIconBold : styles.reflectIcon} source={require("../../assets/reflection/mediumsmile.png")}></Image>
                 </Pressable>
-                <Pressable style={styles.reflectChild} onPress={() => {setBigSmile(false), setMediumSmile(false), setStraightFace(!straightFace)}}>
+                <Pressable
+                    style={styles.reflectChild}
+                    onPress={() => {
+                        setReflected(true)
+                        setBigSmile(false)
+                        setMediumSmile(false)
+                        setStraightFace(!straightFace)
+                    }}>
                     <Image style={straightFace ? styles.reflectIconBold : styles.reflectIcon} source={require("../../assets/reflection/straightface.png")}></Image>
                 </Pressable>
             </View>
-           
         </View>
     );
 };
@@ -38,9 +59,9 @@ const styles = StyleSheet.create({
         textAlign: "center",
         paddingTop: '3%'
     },
-    reflectIcon:{
-        width:50,
-        height:50
+    reflectIcon: {
+        width: 50,
+        height: 50
     },
     reflectParent: {
         display: "flex",
@@ -48,7 +69,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-evenly",
         alignItems: "center"
     },
-    reflectChild:{
+    reflectChild: {
         width: 40,
         height: 40,
         marginLeft: 15,
@@ -63,9 +84,9 @@ const styles = StyleSheet.create({
     reflectIconBold: {
         borderColor: DARK_GREEN,
         borderWidth: 2,
-        borderRadius:100,
-        width:50,
-        height:50
+        borderRadius: 100,
+        width: 50,
+        height: 50
     }
 });
 

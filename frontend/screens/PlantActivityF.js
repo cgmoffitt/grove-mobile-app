@@ -13,6 +13,7 @@ import SuccessModal from "../components/utils/SuccessModal";
 import EditActivityModal from "../components/plant-activity/EditActivityModal";
 import EditLocationModal from "../components/plant-activity/EditLocationModal";
 import EditDateTimeModal from "../components/plant-activity/EditDateTimeModal";
+import { getStandardDate } from "../util-functions";
 
 const ConfirmCard = ({
     title,
@@ -111,7 +112,7 @@ const PlantActivityF = ({
         <View style={[commonStyles.backgroundCreme, styles.screen]}>
             <SuccessModal
                 modalVisible={successModalVisible}
-                prompt={"You have successfully planted an activity! We will notifiy you when a friend accepts it. Click below to view your planted activity in your hangouts tab."}
+                prompt={"You have successfully planted an activity! We will notifiy you when a friend accepts it."}
                 onClose={() => {
                     setSuccessModalVisible(false)
                     navigation.popToTop()
@@ -158,7 +159,7 @@ const PlantActivityF = ({
             <View style={[styles.confirmContainer, commonStyles.shadow]}>
                 <ConfirmCard title={"Activity"} selection={finalActivity} openEditModal={openEditModal} />
                 <ConfirmCard title={"Location"} selection={finalLocation} openEditModal={openEditModal} />
-                <ConfirmCard title={"Date"} selection={new Date(finalDate).toDateString()} openEditModal={openEditModal} />
+                <ConfirmCard title={"Date"} selection={getStandardDate(new Date(finalDate))} openEditModal={openEditModal} />
                 <ConfirmCard title={"Time"} selection={getTimeString()} openEditModal={openEditModal} />
                 <ConfirmCard title={"Send to"} selection={friends[0]} openEditModal={openEditModal} />
             </View>

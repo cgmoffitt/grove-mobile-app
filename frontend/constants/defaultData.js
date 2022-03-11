@@ -139,7 +139,8 @@ const friends = [
     { name: "Jacob", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
     { name: "Simone", plant: 4, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
     { name: "Helena", plant: 2, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
-    { name: "Tom", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]}
+    { name: "Tom", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
+    { name: "Jake", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]}
 ]
 
 const ProfileInfo = {

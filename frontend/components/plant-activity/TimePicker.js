@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, Dimensions } from "react-native";
+import { View, StyleSheet, Text, Dimensions, Alert } from "react-native";
 import commonStyles from "../../styles/commonStyles"
 import { DARK_GREEN, TEXT_GRAY } from "../../constants/themes";
 
@@ -28,14 +28,23 @@ const TimePicker = ({
                     display="default"
                 />
             </View>
-            <View style={[styles.timeRow, {marginTop: 10}]}>
+            <View style={[styles.timeRow, { marginTop: 10 }]}>
                 <Text style={styles.timePrompt}>End Time</Text>
                 <DateTimePicker
                     testID="dateTimePicker"
                     style={{ width: 110 }}
                     mode={"time"}
                     value={endTime}
-                    onChange={(e, time) => setEndTime(time)}
+                    onChange={(e, time) => {
+                        if (time < startTime) {
+                            console.log("Problem")
+                            setEndTime(startTime)
+                            Alert.alert("Oops! Please choose an end time after your start time.")
+                        } else {
+                            setEndTime(time)
+                        }
+                    }
+                    }
                     display="default"
                 />
             </View>
@@ -45,7 +54,7 @@ const TimePicker = ({
 
 const styles = StyleSheet.create({
     timeContainer: {
-        marginVertical: 15,
+        marginVertical: 10,
         backgroundColor: "white",
         borderRadius: 20,
         width: "80%",

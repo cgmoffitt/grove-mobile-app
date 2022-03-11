@@ -1,15 +1,20 @@
 import { React, useState } from "react";
 import { TouchableOpacity, Text, StyleSheet, View} from "react-native";
-import { DARK_GREEN, CREME_WHITE, VIBRANT_GREEN, shadows} from "../../constants/themes";
+import { DARK_GREEN, CREME_WHITE, VIBRANT_GREEN, shadows, TEXT_GRAY} from "../../constants/themes";
 import commonStyles from "../../styles/commonStyles";
 import ReflectBar from "../reflect/ReflectBar";
+import { setActivityReflected } from "../../redux/utils";
+import { useDispatch } from "react-redux";
 
 
 
-const InfoCard = (props, {
-     navigation
+const ReflectCard = ({
+     navigation,
+     header,
+     subheader,
+     activity
 }) => {
-
+    const dispatch = useDispatch()
     const [successModalVisible, setSuccessModalVisible] = useState(false)
     const [successPrompt, setSuccessPrompt] = useState("")
     const openSuccessModal = (prompt) => {
@@ -19,15 +24,22 @@ const InfoCard = (props, {
             setSuccessModalVisible(false)
         }, 3000)
     }
-    const [pressed, setPressed] = useState(false);
+    const [reflectedA, setReflectedA] = useState(false)
+    const [reflectedB, setReflectedB] = useState(false)
     
     const ViewButton = ({
       }) => {
         return (
             <TouchableOpacity
-                onPress={() => openSuccessModal("Your reflection was successfully saved.")}
+                onPress={() => {
+                    openSuccessModal("Your reflection was successfully saved.")
+                    setActivityReflected(activity.id, dispatch)
+                }}
             >
-                <View style={styles.viewButton}>
+                <View style={[
+                    styles.viewButton,
+                    (reflectedA && reflectedB) ? styles.active : styles.inActive
+                ]}>
                     <Text style={styles.reflectText}>Save</Text>
                 </View>
             </TouchableOpacity>
@@ -36,14 +48,13 @@ const InfoCard = (props, {
 
     return(
       <View style={[commonStyles.cremeCard, styles.infoCard]}>
-            
             <View style={[styles.infoHeader]}>
-                <Text style={styles.headerText}>{props.header}</Text>
-                <Text style={styles.subHeader}>{props.subheader}</Text>
+                <Text style={styles.headerText}>{header}</Text>
+                <Text style={styles.subHeader}>{subheader}</Text>
             </View>
             
-          <ReflectBar title="Location"/>
-          <ReflectBar title="Activity"/>
+          <ReflectBar title="Location" setReflected={setReflectedA} />
+          <ReflectBar title="Activity" setReflected={setReflectedB} />
           <ViewButton></ViewButton>
           <SuccessModal
                 modalVisible={successModalVisible}
@@ -68,7 +79,7 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSans"
     },
     infoCard:{
-        width: '90%',
+        width: '95%',
         padding: '0%',
         paddingBottom: '1%'
     },
@@ -93,6 +104,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 4
     },
+    active: {
+        backgroundColor: DARK_GREEN
+    },
+    inActive: {
+        backgroundColor: TEXT_GRAY
+    }
 });
 
-export default InfoCard;
+export default ReflectCard;

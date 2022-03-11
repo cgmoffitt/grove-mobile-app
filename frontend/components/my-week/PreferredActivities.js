@@ -75,7 +75,7 @@ export default PreferredActivities = ({
             <Text style={[styles.textHeader, { marginBottom: 10 }]}>Activities I'd particularly enjoy...</Text>
             <View style={styles.thinLine}></View>
             <View style={styles.activitiesSection}>
-                {preferredActivities.length === 0 && <Text style={styles.textRegular}>Add an activity:</Text>}
+                {preferredActivities.length === 0 && <Text style={styles.textRegular}>Add an activity</Text>}
                 {preferredActivities.map((activity, index) =>
                     <ActivityChip
                         key={activity.name}

@@ -8,6 +8,7 @@ import ActionButton from "../components/utils/ActionButton";
 import ProgressBar from "../components/plant-activity/ProgressBar";
 import DropDownPicker from 'react-native-dropdown-picker';
 import { friends } from "../constants/defaultData";
+import { getStandardDate } from "../util-functions";
 
 
 
@@ -36,7 +37,7 @@ const PlantActivityE = ({
                 curStep={steps.FRIENDS}
                 activity={activity}
                 location={location}
-                date={new Date(date).toDateString()}
+                date={getStandardDate(new Date(date))}
                 showLabels={true}
             />
             <Text style={styles.textHeader}>Select friends to send this activity to</Text>

@@ -20,10 +20,12 @@ const Friends = ({
         />
     )
     const [search, setSearch] = useState("");
-
     const updateSearch = (search) => {
         setSearch(search);
+        setDisplayedFriends(friends.filter(friend => friend.name.toLowerCase().includes(search.toLowerCase())))
     };
+
+    const [displayedFriends, setDisplayedFriends] = useState(friends)
 
     return (
         <View style={[commonStyles.center, styles.topBar]}>
@@ -41,7 +43,7 @@ const Friends = ({
             
             <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
                 <FlatList
-                    data={friends}
+                    data={displayedFriends}
                     renderItem={({item, index}) => renderItem(item, index)}
                     numColumns={3}
                     keyExtractor={(item, index) => index.toString()}

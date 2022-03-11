@@ -22,7 +22,10 @@ const WriteCaption = ({
 }) => {
     const dispatch = useDispatch()
     const { photo } = route.params;
-    const [text, onChangeText] = useState(null);
+    console.log("photo: ", photo)
+    
+    const [text, onChangeText] = useState(photo.caption);
+    console.log("Text: ", text)
     const [pressed, setPressed] = useState(false);
     const [successModalVisible, setSuccessModalVisible] = useState(false)
     const [successPrompt, setSuccessPrompt] = useState("")
@@ -43,17 +46,17 @@ const WriteCaption = ({
                 onClose={() => setSuccessModalVisible(false)}
                 prompt={successPrompt}
             />
-
             <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
                 <DismissKeyboard>
                     <View style={[commonStyles.cremeCard, styles.photosCard]}>
                         <Image style={styles.cardImage} source={photo}></Image>
                         <TextInput
-                            text={text}
+                            value={text}
                             onChangeText={onChangeText}
                             style={[styles.input, styles.inputText]}
                             multiline={true}
                             placeholder="Write a caption here!"
+                            maxLength={48}
                         />
                         {/* <Pressable style={styles.input} onPress={() => setPressed(true)}>
                         <Text style={styles.inputText}>{(pressed) ? photo.caption : "Add your caption here"}</Text>

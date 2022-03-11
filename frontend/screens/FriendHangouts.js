@@ -17,23 +17,29 @@ import {
     deleteActivity
 } from "../redux/utils"
 import {
-    filterUpcoming,
     filterPast,
-    filterPending,
-    filterPlanted
 } from "../util-functions"
 
 
 
-const Hangouts = ({
+const FriendHangouts = ({
     selectedActivityType,
     activities,
     navigation,
+    route
 }) => {
+    const { friend } = route.params
+
+    React.useLayoutEffect(() => {
+        navigation.setOptions({
+            title: `hangouts with ${friend}`,
+        });
+    }, [navigation]);
+
     const [listToggled, setListToggled] = useState(true)
     const toggleView = () => setListToggled(!listToggled)
     const dispatch = useDispatch()
-    const [selectedActivities, setSelectedActivities] = useState(activities.filter(activity => filterUpcoming(activity)))
+    const [selectedActivities, setSelectedActivities] = useState(activities.filter(activity => filterPast(activity)).filter(activity => activity.friend === friend))
 
     const acceptPendingActivity = (activity) => {
         console.log("Confirming activity")
@@ -44,25 +50,12 @@ const Hangouts = ({
         console.log("Deleting activity")
         deleteActivity(activity.id, dispatch)
     }
-    
+
 
     useEffect(() => {
         let mounted = true
         if (mounted) {
-            switch (selectedActivityType) {
-                case activityHeader.UPCOMING:
-                    setSelectedActivities(activities.filter(activity => filterUpcoming(activity)).sort((a,b) => a.date - b.date))
-                    break;
-                case activityHeader.PENDING:
-                    setSelectedActivities(activities.filter(activity => filterPending(activity)).sort((a,b) => a.date - b.date))
-                    break;
-                case activityHeader.PLANTED:
-                    setSelectedActivities(activities.filter(activity => filterPlanted(activity)).sort((a,b) => a.date - b.date))
-                    break;
-                case activityHeader.PAST:
-                    setSelectedActivities(activities.filter(activity => filterPast(activity)).sort((a,b) => b.date - a.date))
-                    break;
-            }
+            setSelectedActivities(activities.filter(activity => filterPast(activity)).filter(activity => activity.friend === friend).sort((a, b) => b.date - a.date))
         }
 
         return () => mounted = false
@@ -75,22 +68,17 @@ const Hangouts = ({
                 listToggled={listToggled}
                 toggleView={toggleView}
             /> */}
-            <ActivityHeaders
-                headers={ACTIVITY_HEADERS}
-                selected={selectedActivityType}
-            />
             <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.content}>
-                <ActivitiesCard 
-                    activities={selectedActivities} 
-                    selected={selectedActivityType} 
+                <ActivitiesCard
+                    activities={selectedActivities}
+                    selected={activityHeader.PAST}
                     navigation={navigation}
                     acceptMethod={acceptPendingActivity}
                     declineMethod={deletePendingActivity}
-                    editMethod={()=>console.log("Edited")}
+                    editMethod={() => console.log("Edited")}
                 />
                 {selectedActivityType === activityHeader.PLANTED && <PlantActivityButton navigation={navigation} />}
             </ImageBackground>
-
         </View>
     );
 };
@@ -110,4 +98,4 @@ const mapStateToProps = state => ({
     activities: state.activities
 })
 
-export default connect(mapStateToProps)(Hangouts)
+export default connect(mapStateToProps)(FriendHangouts)

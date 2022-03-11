@@ -16,5 +16,6 @@ export default routes = {
     HANGOUTS_TAB: "TabHangouts",
     FRIENDS_TAB: "TabFriends",
     MY_WEEK_TAB: "TabMeThisWeek",
-    MY_PROFILE: "MyProfile"
+    MY_PROFILE: "MyProfile",
+    FRIEND_HANGOUTS: "FriendHangouts"
 }

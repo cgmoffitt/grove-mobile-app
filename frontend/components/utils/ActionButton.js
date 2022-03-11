@@ -6,7 +6,8 @@ const ActionButton = ({
     main,
     onPressMethod,
     active,
-    style
+    style,
+    renderIcon
 }) => {
     return(
       <TouchableOpacity 
@@ -18,6 +19,7 @@ const ActionButton = ({
         onPress={onPressMethod}
         disabled={!active}
       >
+        {renderIcon && renderIcon()}
         <Text style={styles.buttonText}>{main}</Text>
       </TouchableOpacity>
     );
@@ -33,6 +35,8 @@ const styles = StyleSheet.create({
       padding:'5%',
       borderRadius:10,
       width: '90%',
+      flexDirection: "row",
+      justifyContent: "center",
       shadowColor: shadows.shadowColor,
       shadowRadius: shadows.shadowRadius,
       shadowOpacity: shadows.shadowOpacity,

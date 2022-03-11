@@ -1,94 +1,140 @@
-import React from "react";
-import { StyleSheet, Image, Text } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Image, Text, View } from 'react-native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import routes from "../constants/routes";
-import { 
-    HomeStackNavigator, 
+import {
+    HomeStackNavigator,
     FriendsStackNavigator,
     HangoutsStackNavigator,
     MeThisWeekDrawer
 } from "./StackNavigators";
 import { CREME_WHITE, DARK_GREEN, TEXT_GRAY } from "../constants/themes";
+import { connect } from "react-redux";
+import {
+    filterPending
+} from "../util-functions"
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigator = () => {
+const BottomTabNavigator = ({
+    activities
+}) => {
+
+    const [pendingActivities, setPendingActivities] = useState([])
+    console.log(pendingActivities)
+    useEffect(() => {
+        let mounted = true
+        if (mounted) {
+            console.log("Here!!!")
+            setPendingActivities(activities.filter(activity => filterPending(activity)))
+        }
+    }, [activities])
+
     return (
         <Tab.Navigator
             screenOptions={
                 ({ route }) => ({
-                headerShown: false,
-                tabBarActiveBackgroundColor: CREME_WHITE,
-                tabBarInactiveBackgroundColor: CREME_WHITE,
-                tabBarStyle: {backgroundColor: CREME_WHITE, minHeight:90, color:"black"},
-                tabBarIcon: ({focused}) => {
-                    let sourceUrl = require("../assets/images/plants/plant2.png");
-                    if (route.name === "TabHome"){
-                        sourceUrl = focused ? require("../assets/images/bottom-bar-icons/home-filled.png") 
-                                            : require("../assets/images/bottom-bar-icons/home.png");
-                    } else if (route.name === "TabHangouts") {
-                        sourceUrl = focused ? require("../assets/images/bottom-bar-icons/calendar-filled.png") 
-                                            : require("../assets/bottom-bar-icons/calendar.png");
-                    } else if (route.name === "TabFriends") {
-                        sourceUrl = focused ? require("../assets/images/bottom-bar-icons/my-grove-filled.png") 
-                                    : require("../assets/bottom-bar-icons/my-grove.png");
-                    } else {
-                        sourceUrl = focused ? require("../assets/images/bottom-bar-icons/me-this-week-filled.png") 
-                                    : require("../assets/bottom-bar-icons/me-this-week.png");
+                    headerShown: false,
+                    tabBarActiveBackgroundColor: CREME_WHITE,
+                    tabBarInactiveBackgroundColor: CREME_WHITE,
+                    tabBarStyle: { backgroundColor: CREME_WHITE, minHeight: 90, color: "black" },
+                    tabBarIcon: ({ focused }) => {
+                        let sourceUrl = require("../assets/images/plants/plant2.png");
+                        if (route.name === "TabHome") {
+                            sourceUrl = focused ? require("../assets/images/bottom-bar-icons/home-filled.png")
+                                : require("../assets/images/bottom-bar-icons/home.png");
+                        } else if (route.name === "TabHangouts") {
+                            sourceUrl = focused ? require("../assets/images/bottom-bar-icons/calendar-filled.png")
+                                : require("../assets/bottom-bar-icons/calendar.png");
+                        } else if (route.name === "TabFriends") {
+                            sourceUrl = focused ? require("../assets/images/bottom-bar-icons/my-grove-filled.png")
+                                : require("../assets/bottom-bar-icons/my-grove.png");
+                        } else {
+                            sourceUrl = focused ? require("../assets/images/bottom-bar-icons/me-this-week-filled.png")
+                                : require("../assets/bottom-bar-icons/me-this-week.png");
+                        }
+                        return (
+                            <View>
+                                {(route.name === "TabHangouts" && pendingActivities.length > 0)
+                                    &&
+                                    <View style={styles.notification}>
+                                        <Text style={styles.notificationText}>{pendingActivities.length}</Text>
+                                    </View>
+                                }
+                                <Image style={{ width: 27, height: 27, marginTop: 10 }} source={sourceUrl}></Image>
+                            </View>
+                        )
                     }
-                    return(<Image style={{width:27, height:27, marginTop:10 }} source={sourceUrl}></Image>)
-                    }
-            })}
+                })}
         >
-            <Tab.Screen 
-                name={routes.HOME_TAB} 
-                component={HomeStackNavigator} 
+            <Tab.Screen
+                name={routes.HOME_TAB}
+                component={HomeStackNavigator}
                 options={{
-                    tabBarLabel: ({focused,}) => (
-                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>Home</Text>
+                    tabBarLabel: ({ focused, }) => (
+                        <Text style={[styles.tabTitle, { color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" : "OpenSans" }]}>Home</Text>
                     ),
                 }}
             />
-            <Tab.Screen 
+            <Tab.Screen
                 name={routes.HANGOUTS_TAB}
-                component={HangoutsStackNavigator} 
+                component={HangoutsStackNavigator}
                 options={{
-                    tabBarLabel: ({focused,}) => (
-                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>Hangouts</Text>
+                    tabBarLabel: ({ focused, }) => (
+                        <Text style={[styles.tabTitle, { color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" : "OpenSans" }]}>Hangouts</Text>
                     ),
                 }}
             />
-            <Tab.Screen 
-                name={routes.FRIENDS_TAB} 
-                component={FriendsStackNavigator} 
+            <Tab.Screen
+                name={routes.FRIENDS_TAB}
+                component={FriendsStackNavigator}
                 options={{
-                    tabBarLabel: ({focused,}) => (
-                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>My Grove</Text>
+                    tabBarLabel: ({ focused, }) => (
+                        <Text style={[styles.tabTitle, { color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" : "OpenSans" }]}>My Grove</Text>
                     ),
                 }}
             />
-            <Tab.Screen 
-                name={routes.MY_WEEK_TAB} 
-                component={MeThisWeekDrawer} 
+            <Tab.Screen
+                name={routes.MY_WEEK_TAB}
+                component={MeThisWeekDrawer}
                 options={{
-                    tabBarLabel: ({focused,}) => (
-                        <Text style={[styles.tabTitle, {color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" :  "OpenSans"}]}>Me This Week</Text>
+                    tabBarLabel: ({ focused, }) => (
+                        <Text style={[styles.tabTitle, { color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" : "OpenSans" }]}>Me This Week</Text>
                     ),
                 }}
             />
-                
+
         </Tab.Navigator>
     );
 };
 
 const styles = StyleSheet.create({
-    tabNav:{
-        backgroundColor:CREME_WHITE,
+    tabNav: {
+        backgroundColor: CREME_WHITE,
     },
-    tabTitle:{
-        fontFamily:"OpenSans",
-        fontSize:12
+    tabTitle: {
+        fontFamily: "OpenSans",
+        fontSize: 12
+    },
+    notification: {
+        width: 20,
+        height: 20,
+        borderRadius: 10,
+        backgroundColor: "#ef2949",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "absolute",
+        zIndex: 10,
+        right: -10
+    },
+    notificationText: {
+        color: "white",
+        fontFamily: "OpenSansBold"
     }
 });
 
-export default BottomTabNavigator;
+const mapStateToProps = state => ({
+    activities: state.activities
+})
+
+export default connect(mapStateToProps)(BottomTabNavigator);

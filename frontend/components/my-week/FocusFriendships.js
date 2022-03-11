@@ -63,6 +63,7 @@ export default FocusFriendships = ({
             </Text>
             <View style={styles.thinLine}></View>
             <View style={[styles.focusRow]}>
+                {focusFriends.length === 0 && <Text style={[styles.textRegular, {marginRight:6}]}>Add a friend</Text>}
                 {focusFriends.map(friend =>
                     <FriendCard
                         name={friend.name}
@@ -118,8 +119,12 @@ const styles = StyleSheet.create({
         marginRight: 5
     },
     focusRow: {
-        flexDirection: "row",
         width: "100%",
+        minHeight: 50,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        alignItems: "center",
+        marginBottom: 10
     },
     textRegular: {
         fontFamily: "OpenSans",

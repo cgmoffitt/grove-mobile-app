@@ -21,7 +21,6 @@ const styles = StyleSheet.create({
         borderRadius: 0,
         paddingBottom: '5%',
         backgroundColor: CREME_WHITE,
-
     },
     bannerText: {
         fontSize: 20,

@@ -4,6 +4,7 @@ import commonStyles from "../../styles/commonStyles"
 import { LIGHT_GREEN, VIBRANT_GREEN, shadows, DARK_CREME, BROWN, DARK_GREEN, CREME_WHITE } from "../../constants/themes"
 import { ACTIVITY_IMG_SOURCES } from "../../constants/defaultData";
 import XButton from "../utils/XButton";
+import { getStandardDate } from "../../util-functions";
 
 const ReflectButton = ({
     navigation
@@ -128,7 +129,7 @@ export default InfoModal = ({
                                 } </Text>
                         </View>
                     </View>
-                    <Text style={styles.activitySubtext}>When: {activity.date.toLocaleString('default', { weekday: 'short' }) + ", " + activity.date.toLocaleString('default', { month: 'long' }) + " " + activity.date.getDate() + ", " + getTimeString(activity.date)}</Text>
+                    <Text style={styles.activitySubtext}>When: {getStandardDate(activity.date) + ", " + getTimeString(activity.date)}</Text>
                     <Text style={styles.activitySubtext}>Where: {activity.location}</Text>
                     {(selected === "Upcoming" || selected === "Planted")
                         ? <View style={{ paddingTop: '5%' }}><EditButton editMethod={editMethod} navigation={navigation} /></View>

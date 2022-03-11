@@ -8,7 +8,8 @@ import { DEFAULT_ACTIVITIES } from "../../constants/defaultData";
 export default Activities = ({
     selected,
     onChooseActivity,
-    containerStyle
+    containerStyle,
+    cardStyle
 }) => {
 
     return (
@@ -16,7 +17,7 @@ export default Activities = ({
             {DEFAULT_ACTIVITIES.map((activity, i) =>
                 <ActivityCard
                     activity={activity}
-                    cardStyle={styles.activityCard}
+                    cardStyle={[styles.activityCard, cardStyle]}
                     selected={selected}
                     onChooseActivity={onChooseActivity}
                 />
