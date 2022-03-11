@@ -30,10 +30,10 @@ const HomeCard = ({
 }) => {
     const dispatch = useDispatch()
 
-    const acceptMethod = (activity) => {
+    const acceptMethod = () => {
         confirmActivity(activity.id, dispatch)
     }
-    const deleteMethod = (activity) => {
+    const deleteMethod = () => {
         deleteActivity(activity.id, dispatch)
     }
 
@@ -45,8 +45,8 @@ const HomeCard = ({
                 // navigation={navigation}
                 activity={activity}
                 selected={activity.confirmed ? activityHeader.UPCOMING : activityHeader.PENDING}
-                // acceptMethod={acceptMethod}
-                // declineMethod={declineMethod}
+                acceptMethod={acceptMethod}
+                declineMethod={deleteMethod}
                 // editMethod={editMethod}
                 setModalVisible={setInfoModalVisible}
                 modalVisible={infoModalVisible}
