@@ -73,7 +73,7 @@ export default AvailabilityCard = ({
                 My Availability
             </Text>
             <Text style={[styles.headerText, {marginBottom: 15, fontSize: 15, fontFamily: "OpenSansItalic", color: "black"}]}>
-                Click on the time slots that you are free.
+                Click on the time slots that you are free
             </Text>
             
             <View>

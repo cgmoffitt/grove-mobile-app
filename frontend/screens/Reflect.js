@@ -50,9 +50,9 @@ const Reflect = ({
 
   return (
     <View style={styles.center}>
-      <Banner event={hangout.title + " at " + hangout.location} date={hangout.date.toLocaleString('default', { weekday: 'short' }) + " " + hangout.date.getDate() + " "+ hangout.date.toLocaleString('default', { month: 'long' })} />
+      <Banner event={hangout.title + " at " + hangout.location} date={hangout.date.toLocaleString('default', { weekday: 'short' }) + ", " + hangout.date.toLocaleString('default', { month: 'long' }) + " " + hangout.date.getDate()} />
       <ImageBackground source={require("../assets/backgrounds/grove_newbackground.png")} resizeMode="cover" style={styles.image}>
-        <ReflectCard header="How did you feel about this hangout?" subheader="This reflection is just for you!" />
+        <ReflectCard header="How was the hangout?" subheader="This reflection is just for you!" />
 
         <View style={[commonStyles.cremeCard, styles.photosCard]}>
           {(!hangout.memories)
@@ -115,15 +115,17 @@ const styles = StyleSheet.create({
   photosCard: {
     width: '90%',
     marginTop: '5%',
-    height: '40%'
+    height: '30%',
+    paddingVertical: 0
   },
   cardWrapper: {
     paddingTop: '0%',
   },
   cardImage: {
-    width: 180,
-    height: 140,
-    borderRadius: 10
+    width: 120,
+    height: 110,
+    borderRadius: 10,
+    marginTop: 15
   },
   carousel: {
     flexGrow: 0,
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
     fontFamily: "OpenSans",
     color: TEXT_GRAY,
     fontSize: 16,
-    padding: '4%',
+    padding: '1%',
     textAlign: "center"
   },
   carouselCard: {
@@ -158,7 +160,9 @@ const styles = StyleSheet.create({
     width: 42,
     height: 42,
     textAlign: "center",
-    position: "relative"
+    position: "absolute",
+    top: -10,
+    left: 5
   },
   textStyle: {
     color: "white",

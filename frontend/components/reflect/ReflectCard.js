@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     viewButton: {
         marginVertical: 20,
         backgroundColor: DARK_GREEN,
-        width: 69,
+        width: 100,
         borderRadius: 5,
         marginLeft: 5
     },
@@ -89,8 +89,9 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSansBold",
         color: "white",
         textAlign: "center",
-        fontSize: 14,
-        paddingHorizontal: '20%',
+        fontSize: 18,
+        paddingHorizontal: 10,
+        paddingVertical: 4
     },
 });
 

@@ -128,7 +128,7 @@ export default InfoModal = ({
                                 } </Text>
                         </View>
                     </View>
-                    <Text style={styles.activitySubtext}>When: {activity.date.toDateString() + ", " + getTimeString(activity.date)}</Text>
+                    <Text style={styles.activitySubtext}>When: {activity.date.toLocaleString('default', { weekday: 'short' }) + ", " + activity.date.toLocaleString('default', { month: 'long' }) + " " + activity.date.getDate() + ", " + getTimeString(activity.date)}</Text>
                     <Text style={styles.activitySubtext}>Where: {activity.location}</Text>
                     {(selected === "Upcoming" || selected === "Planted")
                         ? <View style={{ paddingTop: '5%' }}><EditButton editMethod={editMethod} navigation={navigation} /></View>

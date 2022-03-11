@@ -36,7 +36,6 @@ export default MultipleSelectModal = ({
                     multiple={true}
                     ArrowDownIconComponent={() => <View></View>}
                     ArrowUpIconComponent={() => <View></View>}
-
                 />
                 <TouchableOpacity
                     onPress={closeModal}
@@ -58,12 +57,14 @@ const styles = StyleSheet.create({
     textBold: {
         fontFamily: "OpenSansBold",
         fontSize: 16,
-        color: "white"
+        color: "white",
+        textAlign: "center"
     },
     headerText: {
         fontFamily: "OpenSansBold",
         color: DARK_GREEN,
-        fontSize: 20
+        fontSize: 20,
+        textAlign: "center"
     },
     specialButton: {
         backgroundColor: DARK_GREEN,

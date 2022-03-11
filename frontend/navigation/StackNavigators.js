@@ -81,12 +81,12 @@ const HomeStackNavigator = () => {
         component={MyProfile} 
         options={configHeaderOptions("My Profile")}
         />
-      <Stack.Screen name={routes.PLANT_ACTIVITYA} component={PlantActivityA} options={configHeaderOptions("Plant an Activity")} />
-      <Stack.Screen name={routes.PLANT_ACTIVITYB} component={PlantActivityB} options={configHeaderOptions("Plant an Activity")} />
-      <Stack.Screen name={routes.PLANT_ACTIVITYC} component={PlantActivityC} options={configHeaderOptions("Plant an Activity")} />
-      <Stack.Screen name={routes.PLANT_ACTIVITYD} component={PlantActivityD} options={configHeaderOptions("Plant an Activity")} />
-      <Stack.Screen name={routes.PLANT_ACTIVITYE} component={PlantActivityE} options={configHeaderOptions("Plant an Activity")} />
-      <Stack.Screen name={routes.PLANT_ACTIVITYF} component={PlantActivityF} options={configHeaderOptions("Plant an Activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYA} component={PlantActivityA} options={configHeaderOptions("plant an activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYB} component={PlantActivityB} options={configHeaderOptions("plant an activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYC} component={PlantActivityC} options={configHeaderOptions("plant an activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYD} component={PlantActivityD} options={configHeaderOptions("plant an activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYE} component={PlantActivityE} options={configHeaderOptions("plant an activity")} />
+      <Stack.Screen name={routes.PLANT_ACTIVITYF} component={PlantActivityF} options={configHeaderOptions("plant an activity")} />
     </Stack.Navigator>
   );
 }

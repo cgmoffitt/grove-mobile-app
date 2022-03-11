@@ -156,7 +156,7 @@ export default ActivityItem = ({
                             {activity.title}
                         </Text>
                         <Text style={styles.dateText}>
-                            {activity.date.toLocaleString('default', { weekday: 'short' }) + " " + activity.date.getDate() + " " + activity.date.toLocaleString('default', { month: 'long' })}
+                            {activity.date.toLocaleString('default', { weekday: 'short' }) + ", " + activity.date.toLocaleString('default', { month: 'long' }) + " " + activity.date.getDate() }
                         </Text>
 
                     </View>

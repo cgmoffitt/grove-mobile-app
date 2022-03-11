@@ -55,13 +55,14 @@ const styles = StyleSheet.create({
     height: 210,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 0
+    marginVertical: 0,
+    marginBottom: 10
   },
   upcomingHeight: {
-    height: 170
+    height: 175
   },
   pendingHeight: {
-    height: 210
+    height: 215
   }
 });
 

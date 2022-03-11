@@ -51,7 +51,7 @@ const HomeCard = ({
                     <Image style={{ width: 35, height: 35 }} resizeMode={"contain"} source={ACTIVITY_IMG_SOURCES[activity.title.toLowerCase()]}></Image>
                     <Text style={styles.activity}>{activity.title} with {activity.friend}</Text>
                 </View>
-                <Text style={styles.date}>{activity.date.toDateString()}</Text>
+                <Text style={styles.date}>{activity.date.toLocaleString('default', { weekday: 'short' }) + ", " + activity.date.toLocaleString('default', { month: 'long' }) + " " + activity.date.getDate()}</Text>
                 <Text style={styles.location}>{activity.location}</Text>
                 {type == activityHeader.PENDING &&
                     <View style={styles.buttons}>
@@ -86,7 +86,7 @@ const HomeCard = ({
 
 const styles = StyleSheet.create({
     pendingCard: {
-        backgroundColor: DARKER_CREME,
+        backgroundColor: "#B7B1A4",
         width: "90%",
         borderRadius: 10,
         padding: 25
