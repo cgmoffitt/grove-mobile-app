@@ -24,8 +24,8 @@ const ReflectCard = ({
             setSuccessModalVisible(false)
         }, 3000)
     }
-    const [reflectedA, setReflectedA] = useState(false)
-    const [reflectedB, setReflectedB] = useState(false)
+    const [reflectedA, setReflectedA] = useState(activity.reflected)
+    const [reflectedB, setReflectedB] = useState(activity.reflected)
     
     const ViewButton = ({
       }) => {
@@ -54,8 +54,8 @@ const ReflectCard = ({
                 <Text style={styles.subHeader}>{subheader}</Text>
             </View>
             
-          <ReflectBar title="Location" setReflected={setReflectedA} />
-          <ReflectBar title="Activity" setReflected={setReflectedB} />
+          <ReflectBar title="Location" setReflected={setReflectedA} activity={activity} />
+          <ReflectBar title="Activity" setReflected={setReflectedB} activity={activity} />
           <ViewButton></ViewButton>
           <SuccessModal
                 modalVisible={successModalVisible}

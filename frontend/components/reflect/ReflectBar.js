@@ -5,10 +5,11 @@ import commonStyles from "../../styles/commonStyles";
 
 const ReflectBar = ({
     title,
-    setReflected
+    setReflected,
+    activity
 }) => {
 
-    const [bigSmile, setBigSmile] = useState(false);
+    const [bigSmile, setBigSmile] = useState(activity.reflected);
     const [mediumSmile, setMediumSmile] = useState(false);
     const [straightFace, setStraightFace] = useState(false);
 

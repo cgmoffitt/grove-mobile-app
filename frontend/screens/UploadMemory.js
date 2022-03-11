@@ -9,6 +9,8 @@ import * as ImagePicker from 'expo-image-picker'
 import { addMemory, deleteMemory } from "../redux/utils";
 import { useDispatch, connect } from "react-redux";
 import { getStandardDate } from "../util-functions";
+import SuccessModal from "../components/utils/SuccessModal";
+import routes from "../constants/routes";
 
 const UploadMemory = ({
     route,
@@ -66,9 +68,9 @@ const UploadMemory = ({
                 </TouchableOpacity>
                 <View>
                     <Image style={styles.cardImage} source={item}></Image>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.captionIcon}
-                        onPress={() => navigation.navigate("WriteCaption", { photo: { index: index, uri: item.uri, caption: item.caption, activityId: activityId } })}
+                        onPress={() => navigation.navigate("WriteCaption", { activity: hangout, photo: { index: index, uri: item.uri, caption: item.caption, activityId: activityId } })}
                     >
                         <Image
                             source={require("../assets/images/plant-activity/pen.png")}
@@ -79,6 +81,8 @@ const UploadMemory = ({
             </View>
         )
     }
+
+    const [showSuccessModal, setShowSuccessModal] = useState(false)
 
     if (!loaded) {
         return <View></View>
@@ -109,7 +113,7 @@ const UploadMemory = ({
                         </View>
                     </View>
                     : <View style={[commonStyles.cremeCard, styles.photosCard]}>
-
+                        <Text style={styles.captionPrompt}>Click on the pencil icon to add a caption</Text>
                         <FlatList
                             data={hangout.memories}
                             renderItem={({ item, index }) => renderItem(item, index, hangout.id)}
@@ -133,6 +137,20 @@ const UploadMemory = ({
                         </View>
                     </View>
                 }
+                <ActionButton
+                    main="Save"
+                    active={true}
+                    style={{ width: 200, padding: "2%", marginTop: 10 }}
+                    onPressMethod={() => setShowSuccessModal(true)}
+                />
+                <SuccessModal
+                    modalVisible={showSuccessModal}
+                    prompt={"Your photos were successfully saved!"}
+                    onClose={() => {
+                        setShowSuccessModal(false)
+                        navigation.navigate(routes.REFLECT, { activityId: activity.id })
+                    }}
+                />
             </ImageBackground>
         </View>
 
@@ -208,7 +226,12 @@ const styles = StyleSheet.create({
     },
     captionIconImage: {
         width: 16,
-        height:16
+        height: 16
+    },
+    captionPrompt: {
+        fontFamily: "OpenSans",
+        marginBottom: 10,
+        fontSize: 14
     }
 });
 

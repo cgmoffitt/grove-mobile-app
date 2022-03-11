@@ -21,7 +21,7 @@ const WriteCaption = ({
     route, navigation
 }) => {
     const dispatch = useDispatch()
-    const { photo } = route.params;
+    const { photo, activity } = route.params;
     console.log("photo: ", photo)
     
     const [text, onChangeText] = useState(photo.caption);
@@ -34,7 +34,7 @@ const WriteCaption = ({
         setSuccessPrompt(prompt)
         setTimeout(() => {
             setSuccessModalVisible(false)
-            navigation.navigate(routes.REFLECT, {activityId: photo.activityId})
+            navigation.navigate(routes.UPLOAD_MEMORY, {activity: activity})
         }, 2000)
     }
 
