@@ -7,6 +7,7 @@ import ActionButton from "../components/utils/ActionButton.js";
 import { Slider } from '@miblanchard/react-native-slider';
 import ToggleSwitch from 'toggle-switch-react-native';
 import { ProfileInfo } from "../constants/defaultData.js";
+import routes from "../constants/routes.js";
 
 
 const MyProfile = ({ navigation }) => {
@@ -127,13 +128,13 @@ const MyProfile = ({ navigation }) => {
         <ActionButton
           main={"My Scrapbook"}
           style={[styles.memoriesButton]}
-          onPressMethod={() => navigation.navigate("Hangouts")}
+          onPressMethod={() => {}}
           active={true}
           renderIcon={() => <Image style={{width: 30, height:30, marginRight: 10}} source={require("../assets/single_friend/camera.png")} />}
         />
         <ActionButton main={"Update 'Me This Week'"}
           style={[styles.memoriesButton, { fontSize: 10 }]}
-          onPressMethod={() => navigation.navigate("Hangouts")}
+          onPressMethod={() => navigation.navigate(routes.MY_WEEK_TAB)}
           active={true} />
 
       </View>
