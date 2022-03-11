@@ -96,10 +96,13 @@ const PlantActivityF = ({
                 break
             case "Location":
                 setEditLocationOpen(true)
+                break
             case "Date":
                 setEditDateOpen(true)
+                break
             case "Time":
                 setEditDateOpen(true)
+                break
             case "Send to":
                 setEditSendToOpen(true)
         }
