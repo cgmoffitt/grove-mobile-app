@@ -127,20 +127,20 @@ const ALL_ACTIVITIES = [
 
 const friends = [
     { name: "Callie", plant: 2, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Bar-hopping"]},
-    { name: "Mihir", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Bar-hopping"]},
-    { name: "Blake", plant: 5, url: require("../assets/friends/jacob.png"), activities: ["Tennis", "Bar-hopping"]},
-    { name: "Jasmine", plant: 9, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Bar-hopping", "Coffee"]},
+    { name: "Mihir", plant: 3, url: require("../assets/friends/Mihir.jpg"), activities: ["Tennis", "Bar-hopping"]},
+    { name: "Blake", plant: 5, url: require("../assets/friends/guy2.jpeg"), activities: ["Tennis", "Bar-hopping"]},
+    { name: "Jasmine", plant: 9, url: require("../assets/friends/Jasmine.png"), activities: ["Tennis", "Bar-hopping", "Coffee"]},
     { name: "Tiff", plant: 6, url: require("../assets/friends/sophia.png"), activities: ["Coffee"]},
-    { name: "Chris", plant: 2, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
-    { name: "Johnson", plant: 2, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
-    { name: "Enrique", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Tennis", "Hiking"]},
-    { name: "Max", plant: 7, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"] },
+    { name: "Chris", plant: 2, url: require("../assets/friends/Chris.jpg"), activities: ["Tennis", "Hiking"]},
+    { name: "Johnson", plant: 2, url: require("../assets/friends/guy1.jpeg"), activities: ["Tennis", "Hiking"]},
+    { name: "Enrique", plant: 3, url: require("../assets/friends/Tom.jpg"), activities: ["Tennis", "Hiking"]},
+    { name: "Max", plant: 7, url: require("../assets/friends/Max.jpg"), activities: ["Coffee", "Hiking"] },
     { name: "Camilla", plant: 6, url: require("../assets/friends/jordan.png"), activities: ["Coffee", "Hiking"]},
-    { name: "Jacob", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
-    { name: "Simone", plant: 4, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
-    { name: "Helena", plant: 2, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
-    { name: "Tom", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]},
-    { name: "Jake", plant: 3, url: require("../assets/friends/nirali.jpeg"), activities: ["Coffee", "Hiking"]}
+    { name: "Jacob", plant: 3, url: require("../assets/friends/guy1.jpeg"), activities: ["Coffee", "Hiking"]},
+    { name: "Simone", plant: 4, url: require("../assets/friends/Simone.jpg"), activities: ["Coffee", "Hiking"]},
+    { name: "Helena", plant: 2, url: require("../assets/friends/Helena.png"), activities: ["Coffee", "Hiking"]},
+    { name: "Tom", plant: 3, url: require("../assets/friends/Tom.jpg"), activities: ["Coffee", "Hiking"]},
+    { name: "Jake", plant: 3, url: require("../assets/friends/Jake.jpg"), activities: ["Coffee", "Hiking"]}
 ]
 
 const ProfileInfo = {
