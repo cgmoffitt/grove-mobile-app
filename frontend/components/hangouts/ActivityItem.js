@@ -49,7 +49,7 @@ const AcceptButton = ({
             onPress={acceptMethod}
         >
             <View
-                style={styles.acceptButton}
+                style={[styles.acceptButton, commonStyles.smallShadow]}
             >
                 <Text style={styles.reflectText}>Accept</Text>
             </View>
@@ -65,7 +65,7 @@ const MaybeLaterButton = ({
             onPress={declineMethod}
         >
             <View
-                style={styles.maybeLaterButton}
+                style={[styles.maybeLaterButton, commonStyles.smallShadow]}
             >
                 <Text style={styles.maybeLaterText}>Maybe Later</Text>
             </View>
@@ -105,7 +105,7 @@ const EditButton = ({
             onPress={editMethod}
         >
             <View
-                style={styles.maybeLaterButton}
+                style={[styles.maybeLaterButton, commonStyles.smallShadow]}
             >
                 <Text style={styles.maybeLaterText}>Edit</Text>
             </View>
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     },
     maybeLaterText: {
         fontFamily: "OpenSans",
-        color: BROWN,
+        color: "black",
         textAlign: "center",
         fontSize: 18
     },

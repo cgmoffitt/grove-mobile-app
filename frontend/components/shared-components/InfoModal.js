@@ -30,7 +30,7 @@ const AcceptButton = ({
             onPress={acceptMethod}
         >
             <View
-                style={styles.acceptButton}
+                style={[styles.acceptButton, commonStyles.smallShadow]}
             >
                 <Text style={styles.reflectText}>Accept</Text>
             </View>
@@ -45,7 +45,7 @@ const MaybeLaterButton = ({
             onPress={declineMethod}
         >
             <View
-                style={styles.maybeLaterButton}
+                style={[styles.maybeLaterButton, commonStyles.smallShadow]}
             >
                 <Text style={styles.maybeLaterText}>Maybe Later</Text>
             </View>
@@ -76,7 +76,7 @@ const EditButton = ({
             onPress={editMethod}
         >
             <View
-                style={styles.maybeLaterButton}
+                style={[styles.maybeLaterButton, commonStyles.smallShadow]}
             >
                 <Text style={styles.maybeLaterText}>Edit</Text>
             </View>
@@ -201,11 +201,6 @@ const styles = StyleSheet.create({
         minWidth: 110,
         minHeight: 30,
         justifyContent: "center",
-        shadowColor: shadows.shadowColor,
-        shadowRadius: shadows.shadowRadius,
-        shadowOpacity: shadows.shadowOpacity,
-        shadowRadius: shadows.shadowRadius,
-        shadowOffset: shadows.shadowOffset,
     },
     maybeLaterButton: {
         backgroundColor: DARK_CREME,
@@ -214,15 +209,10 @@ const styles = StyleSheet.create({
         minWidth: 110,
         minHeight: 30,
         justifyContent: "center",
-        shadowColor: shadows.shadowColor,
-        shadowRadius: shadows.shadowRadius,
-        shadowOpacity: shadows.shadowOpacity,
-        shadowRadius: shadows.shadowRadius,
-        shadowOffset: shadows.shadowOffset,
     },
     maybeLaterText: {
         fontFamily: "OpenSans",
-        color: BROWN,
+        color: "black",
         textAlign: "center",
         fontSize: 18
     },

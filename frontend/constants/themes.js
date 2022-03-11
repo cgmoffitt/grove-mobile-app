@@ -16,6 +16,12 @@ const shadows = {
     shadowRadius: 5,
     shadowOffset: { width: -1, height: 5 },
 }
+const smallShadows = {
+    shadowColor: "black",
+    shadowOpacity: 0.7,
+    shadowRadius: 2,
+    shadowOffset: { width: 2, height: 2 },
+}
 
 export {
     DARK_GREEN,
@@ -29,5 +35,6 @@ export {
     DARK_CREME,
     DARKER_CREME,
     BROWN,
-    shadows
+    shadows,
+    smallShadows
 }

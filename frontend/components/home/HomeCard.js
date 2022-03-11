@@ -64,14 +64,14 @@ const HomeCard = ({
                         <TouchableOpacity
                             onPress={() => deleteMethod(activity)}
                         >
-                            <View style={[styles.rejectButton, commonStyles.shadow]}>
+                            <View style={[styles.rejectButton, commonStyles.smallShadow]}>
                                 <Text style={styles.rejectText}>Maybe Later</Text>
                             </View>
                         </TouchableOpacity>
                         <TouchableOpacity
                             onPress={() => acceptMethod(activity)}
                         >
-                            <View style={[styles.acceptButton, commonStyles.shadow]}>
+                            <View style={[styles.acceptButton, commonStyles.smallShadow]}>
                                 <Text style={styles.acceptText}>Accept</Text>
                             </View>
                         </TouchableOpacity>
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
         fontFamily: "OpenSans",
         fontSize: 18,
         textAlign: "center",
-        color: TEXT_GRAY
+        color: "black"
     },
     acceptButton: {
         borderRadius: 5,

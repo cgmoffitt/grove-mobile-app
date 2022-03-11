@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-around",
         marginBottom: 6,
-        marginTop: 20
+        marginTop: 20,
+        paddingHorizontal:5
     },
     selected: {
         borderBottomWidth: 2, 
@@ -58,10 +59,10 @@ const styles = StyleSheet.create({
     },
     openSansNormal: {
         fontFamily: "OpenSans",
-        fontSize: 16,
+        fontSize: 18,
     },
     openSansBold: {
         fontFamily: "OpenSansBold",
-        fontSize: 16,
+        fontSize: 18,
     }
 });

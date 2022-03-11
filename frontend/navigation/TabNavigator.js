@@ -42,16 +42,16 @@ const BottomTabNavigator = ({
                         let sourceUrl = require("../assets/images/plants/plant2.png");
                         if (route.name === "TabHome") {
                             sourceUrl = focused ? require("../assets/images/bottom-bar-icons/home-filled.png")
-                                : require("../assets/images/bottom-bar-icons/home.png");
+                                : require("../assets/bottom-bar-icons/home-grey.png");
                         } else if (route.name === "TabHangouts") {
                             sourceUrl = focused ? require("../assets/images/bottom-bar-icons/calendar-filled.png")
-                                : require("../assets/bottom-bar-icons/calendar.png");
+                                : require("../assets/bottom-bar-icons/calendar-grey.png");
                         } else if (route.name === "TabFriends") {
                             sourceUrl = focused ? require("../assets/images/bottom-bar-icons/my-grove-filled.png")
-                                : require("../assets/bottom-bar-icons/my-grove.png");
+                                : require("../assets/bottom-bar-icons/my-grove-grey.png");
                         } else {
                             sourceUrl = focused ? require("../assets/images/bottom-bar-icons/me-this-week-filled.png")
-                                : require("../assets/bottom-bar-icons/me-this-week.png");
+                                : require("../assets/bottom-bar-icons/clipboard.png");
                         }
                         return (
                             <View>
@@ -72,7 +72,7 @@ const BottomTabNavigator = ({
                 component={HomeStackNavigator}
                 options={{
                     tabBarLabel: ({ focused, }) => (
-                        <Text style={[styles.tabTitle, { color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" : "OpenSans" }]}>Home</Text>
+                        <Text style={[styles.tabTitle, focused ? styles.focusedText : styles.unfocousedText]}>Home</Text>
                     ),
                 }}
             />
@@ -81,7 +81,7 @@ const BottomTabNavigator = ({
                 component={HangoutsStackNavigator}
                 options={{
                     tabBarLabel: ({ focused, }) => (
-                        <Text style={[styles.tabTitle, { color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" : "OpenSans" }]}>Hangouts</Text>
+                        <Text style={[styles.tabTitle, focused ? styles.focusedText : styles.unfocousedText]}>Hangouts</Text>
                     ),
                 }}
             />
@@ -90,7 +90,7 @@ const BottomTabNavigator = ({
                 component={FriendsStackNavigator}
                 options={{
                     tabBarLabel: ({ focused, }) => (
-                        <Text style={[styles.tabTitle, { color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" : "OpenSans" }]}>My Grove</Text>
+                        <Text style={[styles.tabTitle, focused ? styles.focusedText : styles.unfocousedText]}>My Grove</Text>
                     ),
                 }}
             />
@@ -99,7 +99,7 @@ const BottomTabNavigator = ({
                 component={MeThisWeekDrawer}
                 options={{
                     tabBarLabel: ({ focused, }) => (
-                        <Text style={[styles.tabTitle, { color: DARK_GREEN, fontFamily: focused ? "OpenSansBold" : "OpenSans" }]}>Me This Week</Text>
+                        <Text style={[styles.tabTitle, focused ? styles.focusedText : styles.unfocousedText]}>Me This Week</Text>
                     ),
                 }}
             />
@@ -129,6 +129,14 @@ const styles = StyleSheet.create({
     },
     notificationText: {
         color: "white",
+        fontFamily: "OpenSansBold"
+    },
+    unfocousedText:{
+        color: TEXT_GRAY,
+        fontFamily: "OpenSans"
+    },
+    focusedText: {
+        color: DARK_GREEN,
         fontFamily: "OpenSansBold"
     }
 });
