@@ -136,7 +136,7 @@ const PlantActivityF = ({
                 onButtonPress={() => {
                     setSuccessModalVisible(false)
                     navigation.popToTop()
-                    navigation.navigate(routes.HANGOUTS_TAB)
+                    navigation.navigate(routes.HANGOUTS)
                 }}
             />
             <EditActivityModal
