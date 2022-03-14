@@ -127,7 +127,7 @@ const PlantActivityF = ({
         <View style={[commonStyles.backgroundCreme, styles.screen]}>
             <SuccessModal
                 modalVisible={successModalVisible}
-                prompt={"You have successfully planted an activity! We will notifiy you when a friend accepts it."}
+                prompt={"You have successfully planted an activity! We will notify you when a friend accepts it."}
                 onClose={() => {
                     setSuccessModalVisible(false)
                     navigation.popToTop()
