@@ -15,6 +15,7 @@ import { addActivity } from "../redux/utils";
 import { useDispatch, connect } from "react-redux";
 import InfoBar from "../components/utils/InfoBar.js";
 import routes from "../constants/routes";
+import { getDateXDaysFromToday } from "../util-functions";
 
 import {
   DEFAULT_FOCUS_FRIENDS,
@@ -164,7 +165,7 @@ const MeThisWeek = ({
       id: 10,
       title: activityTitle,
       friend: friend,
-      date: new Date('March 12, 2022 18:00:00'),
+      date: getDateXDaysFromToday(2),
       confirmed: false,
       plantedId: AUTOMATIC_ID,
       reflected: false,

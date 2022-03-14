@@ -26,3 +26,7 @@ export const filterPast = (activity) => {
 export const getStandardDate = (date) => {
     return date.toLocaleString('default', { weekday: 'short' }) + ", " + date.toLocaleString('default', { month: 'long' }) + " " + date.getDate()
 }
+
+export const getDateXDaysFromToday = (x) => {
+    return new Date(new Date().getTime() + x * 24 * 60 * 60 * 1000)
+}

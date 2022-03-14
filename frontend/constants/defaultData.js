@@ -1,3 +1,5 @@
+import { getDateXDaysFromToday } from "../util-functions"
+
 const SOMEONE_ELSE_ID = "SOMEONE_ELSE"
 const MY_ID = "ME"
 const AUTOMATIC_ID = "AUTOMATIC"
@@ -33,7 +35,7 @@ const ALL_ACTIVITIES = [
         id: 1,
         title: defaultActivity.TENNIS,
         friend: "Mihir",
-        date: new Date('March 11, 2022 18:00:00'),
+        date: getDateXDaysFromToday(1),
         confirmed: true,
         plantedId: AUTOMATIC_ID,
         reflected: false,
@@ -43,7 +45,7 @@ const ALL_ACTIVITIES = [
         id: 2,
         title: defaultActivity.COFFEE,
         friend: "Jasmine",
-        date: new Date('March 12, 2022 18:00:00'),
+        date: getDateXDaysFromToday(2),
         confirmed: true,
         plantedId: SOMEONE_ELSE_ID,
         reflected: false,
@@ -53,7 +55,7 @@ const ALL_ACTIVITIES = [
         id: 3,
         title: defaultActivity.HIKING,
         friend: "Coleman",
-        date: new Date('March 13, 2022 18:00:00'),
+        date: getDateXDaysFromToday(3),
         confirmed: true,
         plantedId: MY_ID,
         reflected: false,
@@ -64,7 +66,7 @@ const ALL_ACTIVITIES = [
         id: 4,
         title: defaultActivity.TENNIS,
         friend: undefined,
-        date: new Date('March 11, 2022 18:00:00'),
+        date: getDateXDaysFromToday(4),
         confirmed: false,
         plantedId: MY_ID,
         reflected: false,
@@ -74,7 +76,7 @@ const ALL_ACTIVITIES = [
         id: 5,
         title: defaultActivity.BAR_HOPPING,
         friend: undefined,
-        date: new Date('March 12, 2022 18:00:00'),
+        date: getDateXDaysFromToday(5),
         confirmed: false,
         plantedId: MY_ID,
         reflected: false,
@@ -84,7 +86,7 @@ const ALL_ACTIVITIES = [
         id: 6,
         title: defaultActivity.COFFEE,
         friend: undefined,
-        date: new Date('March 13, 2022 18:00:00'),
+        date: getDateXDaysFromToday(6),
         confirmed: false,
         plantedId: MY_ID,
         reflected: false,
